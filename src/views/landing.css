@@ -5,11 +5,11 @@
   --bg-primary: 0 0% 100%;             /* Pure White */
   --bg-secondary: 240 10% 98%;         /* Off White */
   
-  --primary: 250 84% 60%;              /* Deep Purple */
-  --primary-hover: 250 84% 54%;
-  --primary-glow: 250 84% 60% / 0.12;
+  --primary: 248 99% 34%;              /* Brand Blue #1801AD */
+  --primary-hover: 248 99% 28%;
+  --primary-glow: 248 99% 34% / 0.12;
   
-  --secondary: 262 80% 50%;            /* Indigo */
+  --secondary: 248 95% 45%;            /* Vibrant Accent Blue */
   
   --text-main: 224 25% 12%;            /* Dark Slate */
   --text-muted: 215 16% 47%;           /* Cool Grey */
@@ -46,40 +46,27 @@ body {
   position: relative;
 }
 
-/* Dotted Grid Background with Soft Radial Glows */
-.landing-bg-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
+/* Hero Wrapper containing Navbar, Hero, and Stats Card */
+.hero-wrapper {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f3ff 45%, #e0dbff 70%, #3017d7%);
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  padding-bottom: 60px;
   overflow: hidden;
-  background-color: #fff;
+  z-index: 1;
 }
 
-/* Dotted grid pattern */
-.landing-bg-container::before {
+/* Dotted grid pattern inside the hero wrapper */
+.hero-wrapper::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(hsl(var(--primary) / 0.08) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(rgba(24, 1, 173, 0.08) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
-  opacity: 0.8;
-}
-
-/* Purple top glow */
-.landing-bg-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80vw;
-  height: 70vh;
-  background: radial-gradient(circle, hsl(var(--primary) / 0.07) 0%, transparent 70%);
-  filter: blur(40px);
+  opacity: 0.9;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Typography */

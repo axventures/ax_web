@@ -18,16 +18,21 @@ export const AXLandingView: React.FC = () => {
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-      {/* Dynamic Grid Background with Top Glows */}
-      <div className="landing-bg-container" />
+      {/* Hero Wrapper containing Navbar, Hero, and Stats Card */}
+      <div className="hero-wrapper">
+        {/* Navigation Header */}
+        <Navbar onApplyClick={openModal} />
 
-      {/* Navigation Header */}
-      <Navbar onApplyClick={openModal} />
+        {/* Hero Section */}
+        <HeroSection onApplyClick={openModal} />
+
+        {/* Stats Card */}
+        <StatsCard />
+      </div>
 
       {/* Main Sections */}
       <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <HeroSection onApplyClick={openModal} />
-        <StatsCard />
+        {/* Additional content can go here */}
       </main>
 
       {/* Footer */}

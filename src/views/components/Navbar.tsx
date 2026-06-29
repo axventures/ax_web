@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Menu, X, Triangle } from 'lucide-react';
+import React, { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 interface NavbarProps {
-  onApplyClick: () => void;
+  onApplyClick: () => void
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navLinks = [
     { label: 'Home', href: '#home' },
@@ -16,47 +16,60 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
     { label: 'Founder Community', href: '#community' },
     { label: 'Founder Summit', href: '#summit' },
     { label: 'Resources', href: '#resources' },
-    { label: 'Contact', href: '#contact' },
-  ];
+    { label: 'Contact', href: '#contact' }
+  ]
 
   return (
-    <nav className="navbar">
+    <nav className='navbar'>
       <div
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '16px 24px',
+          padding: '12px 32px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          position: 'relative',
+          position: 'relative'
         }}
       >
-        {/* Logo */}
+        {/* Logo — image mark with 'ventures' below */}
         <a
-          href="#home"
+          href='#home'
           style={{
             display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontSize: '1.25rem',
-            fontWeight: 800,
-            color: 'hsl(var(--text-main))',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            textDecoration: 'none',
+            gap: '0px'
           }}
         >
-          <div
+          {/* A/X Logo Image */}
+          <img
+            src='/ax_logo.jpg'
+            alt='AX Ventures'
             style={{
-              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))',
-              padding: '6px',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              width: '54px',
+              height: '54px',
+              objectFit: 'contain',
+              objectPosition: 'left center',
+              display: 'block'
+            }}
+          />
+          {/* 'ventures' — lowercase, letter-spaced, below the mark */}
+          <span
+            style={{
+              fontSize: '0.68rem',
+              fontWeight: 300,
+              fontFamily: "'Montserrat', sans-serif",
+              color: '#0f172a',
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              marginTop: '1px',
+              paddingLeft: '2px'
             }}
           >
-            <Triangle size={16} color="#fff" fill="#fff" style={{ transform: 'rotate(90deg)' }} />
-          </div>
-          <span>AX Ventures</span>
+            ventures
+          </span>
         </a>
 
         {/* Desktop Nav Links */}
@@ -64,21 +77,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
           style={{
             display: 'none',
             alignItems: 'center',
-            gap: '24px',
+            gap: '24px'
           }}
-          className="desktop-menu-links"
+          className='desktop-menu-links'
         >
-          {navLinks.map((link) => (
+          {navLinks.map(link => (
             <a
               key={link.label}
               href={link.href}
               style={{
                 fontSize: '0.88rem',
                 fontWeight: 500,
-                color: 'hsl(var(--text-muted))',
+                color: 'hsl(var(--text-muted))'
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'hsl(var(--primary))')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'hsl(var(--text-muted))')}
+              onMouseEnter={e =>
+                (e.currentTarget.style.color = 'hsl(var(--primary))')
+              }
+              onMouseLeave={e =>
+                (e.currentTarget.style.color = 'hsl(var(--text-muted))')
+              }
             >
               {link.label}
             </a>
@@ -86,10 +103,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
         </div>
 
         {/* Desktop CTA Button */}
-        <div style={{ display: 'none' }} className="desktop-menu-cta">
+        <div style={{ display: 'none' }} className='desktop-menu-cta'>
           <button
             onClick={onApplyClick}
-            className="btn btn-primary"
+            className='btn btn-primary'
             style={{ padding: '8px 20px', fontSize: '0.88rem' }}
           >
             Apply to AX
@@ -104,9 +121,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
             border: 'none',
             cursor: 'pointer',
             color: 'hsl(var(--text-main))',
-            display: 'block',
+            display: 'block'
           }}
-          className="mobile-menu-toggle"
+          className='mobile-menu-toggle'
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -115,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
         <div
-          className="animate-slide-up"
+          className='animate-slide-up'
           style={{
             position: 'absolute',
             top: '100%',
@@ -128,10 +145,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
             flexDirection: 'column',
             gap: '16px',
             boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
-            zIndex: 999,
+            zIndex: 999
           }}
         >
-          {navLinks.map((link) => (
+          {navLinks.map(link => (
             <a
               key={link.label}
               href={link.href}
@@ -140,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
                 fontSize: '0.95rem',
                 fontWeight: 500,
                 color: 'hsl(var(--text-muted))',
-                padding: '4px 0',
+                padding: '4px 0'
               }}
             >
               {link.label}
@@ -148,10 +165,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
           ))}
           <button
             onClick={() => {
-              setIsMobileMenuOpen(false);
-              onApplyClick();
+              setIsMobileMenuOpen(false)
+              onApplyClick()
             }}
-            className="btn btn-primary"
+            className='btn btn-primary'
             style={{ width: '100%', marginTop: '8px' }}
           >
             Apply to AX
@@ -174,6 +191,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
         }
       `}</style>
     </nav>
-  );
-};
-export default Navbar;
+  )
+}
+export default Navbar
