@@ -49,7 +49,7 @@ body {
 /* Hero Wrapper containing Navbar, Hero, and Stats Card */
 .hero-wrapper {
   position: relative;
-  background: linear-gradient(180deg, #ffffff 0%, #f4f3ff 45%, #e0dbff 70%, #3017d7%);
+  background: linear-gradient(180deg, #ffffff 0%, #f4f3ff 45%, #e0dbff 70%, #3017d7 100%);
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   padding-bottom: 60px;
