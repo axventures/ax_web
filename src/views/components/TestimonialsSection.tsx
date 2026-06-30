@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { WaveLinesBottomRight, ScatteredDots } from './DecorativeLines';
 
 interface Testimonial {
   id: string;
@@ -37,7 +38,10 @@ export const TestimonialsSection: React.FC = () => {
   const trackRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="testimonials-section" id="testimonials" aria-labelledby="testimonials-heading">
+    <section className="testimonials-section" id="testimonials" aria-labelledby="testimonials-heading" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Decorative line drawings */}
+      <WaveLinesBottomRight />
+      <ScatteredDots />
       <div className="testimonials-container">
 
         {/* Header Row */}

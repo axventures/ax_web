@@ -944,7 +944,7 @@ a {
 }
 
 /* ---- Individual Card ---- */
-.kyah-card {
+.kyah-card.kyah-card--reveal {
   position: relative;
   background: linear-gradient(135deg, #ffffff 0%, #f4f3ff 100%);
   border: 1px solid rgba(24, 1, 173, 0.08);
@@ -952,33 +952,36 @@ a {
   padding: 36px 32px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0;
   overflow: hidden;
   box-shadow: 0 10px 30px -10px rgba(24, 1, 173, 0.05), 0 1px 3px rgba(0, 0, 0, 0.01);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.35s ease,
-              border-color 0.35s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+  cursor: default;
+  min-height: 120px;
 }
 
-.kyah-card:hover {
+.kyah-card--reveal:hover {
   transform: translateY(-6px);
-  border-color: rgba(24, 1, 173, 0.2);
-  box-shadow: 0 15px 35px -5px rgba(24, 1, 173, 0.12);
+  border-color: var(--card-accent, #1801AD);
+  box-shadow: 0 20px 50px -10px rgba(24, 1, 173, 0.14);
 }
 
-/* ---- Icon badge ---- */
-.kyah-card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(24, 1, 173, 0.05);
-  border: 1px solid rgba(24, 1, 173, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #1801AD;
-  flex-shrink: 0;
-  margin-bottom: 8px;
+/* Accent bar at the top of the card */
+.kyah-card-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-accent, #1801AD);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.kyah-card--reveal:hover .kyah-card-accent-bar {
+  opacity: 1;
 }
 
 /* ---- Card text ---- */
@@ -989,6 +992,28 @@ a {
   color: #0f172a;
   letter-spacing: -0.02em;
   line-height: 1.25;
+  transition: color 0.3s ease;
+}
+
+.kyah-card--reveal:hover .kyah-card-title {
+  color: var(--card-accent, #1801AD);
+}
+
+/* Description — hidden initially, reveals on hover */
+.kyah-card-reveal-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease 0.1s,
+              margin-top 0.4s ease;
+  margin-top: 0;
+}
+
+.kyah-card--reveal:hover .kyah-card-reveal-content {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 16px;
 }
 
 .kyah-card-desc {
@@ -996,23 +1021,6 @@ a {
   color: #475569;
   line-height: 1.65;
   font-weight: 400;
-  flex-grow: 1;
-}
-
-/* ---- CTA link ---- */
-.kyah-card-cta {
-  display: inline-block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #1801AD;
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: color 0.25s ease;
-  margin-top: auto;
-}
-
-.kyah-card-cta:hover {
-  color: #100080;
 }
 
 /* ---- Bottom glow orb (common) ---- */
@@ -1025,26 +1033,14 @@ a {
   height: 160px;
   border-radius: 50%;
   filter: blur(40px);
-  opacity: 0.2;
+  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-
-.kyah-card:hover .kyah-card-glow {
-  opacity: 0.35;
-}
-
-/* ---- Per-card glow colours ---- */
-.kyah-card--orange .kyah-card-glow {
+  transition: opacity 0.4s ease;
   background: radial-gradient(ellipse at center, rgba(24, 1, 173, 0.15) 0%, rgba(24, 1, 173, 0.05) 60%, transparent 100%);
 }
 
-.kyah-card--blue .kyah-card-glow {
-  background: radial-gradient(ellipse at center, rgba(24, 1, 173, 0.15) 0%, rgba(24, 1, 173, 0.05) 60%, transparent 100%);
-}
-
-.kyah-card--green .kyah-card-glow {
-  background: radial-gradient(ellipse at center, rgba(24, 1, 173, 0.15) 0%, rgba(24, 1, 173, 0.05) 60%, transparent 100%);
+.kyah-card--reveal:hover .kyah-card-glow {
+  opacity: 0.3;
 }
 
 /* ---- Entrance animation ---- */
@@ -1053,13 +1049,18 @@ a {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.kyah-card {
+.kyah-card.kyah-card--reveal {
   animation: kyahCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.kyah-card:nth-child(1) { animation-delay: 0.05s; }
-.kyah-card:nth-child(2) { animation-delay: 0.15s; }
-.kyah-card:nth-child(3) { animation-delay: 0.25s; }
+.kyah-card--reveal:nth-child(1) { animation-delay: 0.05s; }
+.kyah-card--reveal:nth-child(2) { animation-delay: 0.15s; }
+.kyah-card--reveal:nth-child(3) { animation-delay: 0.25s; }
+.kyah-card--reveal:nth-child(4) { animation-delay: 0.35s; }
+.kyah-card--reveal:nth-child(5) { animation-delay: 0.45s; }
+.kyah-card--reveal:nth-child(6) { animation-delay: 0.55s; }
+.kyah-card--reveal:nth-child(7) { animation-delay: 0.65s; }
+.kyah-card--reveal:nth-child(8) { animation-delay: 0.75s; }
 
 /* ============================================================
    Testimonials Section

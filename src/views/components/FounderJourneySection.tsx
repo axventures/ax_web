@@ -1,4 +1,5 @@
 import React from 'react';
+import { DashedArcTopLeft, DiamondMarker } from './DecorativeLines';
 
 interface JourneyStep {
   phase: string;
@@ -51,7 +52,11 @@ interface FounderJourneySectionProps {
 
 export const FounderJourneySection: React.FC<FounderJourneySectionProps> = ({ onApplyClick }) => {
   return (
-    <section className="journey-section" id="founder-journey" aria-labelledby="journey-heading">
+    <section className="journey-section" id="founder-journey" aria-labelledby="journey-heading" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Decorative line drawings */}
+      <DashedArcTopLeft />
+      <DiamondMarker style={{ top: '15%', right: '8%' }} />
+      <DiamondMarker style={{ bottom: '20%', left: '4%' }} />
       <div className="journey-container">
         {/* Left Side: Sticky Header (Mondai / YC style) */}
         <div className="journey-header-sidebar">

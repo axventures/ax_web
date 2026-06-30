@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Network } from 'lucide-react';
+import { ContourLinesTopRight, DashedCurveLeft } from './DecorativeLines';
 
 export const CrowdfundingSection: React.FC = () => {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
@@ -29,7 +30,10 @@ export const CrowdfundingSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="why-ax-section" id="crowdfunding">
+    <section className="why-ax-section" id="crowdfunding" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Decorative line drawings */}
+      <ContourLinesTopRight />
+      <DashedCurveLeft />
       {/* 1. Large Centered Question Block */}
       <div className="why-ax-question-block">
         <h2 className="why-ax-question-title">
