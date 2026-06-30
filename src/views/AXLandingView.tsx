@@ -23,13 +23,14 @@ export const AXLandingView: React.FC = () => {
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-      {/* Hero Wrapper containing Navbar, Hero, and Stats Card */}
+      {/* Navigation Header */}
+      <Navbar onApplyClick={openModal} />
+
+      {/* Hero Wrapper containing Hero and Stats Card */}
       <div className="hero-wrapper">
-        {/* Navigation Header */}
-        <Navbar onApplyClick={openModal} />
 
         {/* Hero Section */}
-        <HeroSection onApplyClick={openModal} />
+        <HeroSection />
 
         {/* Stats Card */}
         <StatsCard />
@@ -47,19 +48,17 @@ export const AXLandingView: React.FC = () => {
       {/* Footer */}
       <footer
         style={{
-          marginTop: '80px',
-          padding: '24px',
-          borderTop: '1px solid rgba(15, 23, 42, 0.04)',
+          padding: '80px 24px 120px 24px',
+          borderTop: '1px solid rgba(24, 1, 173, 0.08)',
           textAlign: 'center',
           fontSize: '0.85rem',
           color: 'hsl(var(--text-muted))',
+          backgroundColor: '#ffffff',
+          position: 'relative',
           zIndex: 1,
         }}
       >
         <p>© {new Date().getFullYear()} AX Ventures. All rights reserved.</p>
-        <p style={{ fontSize: '0.72rem', marginTop: '4px', opacity: 0.7 }}>
-          Decoupled MVC Architecture Setup
-        </p>
       </footer>
 
       {/* Application Form Modal */}

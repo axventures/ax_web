@@ -132,35 +132,32 @@ a {
 }
 
 /* ============================================================
-   Scroll-Controlled Glassmorphic Navbar (Pill Transition)
+   Dual Navbar Layout (Static Top & Floating Bottom Dock)
    ============================================================ */
-.navbar-wrapper {
-  position: absolute;
+.navbar-static {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 9999999;
   padding: 24px 0;
   background: transparent;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Scrolled state: morphs into a floating glass pill */
-.navbar-wrapper.scrolled {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 32px);
-  max-width: 780px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(24, 1, 173, 0.08);
-  border-radius: 40px;
-  box-shadow: 0 20px 40px -15px rgba(24, 1, 173, 0.12);
+.navbar-static.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar-static.frosted {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(24, 1, 173, 0.06);
+  padding: 16px 0; /* slightly thinner when scrolling */
 }
 
 .navbar-container {
@@ -174,32 +171,104 @@ a {
   width: 100%;
 }
 
-/* Logo image style */
-.navbar-logo-img {
+/* Static Logo Sizing */
+.navbar-logo-img-static {
   width: 62px;
   height: 62px;
   object-fit: contain;
   display: block;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.navbar-wrapper.scrolled .navbar-logo-img {
+/* Desktop Nav Links - Spaced & Increased Font Size for Readability */
+.desktop-menu-links {
+  display: none;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-link-item {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #475569;
+  letter-spacing: -0.01em;
+  transition: var(--transition-smooth);
+}
+
+.nav-link-item:hover {
+  color: #1801AD;
+}
+
+/* Floating Bottom Glass Pill Navbar (Dock) */
+.navbar-floating-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 120px); /* Start hidden below viewport */
+  opacity: 0;
+  width: calc(100% - 32px);
+  max-width: 740px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(24, 1, 173, 0.08);
+  border-radius: 50px;
+  box-shadow: 0 -10px 40px -10px rgba(24, 1, 173, 0.15);
+  z-index: 9999999;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-floating-dock.visible {
+  transform: translate(-50%, 0); /* Slide up into view */
+  opacity: 1;
+}
+
+.navbar-container-dock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-logo-img-dock {
   width: 48px;
   height: 48px;
+  object-fit: contain;
+  display: block;
 }
 
-.navbar-logo-text {
-  opacity: 1;
-  max-height: 20px;
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+.desktop-menu-links-dock {
+  display: none;
+  align-items: center;
+  gap: 28px;
 }
 
-.navbar-wrapper.scrolled .navbar-logo-text {
-  opacity: 0;
-  max-height: 0;
-  margin-top: 0 !important;
-  pointer-events: none;
+@media (min-width: 768px) {
+  .desktop-menu-links-dock {
+    display: flex;
+  }
+}
+
+.nav-link-item-dock {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+  letter-spacing: -0.01em;
+  transition: var(--transition-smooth);
+}
+
+.nav-link-item-dock:hover {
+  color: #1801AD;
+}
+
+.desktop-menu-cta-dock {
+  display: block;
+}
+
+.nav-cta-btn-dock {
+  padding: 8px 20px !important;
+  font-size: 0.88rem !important;
+  border-radius: 30px !important;
 }
 
 /* Nav Links - Spaced & Increased Font Size for Readability */
@@ -1362,4 +1431,60 @@ a {
 .timeline-step-node:hover .cta-card {
   border-color: rgba(16, 185, 129, 0.5);
   box-shadow: 0 8px 30px rgba(16, 185, 129, 0.08);
+}
+
+/* Explore Summit Button Curiosity Style (Primary Brand Gradient) */
+.explore-summit-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1801AD, #4f46e5) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 8px 24px rgba(24, 1, 173, 0.25) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.explore-summit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-25deg);
+  transition: none;
+}
+
+.explore-summit-btn:hover::before {
+  left: 150%;
+  transition: all 0.8s ease-in-out;
+}
+
+.explore-summit-btn:hover {
+  box-shadow: 0 12px 28px rgba(24, 1, 173, 0.35) !important;
+  transform: translateY(-2px);
+}
+
+.explore-arrow {
+  transition: transform 0.3s ease;
+  color: #ffffff;
+}
+
+.explore-summit-btn:hover .explore-arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   About Page Animations
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

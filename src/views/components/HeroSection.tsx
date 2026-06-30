@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
-interface HeroSectionProps {
-  onApplyClick: () => void;
-}
-
-export const HeroSection: React.FC<HeroSectionProps> = ({ onApplyClick }) => {
+export const HeroSection: React.FC = () => {
   const rotatingWords = ['Founder', 'Team', 'System', 'Company'];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
@@ -21,7 +17,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onApplyClick }) => {
       id="home"
       className="hero-section-landscape"
       style={{
-        padding: '120px 24px 80px 24px',
+        padding: '160px 24px 80px 24px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -99,25 +95,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onApplyClick }) => {
         Building companies by building exceptional founders.
       </p>
 
-      {/* Single CTA Button (Removed secondary button as requested) */}
+      {/* Single CTA (Vision to Venture) */}
       <div
         className="animate-slide-up"
         style={{
           marginTop: '44px',
         }}
       >
-        <button 
-          onClick={onApplyClick} 
-          className="btn btn-primary" 
+        <a 
+          href="#summit" 
+          className="btn btn-primary explore-summit-btn" 
           style={{ 
             padding: '16px 36px', 
             fontSize: '1.05rem',
             borderRadius: '40px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
           }}
         >
-          <span>Apply to AX</span>
-          <ArrowRight size={18} />
-        </button>
+          <span>Explore Vision to Venture</span>
+          <ArrowRight size={18} className="explore-arrow" />
+        </a>
       </div>
     </section>
   );
