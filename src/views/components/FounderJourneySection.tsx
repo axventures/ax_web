@@ -1,9 +1,5 @@
 import React from 'react';
 
-interface FounderJourneySectionProps {
-  onApplyClick: () => void;
-}
-
 interface JourneyStep {
   phase: string;
   title: string;
@@ -47,116 +43,71 @@ const steps: JourneyStep[] = [
     title: 'Ecosystem',
     description: "Lifetime access to AX's network of founders, mentors, and resources.",
   },
-  {
-    phase: 'NEXT STEP',
-    title: 'Join AX',
-    description: 'Ready to accelerate your growth? Start your application today.',
-    isCta: true,
-  },
 ];
+
+interface FounderJourneySectionProps {
+  onApplyClick: () => void;
+}
 
 export const FounderJourneySection: React.FC<FounderJourneySectionProps> = ({ onApplyClick }) => {
   return (
     <section className="journey-section" id="founder-journey" aria-labelledby="journey-heading">
       <div className="journey-container">
-        
-        {/* Section Header */}
-        <div className="journey-header">
+        {/* Left Side: Sticky Header (Mondai / YC style) */}
+        <div className="journey-header-sidebar">
+          <span className="journey-subtitle-label">Our Method</span>
           <h2 className="journey-title" id="journey-heading">
             How AX Works
           </h2>
-          <p className="journey-subtitle">
-            Our structured, stage-by-stage process is designed to turn ambitious ideas into venture-scale successes.
+          <p className="journey-subtitle-desc">
+            A structured, stage-by-stage pathway designed to take founders from early-stage concept to venture-scale success.
           </p>
+          <button onClick={onApplyClick} className="btn btn-primary" style={{ marginTop: '24px' }}>
+            Apply to AX
+          </button>
         </div>
 
-        {/* Journey Grid */}
-        <div className="journey-grid">
+        {/* Right Side: Vertical Timeline */}
+        <div className="journey-timeline-flow">
+          <div className="timeline-line" />
           
-          {/* Main Brand Card (Green, spans 2 rows on desktop) */}
-          <div className="journey-main-card">
-            {/* Badge Icon */}
-            <svg
-              width="56"
-              height="56"
-              viewBox="0 0 64 64"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="journey-badge-icon"
-              aria-hidden="true"
-            >
-              <circle cx="32" cy="26" r="18" fill="currentColor" fillOpacity="0.15" />
-              <circle cx="32" cy="26" r="14" stroke="currentColor" strokeWidth="2.5" />
-              <path
-                d="M32 18.5L35.5 25.5L43 26.5L37.5 31.5L39 39L32 35L25 39L26.5 31.5L21 26.5L28.5 25.5L32 18.5Z"
-                fill="currentColor"
-              />
-              <path
-                d="M24 38L18 54L32 48L46 54L40 38"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-
-            <h3 className="journey-main-title">
-              The
-              <br />
-              Founder
-              <br />
-              Journey¹
-            </h3>
-
-            {/* Footnotes at the bottom */}
-            <div className="journey-footnotes">
-              <div className="journey-footnote-item">
-                1. A structured 7-stage pathway designed to take founders from early-stage concept to venture-scale success.
+          {steps.map((step, index) => (
+            <div key={index} className="timeline-step-node">
+              {/* Dot on the line */}
+              <div className="timeline-dot-wrapper">
+                <div className="timeline-dot" />
               </div>
-              <div className="journey-footnote-item">
-                2. Each phase is backed by dedicated partners, resources, and mentor networks to ensure execution excellence.
+              
+              {/* Step Content */}
+              <div className="timeline-content-card">
+                <span className="timeline-step-phase">{step.phase}</span>
+                <h4 className="timeline-step-title">{step.title}</h4>
+                <p className="timeline-step-desc">{step.description}</p>
               </div>
             </div>
+          ))}
+          
+          {/* Final CTA Node */}
+          <div className="timeline-step-node cta-node">
+            <div className="timeline-dot-wrapper">
+              <div className="timeline-dot cta-dot" />
+            </div>
+            <div className="timeline-content-card cta-card">
+              <span className="timeline-step-phase" style={{ color: 'hsl(var(--primary))' }}>NEXT STEP</span>
+              <h4 className="timeline-step-title">Join AX</h4>
+              <p className="timeline-step-desc" style={{ marginBottom: '16px' }}>
+                Ready to accelerate your growth? Start your application today.
+              </p>
+              <button
+                onClick={onApplyClick}
+                className="journey-cta-btn"
+                style={{ cursor: 'pointer' }}
+              >
+                Begin Journey <span style={{ marginLeft: '4px' }}>→</span>
+              </button>
+            </div>
           </div>
-
-          {/* Step Cards */}
-          {steps.map((step, index) => {
-            if (step.isCta) {
-              return (
-                <div key={index} className="journey-card journey-card--cta">
-                  <div>
-                    <span className="journey-card-phase">{step.phase}</span>
-                    <h4 className="journey-card-title">{step.title}</h4>
-                  </div>
-                  <div>
-                    <p className="journey-card-desc" style={{ marginBottom: '12px' }}>
-                      {step.description}
-                    </p>
-                    <button
-                      onClick={onApplyClick}
-                      className="journey-cta-btn"
-                      style={{ border: 'none', cursor: 'pointer' }}
-                    >
-                      Begin Journey <span style={{ marginLeft: '4px' }}>→</span>
-                    </button>
-                  </div>
-                </div>
-              );
-            }
-
-            return (
-              <div key={index} className="journey-card">
-                <div>
-                  <span className="journey-card-phase">{step.phase}</span>
-                  <h4 className="journey-card-title">{step.title}</h4>
-                </div>
-                <p className="journey-card-desc">{step.description}</p>
-              </div>
-            );
-          })}
-
         </div>
-
       </div>
     </section>
   );

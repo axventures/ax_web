@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { StatsCard } from './components/StatsCard';
 import { CrowdfundingSection } from './components/CrowdfundingSection';
+import { BrandTickerSection } from './components/BrandTickerSection';
 import { KeepYouAheadSection } from './components/KeepYouAheadSection';
 import { FounderJourneySection } from './components/FounderJourneySection';
 import { TestimonialsSection } from './components/TestimonialsSection';
@@ -37,6 +38,7 @@ export const AXLandingView: React.FC = () => {
       {/* Main Sections */}
       <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <CrowdfundingSection />
+        <BrandTickerSection />
         <KeepYouAheadSection />
         <FounderJourneySection onApplyClick={openModal} />
         <TestimonialsSection />
