@@ -3,6 +3,10 @@ import { useApplicationController } from '../controllers/useApplicationControlle
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { StatsCard } from './components/StatsCard';
+import { CrowdfundingSection } from './components/CrowdfundingSection';
+import { KeepYouAheadSection } from './components/KeepYouAheadSection';
+import { FounderJourneySection } from './components/FounderJourneySection';
+import { TestimonialsSection } from './components/TestimonialsSection';
 import { ApplicationModal } from './components/ApplicationModal';
 
 export const AXLandingView: React.FC = () => {
@@ -32,7 +36,10 @@ export const AXLandingView: React.FC = () => {
 
       {/* Main Sections */}
       <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        {/* Additional content can go here */}
+        <CrowdfundingSection />
+        <KeepYouAheadSection />
+        <FounderJourneySection onApplyClick={openModal} />
+        <TestimonialsSection />
       </main>
 
       {/* Footer */}

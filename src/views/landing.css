@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   /* HSL Color Palette - Light Theme with Tech Accents */
@@ -314,3 +314,760 @@ a {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* Crowdfunding Section styling */
+.crowdfunding-section {
+  position: relative;
+  width: 100%;
+  padding: 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.crowdfunding-bg-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 220px;
+  background-color: #1801AD; /* Light pastel mint/sage green background band */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.crowdfunding-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column; /* Stacks text above image on mobile */
+  align-items: center;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .crowdfunding-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+  }
+  
+  .crowdfunding-bg-band {
+    height: 360px;
+  }
+}
+
+.crowdfunding-text-content {
+  flex: 1.2;
+  max-width: 520px;
+  text-align: left;
+}
+
+.crowdfunding-title {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: #e1e1e1; /* Sleek dark slate color */
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.crowdfunding-title em {
+  font-style: italic;
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+}
+
+.crowdfunding-description {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  line-height: 1.6;
+  color: #e1e1e1; /* Muted text color matching the style */
+  font-weight: 400;
+}
+
+.crowdfunding-image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.crowdfunding-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .crowdfunding-image {
+    max-height: 440px;
+  }
+}
+
+/* ============================================================
+   How We Keep You Ahead Section
+   ============================================================ */
+.kyah-section {
+  width: 100%;
+  background: #0c0c0f;
+  padding: 100px 0 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle noise / grain overlay */
+.kyah-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.kyah-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---- Header ---- */
+.kyah-header {
+  max-width: 540px;
+  margin-bottom: 64px;
+}
+
+.kyah-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.kyah-reg {
+  font-size: 0.55em;
+  vertical-align: super;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.kyah-subtitle {
+  font-size: clamp(0.9rem, 1.6vw, 1rem);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.65;
+  margin-bottom: 28px;
+  font-weight: 400;
+}
+
+.kyah-tagline {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border-left: 2px solid rgba(255, 255, 255, 0.12);
+  padding-left: 12px;
+}
+
+/* ---- Cards grid ---- */
+.kyah-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .kyah-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .kyah-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---- Individual Card ---- */
+.kyah-card {
+  position: relative;
+  background: #13131a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 36px 32px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
+}
+
+.kyah-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ---- Icon badge ---- */
+.kyah-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+
+/* ---- Card text ---- */
+.kyah-card-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.kyah-card-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.65;
+  font-weight: 400;
+  flex-grow: 1;
+}
+
+/* ---- CTA link ---- */
+.kyah-card-cta {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.25s ease;
+  margin-top: auto;
+}
+
+.kyah-card-cta:hover {
+  color: #ffffff;
+}
+
+/* ---- Bottom glow orb (common) ---- */
+.kyah-card-glow {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 160px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.kyah-card:hover .kyah-card-glow {
+  opacity: 1;
+}
+
+/* ---- Per-card glow colours ---- */
+.kyah-card--orange .kyah-card-glow {
+  background: radial-gradient(ellipse at center, rgba(235, 90, 15, 0.9) 0%, rgba(180, 30, 5, 0.6) 60%, transparent 100%);
+}
+
+.kyah-card--orange:hover {
+  box-shadow: 0 20px 60px -10px rgba(235, 90, 15, 0.25);
+}
+
+.kyah-card--blue .kyah-card-glow {
+  background: radial-gradient(ellipse at center, rgba(50, 120, 255, 0.9) 0%, rgba(20, 60, 200, 0.6) 60%, transparent 100%);
+}
+
+.kyah-card--blue:hover {
+  box-shadow: 0 20px 60px -10px rgba(50, 120, 255, 0.2);
+}
+
+.kyah-card--green .kyah-card-glow {
+  background: radial-gradient(ellipse at center, rgba(30, 190, 110, 0.9) 0%, rgba(10, 120, 60, 0.6) 60%, transparent 100%);
+}
+
+.kyah-card--green:hover {
+  box-shadow: 0 20px 60px -10px rgba(30, 190, 110, 0.2);
+}
+
+/* ---- Entrance animation ---- */
+@keyframes kyahCardIn {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.kyah-card {
+  animation: kyahCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.kyah-card:nth-child(1) { animation-delay: 0.05s; }
+.kyah-card:nth-child(2) { animation-delay: 0.15s; }
+.kyah-card:nth-child(3) { animation-delay: 0.25s; }
+
+/* ============================================================
+   Testimonials Section
+   ============================================================ */
+.testimonials-section {
+  width: 100%;
+  padding: 100px 0 120px;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---- Header ---- */
+.testimonials-header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+@media (min-width: 768px) {
+  .testimonials-header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.testimonials-header-left {
+  flex: 1;
+}
+
+.testimonials-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: hsl(var(--text-main));
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.testimonials-title em {
+  font-style: italic;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 500;
+}
+
+.testimonials-header-right {
+  flex: 1;
+  max-width: 400px;
+}
+
+.testimonials-subtitle {
+  font-size: 0.95rem;
+  color: hsl(var(--text-muted));
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* ---- Cards Track (horizontal scroll on mobile, flex on desktop) ---- */
+.testimonials-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+  /* hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.testimonials-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Individual Card ---- */
+.testimonial-card {
+  position: relative;
+  flex: 0 0 240px;
+  min-height: 320px;
+  background: hsl(var(--bg-secondary));
+  border: 1px solid hsl(var(--border-color));
+  border-radius: 20px;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@media (min-width: 768px) {
+  .testimonial-card {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+/* Scale up the hovered card slightly — matches "center large card" look */
+.testimonial-card--active {
+  transform: translateY(-8px) scale(1.03);
+  border-color: transparent;
+  box-shadow: 0 24px 60px -10px rgba(235, 120, 30, 0.28);
+  z-index: 2;
+}
+
+/* ---- Gradient overlay (hidden by default, revealed on hover) ---- */
+.testimonial-card-gradient {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(248, 248, 250, 0) 0%, rgba(255, 240, 220, 0.15) 30%, rgba(255, 179, 74, 0.6) 55%, rgba(255, 110, 30, 0.9) 78%, #f24e1e 100%);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.testimonial-card--active .testimonial-card-gradient {
+  opacity: 1;
+}
+
+/* ---- Card content (sits above gradient) ---- */
+.testimonial-card-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.testimonial-quote {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 700;
+  color: hsl(var(--text-main));
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.testimonial-body {
+  font-size: 0.875rem;
+  color: hsl(var(--text-muted));
+  line-height: 1.65;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+/* ---- Footer (role & company only) ---- */
+.testimonial-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid hsl(var(--border-color));
+  transition: border-color 0.3s ease;
+}
+
+.testimonial-card--active .testimonial-footer {
+  border-top-color: rgba(255, 255, 255, 0.25);
+}
+
+.testimonial-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.testimonial-role {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: hsl(var(--text-main));
+  letter-spacing: 0.01em;
+  transition: color 0.3s ease;
+}
+
+.testimonial-card--active .testimonial-role {
+  color: #ffffff;
+}
+
+.testimonial-company {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: hsl(var(--text-muted));
+  transition: color 0.3s ease;
+}
+
+.testimonial-card--active .testimonial-company {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---- Entrance animation ---- */
+@keyframes testimonialCardIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.testimonial-card {
+  animation: testimonialCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.testimonial-card:nth-child(1) { animation-delay: 0.05s; }
+.testimonial-card:nth-child(2) { animation-delay: 0.12s; }
+.testimonial-card:nth-child(3) { animation-delay: 0.19s; }
+.testimonial-card:nth-child(4) { animation-delay: 0.26s; }
+.testimonial-card:nth-child(5) { animation-delay: 0.33s; }
+
+/* ============================================================
+   Founder Journey (How AX Works) Section
+   ============================================================ */
+.journey-section {
+  width: 100%;
+  background: #031c16; /* Rich forest dark green */
+  padding: 100px 0 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.journey-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(16, 185, 129, 0.08) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.journey-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Header */
+.journey-header {
+  max-width: 600px;
+  margin-bottom: 60px;
+}
+
+.journey-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.journey-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Grid Layout */
+.journey-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  background-color: #010d0b; /* Very dark green-black base */
+  padding: 6px;
+  border-radius: 40px;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 640px) {
+  .journey-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .journey-grid {
+    grid-template-columns: 1.2fr repeat(4, 1fr);
+    grid-template-rows: repeat(2, minmax(310px, 1fr));
+    gap: 6px;
+    padding: 6px;
+    border-radius: 56px; /* Extra large corner radius for the container */
+  }
+}
+
+/* Main Card (Green) */
+.journey-main-card {
+  background-color: #2ba866; /* Vibrant, rich green */
+  color: #031c16;
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 34px;
+  position: relative;
+  min-height: 380px;
+}
+
+@media (min-width: 1100px) {
+  .journey-main-card {
+    grid-column: 1;
+    grid-row: 1 / 3; /* Spans both rows */
+    border-radius: 50px; /* High corner radius matching the outer container */
+    min-height: auto;
+  }
+}
+
+.journey-badge-icon {
+  color: #031c16;
+  margin-bottom: 24px;
+}
+
+.journey-main-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #021410;
+  margin-bottom: 30px;
+}
+
+.journey-footnotes {
+  margin-top: auto;
+  border-top: 1px solid rgba(3, 28, 22, 0.15);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.journey-footnote-item {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(2, 20, 16, 0.85);
+  font-weight: 400;
+}
+
+/* White Cards */
+.journey-card {
+  background-color: #ffffff;
+  color: #0e1715;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 34px;
+  min-height: 280px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.3s ease;
+}
+
+@media (min-width: 1100px) {
+  .journey-card {
+    border-radius: 50px; /* High corner radius matching the outer container */
+    min-height: auto;
+  }
+}
+
+.journey-card:hover {
+  transform: translateY(-2px);
+  z-index: 2; /* Bring to front if there's a shadow overlap */
+}
+
+/* Step Label */
+.journey-card-phase {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #c2410c; /* Warm orange/bronze */
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+/* Step Title */
+.journey-card-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+  color: #031c16;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+/* Step Description */
+.journey-card-desc {
+  font-size: 0.88rem;
+  color: #4b5563;
+  line-height: 1.5;
+  font-weight: 400;
+  margin-top: auto;
+}
+
+/* CTA Card styling specifically */
+.journey-card--cta {
+  background: linear-gradient(135deg, #ffffff 0%, #f4fbf9 100%);
+  border: 1px dashed rgba(16, 185, 129, 0.3);
+}
+
+.journey-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #031c16;
+  color: #ffffff;
+  border-radius: 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: fit-content;
+  margin-top: 16px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.journey-cta-btn:hover {
+  background-color: #10b981;
+  color: #031c16;
+  transform: translateY(-1px);
+}
+
