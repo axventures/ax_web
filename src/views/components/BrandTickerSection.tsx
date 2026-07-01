@@ -16,9 +16,9 @@ export const BrandTickerSection: React.FC = () => {
   const tickerItems = [...partners, ...partners, ...partners];
 
   return (
-    <section className="brand-ticker-section">
+    <section className="brand-ticker-section" style={{ position: 'relative', zIndex: 10 }}>
       <div className="brand-ticker-container">
-        <p className="brand-ticker-title">Accelerating Founders Globally</p>
+        <p className="brand-ticker-title">Brand Collaborators</p>
         
         <div className="brand-marquee-wrapper">
           {/* Left/Right fading gradient mask */}
