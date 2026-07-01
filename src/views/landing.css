@@ -20,6 +20,14 @@
   --success: 142 70% 45%;              /* Emerald */
   --danger: 347 77% 50%;               /* Coral Red */
 
+  /* Premium Brand Theme Configuration */
+  --brand-blue: #1801AD;
+  --brand-pure-black: #0a0a0a;
+  --brand-pure-white: #ffffff;
+  --brand-dark-surface: #111111;
+  --brand-warm-cream: #FAF9F6;
+
+
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --radius-sm: 8px;
   --radius-md: 16px;
@@ -495,6 +503,35 @@ a {
 .form-input.error {
   border-color: hsl(var(--danger));
   background-color: hsl(var(--danger) / 0.02);
+}
+
+/* Premium Dark Form Controls for Modal */
+.form-input-dark {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--brand-dark-surface);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--brand-pure-white);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.form-input-dark::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.form-input-dark:focus {
+  outline: none;
+  background: #181818;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(24, 1, 173, 0.25);
+}
+
+.form-input-dark.error {
+  border-color: #ef4444; /* red-500 */
+  background-color: rgba(239, 68, 68, 0.05);
 }
 
 .form-error-msg {
