@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, Send } from 'lucide-react';
 
 interface ApplicationModalProps {
@@ -14,6 +14,7 @@ interface ApplicationModalProps {
     pitch: string,
     stage: 'idea' | 'mvp' | 'revenue'
   ) => Promise<boolean>;
+  clearError: (field: string) => void;
 }
 
 export const ApplicationModal: React.FC<ApplicationModalProps> = ({
@@ -23,12 +24,24 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
   errors,
   onClose,
   onSubmit,
+  clearError,
 }) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [pitch, setPitch] = useState('');
   const [stage, setStage] = useState<'idea' | 'mvp' | 'revenue'>('idea');
+
+  // Reset inputs when modal is opened
+  useEffect(() => {
+    if (isOpen) {
+      setFullName('');
+      setEmail('');
+      setCompanyName('');
+      setPitch('');
+      setStage('idea');
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -126,7 +139,10 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   className={`form-input ${errors.fullName ? 'error' : ''}`}
                   placeholder="Steve Jobs"
                   value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                    clearError('fullName');
+                  }}
                   disabled={isSubmitting}
                 />
                 {errors.fullName && <div className="form-error-msg">{errors.fullName}</div>}
@@ -141,7 +157,10 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   className={`form-input ${errors.email ? 'error' : ''}`}
                   placeholder="steve@apple.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    clearError('email');
+                  }}
                   disabled={isSubmitting}
                 />
                 {errors.email && <div className="form-error-msg">{errors.email}</div>}
@@ -156,7 +175,10 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   className={`form-input ${errors.companyName ? 'error' : ''}`}
                   placeholder="Apple Computer"
                   value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
+                  onChange={(e) => {
+                    setCompanyName(e.target.value);
+                    clearError('companyName');
+                  }}
                   disabled={isSubmitting}
                 />
                 {errors.companyName && <div className="form-error-msg">{errors.companyName}</div>}
@@ -188,12 +210,21 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   placeholder="Describe what you are building, the problem it solves, and why your team is exceptional..."
                   rows={4}
                   value={pitch}
-                  onChange={(e) => setPitch(e.target.value)}
+                  onChange={(e) => {
+                    setPitch(e.target.value);
+                    clearError('pitch');
+                  }}
                   disabled={isSubmitting}
                   style={{ resize: 'vertical', minHeight: '90px' }}
                 />
                 {errors.pitch && <div className="form-error-msg">{errors.pitch}</div>}
               </div>
+
+              {errors.submit && (
+                <div className="form-error-msg" style={{ textAlign: 'center', marginTop: '10px' }}>
+                  {errors.submit}
+                </div>
+              )}
 
               {/* Actions */}
               <div

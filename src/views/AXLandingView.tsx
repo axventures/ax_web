@@ -19,6 +19,7 @@ export const AXLandingView: React.FC = () => {
     openModal,
     closeModal,
     submitApplication,
+    clearError,
   } = useApplicationController();
 
   return (
@@ -69,6 +70,7 @@ export const AXLandingView: React.FC = () => {
         errors={errors}
         onClose={closeModal}
         onSubmit={submitApplication}
+        clearError={clearError}
       />
     </div>
   );

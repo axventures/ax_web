@@ -18,6 +18,7 @@ export const AboutPage: React.FC = () => {
     openModal,
     closeModal,
     submitApplication,
+    clearError,
   } = useApplicationController();
 
   return (
@@ -188,6 +189,7 @@ export const AboutPage: React.FC = () => {
         errors={errors}
         onClose={closeModal}
         onSubmit={submitApplication}
+        clearError={clearError}
       />
     </div>
   );
