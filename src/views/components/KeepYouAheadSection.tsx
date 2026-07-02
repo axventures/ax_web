@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashedArcTopLeft, WaveLinesBottomRight } from './DecorativeLines';
+import { DashedArcTopLeft, WaveLinesBottomRight, SweepingDashedLineAlt } from './DecorativeLines';
 
 const cards = [
   {
@@ -58,6 +58,7 @@ export const KeepYouAheadSection: React.FC = () => {
       {/* Decorative line drawings */}
       <DashedArcTopLeft />
       <WaveLinesBottomRight />
+      <SweepingDashedLineAlt />
 
       <div className="kyah-container">
 

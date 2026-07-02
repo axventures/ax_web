@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { RoadmapVisualizer } from './RoadmapVisualizer';
 
 interface JourneyStep {
   phase: string;
@@ -49,34 +50,6 @@ interface FounderJourneySectionProps {
   onApplyClick: () => void;
 }
 
-const cardVariantsLeft = {
-  hidden: { opacity: 0, x: -30, y: 20 },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    y: 0, 
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } 
-  }
-};
-
-const cardVariantsRight = {
-  hidden: { opacity: 0, x: 30, y: 20 },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    y: 0, 
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } 
-  }
-};
-
-const dotVariants = {
-  hidden: { opacity: 0, scale: 0.5 },
-  visible: { 
-    opacity: 1, 
-    scale: 1, 
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } 
-  }
-};
 
 export const FounderJourneySection: React.FC<FounderJourneySectionProps> = ({ onApplyClick }) => {
   return (
@@ -156,203 +129,43 @@ export const FounderJourneySection: React.FC<FounderJourneySectionProps> = ({ on
           </motion.p>
         </div>
 
-        {/* Roadmap Timeline Container */}
-        <div style={{ position: 'relative', padding: '40px 0' }}>
+        {/* Animated Framer Motion SVG Roadmap */}
+        <RoadmapVisualizer roadmap={{ steps }} />
           
-          {/* Center Vertical Line */}
-          <div style={{
-            position: 'absolute',
-            left: '50%',
-            top: 0,
-            bottom: 0,
-            width: '1px',
-            background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.15) 5%, rgba(255,255,255,0.15) 95%, transparent)',
-            transform: 'translateX(-50%)'
-          }} className="hide-on-mobile" />
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '80px' }}>
-            {steps.map((step, index) => {
-              const isLeft = index % 2 === 0;
-
-              return (
-                <div 
-                  key={index} 
-                  style={{ 
-                    display: 'flex', 
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: '100%',
-                    position: 'relative'
-                  }}
-                  className="roadmap-row"
-                >
-                  
-                  {/* Left Spacer or Card */}
-                  <div style={{ width: '45%', display: 'flex', justifyContent: isLeft ? 'flex-end' : 'flex-start' }} className="roadmap-col">
-                    {isLeft && (
-                      <motion.div 
-                        variants={cardVariantsLeft}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="roadmap-card"
-                      >
-                        <span className="roadmap-phase">{step.phase}</span>
-                        <h3 className="roadmap-title">{step.title}</h3>
-                        <p className="roadmap-desc">{step.description}</p>
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Center Dot */}
-                  <div style={{
-                    width: '10%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    position: 'relative',
-                    zIndex: 2
-                  }} className="hide-on-mobile">
-                    <motion.div 
-                      variants={dotVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, margin: "-100px" }}
-                      style={{
-                        width: '12px',
-                        height: '12px',
-                        borderRadius: '50%',
-                        backgroundColor: '#ffffff',
-                        border: '2px solid #0f172a',
-                        boxShadow: '0 0 10px rgba(255,255,255,0.3)' 
-                      }} 
-                    />
-                  </div>
-
-                  {/* Right Spacer or Card */}
-                  <div style={{ width: '45%', display: 'flex', justifyContent: isLeft ? 'flex-end' : 'flex-start' }} className="roadmap-col">
-                    {!isLeft && (
-                      <motion.div 
-                        variants={cardVariantsRight}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="roadmap-card"
-                      >
-                        <span className="roadmap-phase">{step.phase}</span>
-                        <h3 className="roadmap-title">{step.title}</h3>
-                        <p className="roadmap-desc">{step.description}</p>
-                      </motion.div>
-                    )}
-                  </div>
-
-                </div>
-              );
-            })}
-          </div>
-          
-          {/* Final CTA Button at the end of the line */}
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '100px', position: 'relative', zIndex: 2 }}>
-            <motion.button 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={onApplyClick}
-              style={{
-                padding: '18px 48px',
-                fontSize: '1.15rem',
-                fontWeight: 600,
-                color: '#000000',
-                backgroundColor: '#ffffff',
-                border: 'none',
-                borderRadius: '100px',
-                cursor: 'pointer',
-                boxShadow: '0 10px 25px -5px rgba(255, 255, 255, 0.2), 0 8px 10px -6px rgba(255, 255, 255, 0.1)',
-                transition: 'box-shadow 0.2s ease, background-color 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#f1f5f9';
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 20px 30px -10px rgba(255, 255, 255, 0.3), 0 10px 15px -5px rgba(255, 255, 255, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#ffffff';
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 10px 25px -5px rgba(255, 255, 255, 0.2), 0 8px 10px -6px rgba(255, 255, 255, 0.1)';
-              }}
-            >
-              Start Your Journey
-            </motion.button>
-          </div>
-
+        {/* Final CTA Button at the end of the line */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px', position: 'relative', zIndex: 2 }}>
+          <motion.button 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={onApplyClick}
+            style={{
+              padding: '18px 48px',
+              fontSize: '1.15rem',
+              fontWeight: 600,
+              color: '#000000',
+              backgroundColor: '#ffffff',
+              border: 'none',
+              borderRadius: '100px',
+              cursor: 'pointer',
+              boxShadow: '0 10px 25px -5px rgba(255, 255, 255, 0.2), 0 8px 10px -6px rgba(255, 255, 255, 0.1)',
+              transition: 'box-shadow 0.2s ease, background-color 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#f1f5f9';
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 20px 30px -10px rgba(255, 255, 255, 0.3), 0 10px 15px -5px rgba(255, 255, 255, 0.1)';
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#ffffff';
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 10px 25px -5px rgba(255, 255, 255, 0.2), 0 8px 10px -6px rgba(255, 255, 255, 0.1)';
+            }}
+          >
+            Start Your Journey
+          </motion.button>
         </div>
       </div>
-      
-      {/* Inline styles for the premium minimal roadmap */}
-      <style>{`
-        .roadmap-card {
-          background: rgba(15, 23, 42, 0.5); /* Deep slate/charcoal glass */
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 24px;
-          padding: 48px;
-          width: 100%;
-          max-width: 480px;
-          transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .roadmap-card:hover {
-          transform: translateY(-8px);
-          border-color: rgba(255, 255, 255, 0.15);
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-        }
-
-        .roadmap-phase {
-          display: block;
-          color: rgba(255, 255, 255, 0.5); /* Subtle white */
-          font-weight: 700;
-          font-size: 0.8rem;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          margin-bottom: 16px;
-        }
-        
-        .roadmap-title {
-          color: #ffffff;
-          font-size: 1.85rem;
-          font-weight: 800;
-          margin-bottom: 12px;
-          line-height: 1.2;
-          letter-spacing: -0.02em;
-        }
-        
-        .roadmap-desc {
-          color: #cbd5e1;
-          font-size: 1.1rem;
-          line-height: 1.65;
-          margin: 0;
-        }
-
-        @media (max-width: 768px) {
-          .hide-on-mobile {
-            display: none !important;
-          }
-          .roadmap-row {
-            flex-direction: column !important;
-            gap: 20px;
-          }
-          .roadmap-col {
-            width: 100% !important;
-            justify-content: center !important;
-          }
-          .roadmap-card {
-            max-width: 100%;
-            padding: 32px;
-          }
-        }
-      `}</style>
     </section>
   );
 };

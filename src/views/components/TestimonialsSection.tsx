@@ -48,7 +48,7 @@ export const TestimonialsSection: React.FC = () => {
         <div className="testimonials-header">
           <div className="testimonials-header-left">
             <h2 className="testimonials-title" id="testimonials-heading">
-              Our Approach <em>build</em> with AX?
+              Why <em>build</em> with AX?
             </h2>
           </div>
           <div className="testimonials-header-right">

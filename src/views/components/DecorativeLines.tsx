@@ -156,6 +156,24 @@ export const DiamondMarker: React.FC<{ style?: React.CSSProperties; opacity?: nu
   </svg>
 );
 
+// A sweeping dashed line (orange/coral color) going across the section
+export const SweepingDashedLine: React.FC = () => (
+  <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden', pointerEvents: 'none', zIndex: 0, opacity: 0.6 }}>
+    <svg viewBox="0 0 1440 800" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+      <path d="M0 600 C 400 600, 600 200, 1000 400 S 1440 100, 1440 100" stroke="#FF5722" strokeWidth="1" strokeDasharray="8 8"/>
+    </svg>
+  </div>
+);
+
+// Another variation of a sweeping dashed line for variety
+export const SweepingDashedLineAlt: React.FC = () => (
+  <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden', pointerEvents: 'none', zIndex: 0, opacity: 0.6 }}>
+    <svg viewBox="0 0 1440 800" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+      <path d="M0 200 C 300 100, 800 700, 1440 400" stroke="#FF5722" strokeWidth="1" strokeDasharray="6 6"/>
+    </svg>
+  </div>
+);
+
 export default {
   ContourLinesTopRight,
   DashedCurveLeft,
@@ -163,4 +181,6 @@ export default {
   ScatteredDots,
   DashedArcTopLeft,
   DiamondMarker,
+  SweepingDashedLine,
+  SweepingDashedLineAlt,
 };
