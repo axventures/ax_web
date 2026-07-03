@@ -51,8 +51,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
   };
 
   return (
-    <div 
-      className="modal-overlay" 
+    <div
+      className="modal-overlay"
       onClick={onClose}
       style={{
         zIndex: 99999999,
@@ -67,9 +67,9 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
       <div
         className="modal-content"
         onClick={(e) => e.stopPropagation()}
-        style={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
           gap: '24px',
           background: 'var(--brand-pure-white)', // Matches the website
           border: '1px solid rgba(0, 0, 0, 0.06)',
@@ -148,9 +148,9 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
             </div>
             <button
               onClick={onClose}
-              style={{ 
-                marginTop: '20px', 
-                width: '100%', 
+              style={{
+                marginTop: '20px',
+                width: '100%',
                 borderRadius: '30px',
                 background: 'var(--text-main)',
                 color: 'var(--brand-pure-white)',
@@ -254,8 +254,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     value={stage}
                     onChange={(e) => setStage(e.target.value as any)}
                     disabled={isSubmitting}
-                    style={{ 
-                      appearance: 'none', 
+                    style={{
+                      appearance: 'none',
                       cursor: 'pointer',
                       paddingRight: '40px'
                     }}
@@ -318,7 +318,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     type="button"
                     onClick={onClose}
                     disabled={isSubmitting}
-                    style={{ 
+                    style={{
                       borderRadius: '30px',
                       background: 'transparent',
                       border: '1px solid var(--border-color)',
@@ -336,8 +336,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    style={{ 
-                      minWidth: '140px', 
+                    style={{
+                      minWidth: '140px',
                       borderRadius: '30px',
                       background: 'var(--brand-blue)',
                       color: 'var(--brand-pure-white)',

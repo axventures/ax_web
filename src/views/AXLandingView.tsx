@@ -26,7 +26,7 @@ export const AXLandingView: React.FC = () => {
   return (
     <div style={{ minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
       {/* Global Decorative Vertical Line (Left Side) */}
-      <div 
+      <div
         style={{
           position: 'fixed',
           top: 0,

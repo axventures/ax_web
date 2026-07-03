@@ -10,7 +10,7 @@ export interface UseApplicationControllerReturn {
   isSuccess: boolean;
   errors: Record<string, string>;
   applications: FounderApplication[];
-  
+
   // Actions
   openModal: () => void;
   closeModal: () => void;
@@ -78,7 +78,7 @@ export function useApplicationController(): UseApplicationControllerReturn {
 
     // Delegate validation to the Model FIRST before submitting state / latency simulation
     const validationErrors = ApplicationModel.validate(fullName, email, companyName, pitch);
-    
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return false;
@@ -116,12 +116,29 @@ export function useApplicationController(): UseApplicationControllerReturn {
         }
       );
 
+      // Send welcome email (non-blocking for UI success)
+      try {
+        fetch('/api/send-welcome-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email.trim(),
+            fullName: fullName.trim(),
+            companyName: companyName.trim(),
+          }),
+        }).catch(err => console.error('Failed to send welcome email:', err));
+      } catch (emailErr) {
+        console.error('Failed to trigger welcome email API:', emailErr);
+      }
+
       // Instantiate new application via Model factory
       const newApp = ApplicationModel.create(fullName, email, companyName, pitch, stage);
-      
+
       const updatedApps = [newApp, ...applications];
       setApplications(updatedApps);
-      
+
       try {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedApps));
       } catch (e) {
@@ -154,3 +171,4 @@ export function useApplicationController(): UseApplicationControllerReturn {
     clearError,
   };
 }
+
