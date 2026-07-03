@@ -5,11 +5,14 @@ import { HeroSection } from './components/HeroSection';
 import { StatsCard } from './components/StatsCard';
 import { CrowdfundingSection } from './components/CrowdfundingSection';
 import { BrandTickerSection } from './components/BrandTickerSection';
+import { WhatWeDoSection } from './components/WhatWeDoSection';
 import { KeepYouAheadSection } from './components/KeepYouAheadSection';
 import { FounderJourneySection } from './components/FounderJourneySection';
 import { TeamSection } from './components/TeamSection';
 import { OurApproachSection } from './components/OurApproachSection';
+import { FounderReadinessSection } from './components/FounderReadinessSection';
 import { ApplicationModal } from './components/ApplicationModal';
+import { FooterSection } from './components/FooterSection';
 
 export const AXLandingView: React.FC = () => {
   const {
@@ -66,27 +69,16 @@ export const AXLandingView: React.FC = () => {
       <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <CrowdfundingSection />
         <BrandTickerSection />
+        <WhatWeDoSection />
         <KeepYouAheadSection />
         <FounderJourneySection onApplyClick={openModal} />
         <TeamSection />
+        <FounderReadinessSection onApplyClick={openModal} />
         <OurApproachSection />
       </main>
 
       {/* Footer */}
-      <footer
-        style={{
-          padding: '80px 24px 120px 24px',
-          borderTop: '1px solid rgba(24, 1, 173, 0.08)',
-          textAlign: 'center',
-          fontSize: '0.85rem',
-          color: 'hsl(var(--text-muted))',
-          backgroundColor: '#ffffff',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        <p>© {new Date().getFullYear()} AX Ventures. All rights reserved.</p>
-      </footer>
+      <FooterSection />
 
       {/* Application Form Modal */}
       <ApplicationModal

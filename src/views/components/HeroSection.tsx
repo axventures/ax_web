@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const HeroSection: React.FC = () => {
   const rotatingWords = ['Founder', 'Team', 'System', 'Company'];
@@ -95,18 +96,22 @@ export const HeroSection: React.FC = () => {
         Building companies by building exceptional founders.
       </p>
 
-      {/* Single CTA (Vision to Venture) */}
+      {/* Single CTA */}
       <div
         className="animate-slide-up"
         style={{
           marginTop: '44px',
         }}
       >
-        <a 
-          href="#summit" 
-          className="btn btn-primary explore-summit-btn" 
-          style={{ 
-            padding: '16px 36px', 
+        <Link
+          to="/founder-summit"
+          className="hero-cta-secondary"
+          style={{
+            backgroundColor: 'transparent',
+            border: '2px solid rgba(0,0,0,0.1)',
+            padding: '16px 32px',
+            color: 'var(--text-main)',
+            fontWeight: '700',
             fontSize: '1.05rem',
             borderRadius: '40px',
             display: 'inline-flex',
@@ -114,11 +119,12 @@ export const HeroSection: React.FC = () => {
             gap: '8px',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
+            textDecoration: 'none'
           }}
         >
-          <span>Explore Vision to Venture</span>
+          <span>Explore Vision Ventures</span>
           <ArrowRight size={18} className="explore-arrow" />
-        </a>
+        </Link>
       </div>
     </section>
   );

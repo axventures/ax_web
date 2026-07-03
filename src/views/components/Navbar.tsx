@@ -48,9 +48,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
   const navLinks = [
     { label: 'Home', href: '/', isRoute: true },
     { label: 'About', href: '/about', isRoute: true },
+    { label: 'Summit 2026', href: '/founder-summit', isRoute: true },
     { label: 'Readiness', href: '/#readiness', isRoute: false },
     { label: 'Contact', href: '/#contact', isRoute: false },
   ];
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#') && location.pathname === '/') {
+      const targetId = href.substring(2);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+        setIsMobileMenuOpen(false);
+      }
+    }
+  };
 
   const renderNavLink = (link: { label: string; href: string; isRoute: boolean }, className: string) => {
     if (link.isRoute) {
@@ -60,6 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
           to={link.href}
           className={className}
           style={link.href === location.pathname ? { color: '#1801AD' } : undefined}
+          onClick={() => setIsMobileMenuOpen(false)}
         >
           {link.label}
         </Link>
@@ -70,6 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
         key={link.label}
         href={link.href}
         className={className}
+        onClick={(e) => handleAnchorClick(e, link.href)}
       >
         {link.label}
       </a>
