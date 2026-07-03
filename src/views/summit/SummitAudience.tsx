@@ -2,7 +2,16 @@ import React from 'react';
 
 export const SummitAudience: React.FC = () => {
   return (
-    <section className="summit-section summit-bg-white">
+    <section 
+      className="summit-section summit-bg-white"
+      style={{
+        backgroundImage: 'url(/businessman_struggling.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundBlendMode: 'multiply',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)' // Overlay to ensure text readability
+      }}
+    >
       <div className="summit-container">
         
         <div className="summit-split-layout">

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const ROTATING_WORDS = ['Founder', 'Team', 'System', 'Company'];
+
 export const HeroSection: React.FC = () => {
-  const rotatingWords = ['Founder', 'Team', 'System', 'Company'];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentWordIndex((prev) => (prev + 1) % rotatingWords.length);
+      setCurrentWordIndex((prev) => (prev + 1) % ROTATING_WORDS.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -17,18 +18,6 @@ export const HeroSection: React.FC = () => {
     <section
       id="home"
       className="hero-section-landscape"
-      style={{
-        padding: '160px 24px 80px 24px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-        position: 'relative',
-        zIndex: 1,
-        width: '100%',
-        maxWidth: '1400px', // Landscape: take more horizontal space
-        margin: '0 auto',
-      }}
     >
       {/* Upper Tech Badge */}
       <div
@@ -48,7 +37,7 @@ export const HeroSection: React.FC = () => {
         }}
       >
         <Sparkles size={14} />
-        <span>AX Ventures Accelerator — Cohort 2026</span>
+        <span>Vision to Ventures — Cohort 2026</span>
       </div>
 
       {/* Main Stacked Headline - Large Centered Hook */}
@@ -77,7 +66,7 @@ export const HeroSection: React.FC = () => {
             display: 'inline-block',
           }}
         >
-          {rotatingWords[currentWordIndex]}.
+          {ROTATING_WORDS[currentWordIndex]}.
         </span>
       </h1>
 
@@ -105,25 +94,10 @@ export const HeroSection: React.FC = () => {
       >
         <Link
           to="/founder-summit"
-          className="hero-cta-secondary"
-          style={{
-            backgroundColor: 'transparent',
-            border: '2px solid rgba(0,0,0,0.1)',
-            padding: '16px 32px',
-            color: 'var(--text-main)',
-            fontWeight: '700',
-            fontSize: '1.05rem',
-            borderRadius: '40px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            textDecoration: 'none'
-          }}
+          className="hero-summit-btn"
         >
-          <span>Explore Vision Ventures</span>
-          <ArrowRight size={18} className="explore-arrow" />
+          <span>Explore Vision to Ventures</span>
+          <ArrowRight size={22} className="hero-summit-arrow" />
         </Link>
       </div>
     </section>

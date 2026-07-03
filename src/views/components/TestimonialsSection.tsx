@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { WaveLinesBottomRight, ScatteredDots } from './DecorativeLines';
 
 interface Testimonial {
@@ -35,7 +35,6 @@ const testimonials: Testimonial[] = [
 
 export const TestimonialsSection: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="testimonials-section" id="testimonials" aria-labelledby="testimonials-heading" style={{ position: 'relative', overflow: 'hidden' }}>
@@ -61,7 +60,7 @@ export const TestimonialsSection: React.FC = () => {
         </div>
 
         {/* Cards Track */}
-        <div className="testimonials-track" ref={trackRef}>
+        <div className="testimonials-track">
           {testimonials.map((t, i) => (
             <div
               key={t.id}

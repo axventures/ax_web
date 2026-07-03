@@ -57,13 +57,13 @@ export const FounderJourneySection: React.FC<FounderJourneySectionProps> = ({ on
       
       {/* Background Image Container */}
       <div 
+        className="v2v-journey-parallax-bg"
         style={{
           position: 'absolute',
           inset: 0,
           backgroundImage: 'url(/journey_bg.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed', // Parallax effect
           zIndex: 0
         }}
       />

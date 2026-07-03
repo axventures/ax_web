@@ -6,7 +6,8 @@ import { SummitHero } from './SummitHero';
 import { SummitAudience } from './SummitAudience';
 import { SummitExperience } from './SummitExperience';
 import { SummitCommunity } from './SummitCommunity';
-import { SummitVenueAndPartners } from './SummitVenueAndPartners';
+import { SummitPartners } from './SummitPartners';
+import { SummitVenue } from './SummitVenue';
 import { SummitPassAndFAQ } from './SummitPassAndFAQ';
 import { SummitFooter } from './SummitFooter';
 
@@ -28,7 +29,8 @@ export const FounderSummitView: React.FC = () => {
       <SummitAudience />
       <SummitExperience />
       <SummitCommunity />
-      <SummitVenueAndPartners />
+      <SummitPartners />
+      <SummitVenue />
       <SummitPassAndFAQ />
       <SummitFooter />
     </div>

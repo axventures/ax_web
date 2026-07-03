@@ -32,7 +32,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
   const [pitch, setPitch] = useState('');
   const [stage, setStage] = useState<'idea' | 'mvp' | 'revenue'>('idea');
 
-  // Reset inputs when modal is opened
+  // Reset inputs when modal is opened, and add keydown listener for Escape key
   useEffect(() => {
     if (isOpen) {
       setFullName('');
@@ -41,7 +41,15 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
       setPitch('');
       setStage('idea');
     }
-  }, [isOpen]);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -54,6 +62,9 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
     <div 
       className="modal-overlay" 
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
       style={{
         zIndex: 99999999,
         overflowY: 'auto',
@@ -83,6 +94,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
+          aria-label="Close modal window"
           style={{
             position: 'absolute',
             top: '24px',
@@ -181,7 +193,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   100% Confidential
                 </span>
               </div>
-              <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px', letterSpacing: '-0.03em', color: 'var(--text-main)' }}>
+              <h3 id="modal-title" style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px', letterSpacing: '-0.03em', color: 'var(--text-main)' }}>
                 Pitch AX Ventures
               </h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)' }}>

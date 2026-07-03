@@ -209,6 +209,15 @@ a {
   color: #1801AD;
 }
 
+.desktop-menu-cta {
+  display: none;
+}
+
+.nav-cta-btn {
+  padding: 8px 22px !important;
+  font-size: 0.92rem !important;
+}
+
 /* Floating Bottom Glass Pill Navbar (Dock) */
 .navbar-floating-dock {
   position: fixed;
@@ -280,40 +289,6 @@ a {
   padding: 8px 20px !important;
   font-size: 0.88rem !important;
   border-radius: 30px !important;
-}
-
-/* Nav Links - Spaced & Increased Font Size for Readability */
-.desktop-menu-links {
-  display: none;
-  align-items: center;
-  gap: 36px; /* wider spacing */
-}
-
-.nav-link-item {
-  font-size: 1.02rem; /* Increased size */
-  font-weight: 600; /* Bolder weight */
-  color: #475569;
-  letter-spacing: -0.01em;
-  transition: var(--transition-smooth);
-}
-
-.nav-link-item:hover {
-  color: #1801AD;
-}
-
-.navbar-wrapper.scrolled .nav-link-item {
-  font-size: 0.95rem; /* slightly compact in pill mode */
-  color: #1e293b;
-}
-
-/* Desktop CTA Button */
-.desktop-menu-cta {
-  display: none;
-}
-
-.nav-cta-btn {
-  padding: 8px 22px !important;
-  font-size: 0.92rem !important;
 }
 
 /* Mobile Toggle Button */
@@ -695,120 +670,6 @@ a {
     color: #a855f7;
     filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.6));
   }
-}
-
-/* Shutter Style Answer Block (Slides UP over the sticky question) */
-.why-ax-answer-block {
-  position: relative;
-  z-index: 2; /* Sits above the sticky question */
-  background-color: #ffffff;
-  width: 100%;
-  border-top: 1px solid rgba(24, 1, 173, 0.08);
-  box-shadow: 0 -20px 40px rgba(24, 1, 173, 0.03);
-  opacity: 0;
-  transform: translateY(100px);
-  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.why-ax-answer-block.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.why-ax-answer-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 100px 32px 140px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-  align-items: center;
-}
-
-@media (min-width: 768px) {
-  .why-ax-answer-container {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 60px;
-  }
-}
-
-.why-ax-answer-content {
-  flex: 1.2;
-  max-width: 580px;
-  text-align: left;
-}
-
-.answer-lead-text {
-  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
-  line-height: 1.55;
-  font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 24px;
-  letter-spacing: -0.025em;
-}
-
-.answer-body-text {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #475569;
-  font-weight: 400;
-}
-
-.answer-divider {
-  margin-top: 36px;
-  width: 50px;
-  height: 3px;
-  border-radius: 2px;
-  background: #1801AD;
-}
-
-/* Custom visual area with AX Logo shadow and Network icon */
-.why-ax-answer-visual {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.why-ax-logo-shadow-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.why-ax-logo-shadow-image {
-  width: 280px;
-  height: 280px;
-  object-fit: contain;
-  filter: grayscale(1) brightness(0.95) opacity(0.04) blur(4px);
-}
-
-.why-ax-icon-wrapper {
-  position: relative;
-  z-index: 1;
-  width: 120px;
-  height: 120px;
-  border-radius: 32px;
-  background: linear-gradient(135deg, rgba(24, 1, 173, 0.05), rgba(99, 102, 241, 0.05));
-  border: 1px solid rgba(24, 1, 173, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 20px 40px -10px rgba(24, 1, 173, 0.1);
-}
-
-.why-ax-icon {
-  color: #1801AD;
-  filter: drop-shadow(0 4px 12px rgba(24, 1, 173, 0.25));
 }
 
 /* ============================================================
@@ -1607,25 +1468,40 @@ a {
 
 /* --- Our Approach Split Section --- */
 .approach-section-dark {
-  /* Smooth gradient blend (mingling) instead of a hard line partition */
-  background: linear-gradient(90deg, #ffffff 0%, #f5f4ff 35%, #0f172a 65%, #0f172a 100%);
+  /* Default vertical gradient for mobile layout */
+  background: linear-gradient(180deg, #ffffff 0%, #f5f4ff 40%, #0f172a 50%, #0f172a 100%);
   position: relative;
   overflow: hidden;
-  padding: 120px 24px;
+  padding: 80px 16px;
 }
 
 /* Subtle grid overlay only on the dark side */
 .approach-section-dark::before {
   content: '';
   position: absolute;
-  top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  width: 50%;
+  height: 50%;
   background-image: radial-gradient(rgba(24, 1, 173, 0.15) 1.5px, transparent 1.5px);
   background-size: 32px 32px;
   pointer-events: none;
   z-index: 0;
+}
+
+@media (min-width: 992px) {
+  .approach-section-dark {
+    /* Horizontal gradient for desktop split screen */
+    background: linear-gradient(90deg, #ffffff 0%, #f5f4ff 35%, #0f172a 65%, #0f172a 100%);
+    padding: 120px 24px;
+  }
+  .approach-section-dark::before {
+    top: 0;
+    bottom: 0;
+    left: auto;
+    width: 50%;
+    height: auto;
+  }
 }
 
 .approach-container {
@@ -1697,56 +1573,62 @@ a {
 }
 
 .approach-stacked-card {
-  padding: 32px 32px 32px 24px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  margin-top: -1px; /* collapse borders */
+  padding: 24px 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  border-bottom: none;
+  margin-top: 0;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-left: 3px solid transparent;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 32px;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .approach-stacked-card:first-child {
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.15);
 }
 
 .approach-stacked-card:hover {
-  background: rgba(24, 1, 173, 0.05);
+  background: transparent;
   transform: translateX(12px);
-  border-left-color: var(--brand-blue);
 }
 
 .approach-stacked-card.active {
-  border-left-color: var(--brand-blue);
-  background: rgba(255,255,255,0.02);
+  border-left-color: transparent;
+  background: transparent;
 }
 
 .approach-card-number {
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
   transition: color 0.3s ease;
 }
 
 .approach-stacked-card:hover .approach-card-number {
-  color: var(--brand-blue);
+  color: var(--brand-pure-white);
 }
 
 .approach-card-number.active-num {
-  color: var(--brand-blue);
+  color: var(--brand-pure-white);
 }
 .approach-card-number.inactive-num {
   color: rgba(255,255,255,0.3);
 }
 
 .approach-card-title {
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.approach-stacked-card:hover .approach-card-title {
   color: var(--brand-pure-white);
-  letter-spacing: -0.02em;
 }
 
 /* --- What We Do (Capabilities) Section --- */
@@ -2236,4 +2118,212 @@ a {
   top: -16px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* --- Explore Vision Ventures Hero Button --- */
+.hero-summit-btn {
+  background-color: var(--brand-blue);
+  color: #fff;
+  border: 2px solid var(--brand-blue);
+  padding: 18px 40px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(24, 1, 173, 0.2);
+}
+
+.hero-summit-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(24, 1, 173, 0.4);
+  color: #fff;
+  background-color: #10008F; /* darker shade for hover */
+  border-color: #10008F;
+}
+
+.hero-summit-arrow {
+  transition: transform 0.3s ease;
+}
+
+.hero-summit-btn:hover .hero-summit-arrow {
+  transform: translateX(6px);
+}
+
+/* ============================================================
+   Mobile-First and Optimization Additions
+   ============================================================ */
+
+/* Hide decorative vertical line on mobile */
+@media (max-width: 767px) {
+  .v2v-global-vertical-line {
+    display: none !important;
+  }
+}
+
+/* Responsive landscape hero styling */
+.hero-section-landscape {
+  padding: 160px 24px 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .hero-section-landscape {
+    padding: 120px 16px 60px 16px;
+  }
+}
+
+/* Stats card wrap on very small viewports */
+@media (max-width: 400px) {
+  .stats-card {
+    grid-template-columns: 1fr !important;
+    padding: 30px 15px !important;
+    gap: 20px !important;
+  }
+}
+
+/* Accessibility: Support prefers-reduced-motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Team scroll track animation */
+@keyframes auto-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.team-scroll-track {
+  animation: auto-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.team-scroll-container:hover .team-scroll-track {
+  animation-play-state: paused;
+}
+
+.team-card:hover .team-member-img {
+  transform: scale(1.05);
+}
+
+/* Responsive background attachment for journey parallax */
+.v2v-journey-parallax-bg {
+  background-attachment: scroll;
+}
+
+@media (min-width: 1024px) {
+  .v2v-journey-parallax-bg {
+    background-attachment: fixed;
+  }
+}
+
+/* Roadmap Visualizer Mobile Overrides */
+@media (max-width: 767px) {
+  /* Reset container heights and overflow properties for mobile */
+  .rv-step-track {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+    padding-left: 48px !important;
+    position: relative !important;
+    box-sizing: border-box;
+  }
+  
+  /* Vertical timeline line */
+  .rv-step-track::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 20px;
+    width: 2px;
+    background-color: rgba(24, 1, 173, 0.15);
+    z-index: 0;
+  }
+  
+  /* Hide the wavy SVG */
+  .rv-container svg {
+    display: none !important;
+  }
+  
+  /* Overrides for step item block */
+  .rv-step-item {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    pointer-events: auto !important;
+    z-index: 10 !important;
+    box-sizing: border-box;
+  }
+  
+  /* Overrides for node circle */
+  .rv-scroll-node {
+    position: absolute !important;
+    left: 20px !important; /* aligns with .rv-step-track::before */
+    top: 24px !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 20 !important;
+  }
+  
+  /* Overrides for card positioning */
+  .rv-glass-card {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    gap: 16px !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
+    box-sizing: border-box;
+  }
+  
+  .rv-card-icon-container {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 12px !important;
+  }
+  
+  .rv-card-icon-container svg {
+    display: block !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  .rv-card-content h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 6px !important;
+  }
+  
+  .rv-card-content p {
+    font-size: 0.95rem !important;
+  }
 }

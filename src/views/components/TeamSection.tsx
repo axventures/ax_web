@@ -107,6 +107,7 @@ export const TeamSection: React.FC = () => {
                   <img 
                     src={member.image} 
                     alt={member.name}
+                    loading="lazy"
                     style={{
                       width: '100%',
                       height: '100%',
@@ -141,23 +142,6 @@ export const TeamSection: React.FC = () => {
             ))}
           </div>
         </div>
-        
-        <style>{`
-          @keyframes auto-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .team-scroll-track {
-            animation: auto-scroll 40s linear infinite;
-            will-change: transform;
-          }
-          .team-scroll-container:hover .team-scroll-track {
-            animation-play-state: paused;
-          }
-          .team-card:hover .team-member-img {
-            transform: scale(1.05);
-          }
-        `}</style>
       </div>
     </section>
   );

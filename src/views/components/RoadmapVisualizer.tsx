@@ -37,9 +37,9 @@ export const RoadmapVisualizer: React.FC<RoadmapVisualizerProps> = ({ roadmap })
   const steps = roadmap?.steps || [];
   if (steps.length === 0) return null;
 
-  const stepHeight = 320; // Increased spacing for larger cards
-  const topPadding = 120;
-  const bottomPadding = 120;
+  const stepHeight = 220; // Reduced spacing to shorten the roadmap length
+  const topPadding = 80;
+  const bottomPadding = 80;
   const totalHeight = steps.length * stepHeight + topPadding + bottomPadding;
   const centerX = 500;
   const waveWidth = 80;
@@ -60,7 +60,7 @@ export const RoadmapVisualizer: React.FC<RoadmapVisualizerProps> = ({ roadmap })
 
   return (
     <div className="rv-container" style={{ padding: '80px 20px' }}>
-      <div ref={containerRef} style={{ position: 'relative', width: '100%', maxWidth: '1000px', margin: '0 auto', height: totalHeight }}>
+      <div ref={containerRef} className="rv-step-track" style={{ position: 'relative', width: '100%', maxWidth: '1000px', margin: '0 auto', height: totalHeight }}>
         
         <svg 
           width="100%" 
@@ -86,7 +86,7 @@ export const RoadmapVisualizer: React.FC<RoadmapVisualizerProps> = ({ roadmap })
           const nodeX = isRight ? centerX + waveWidth * 0.75 : centerX - waveWidth * 0.75;
           
           return (
-            <div key={i} style={{ position: 'absolute', top: nodeY, left: '50%', transform: 'translate(-50%, -50%)', width: '100%', pointerEvents: 'none', zIndex: 10 }}>
+            <div key={i} className="rv-step-item" style={{ position: 'absolute', top: nodeY, left: '50%', transform: 'translate(-50%, -50%)', width: '100%', pointerEvents: 'none', zIndex: 10 }}>
               
               <motion.div
                 className="rv-scroll-node"
