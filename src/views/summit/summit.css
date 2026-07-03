@@ -990,3 +990,100 @@
     margin-top: 4px;
   }
 }
+
+/* Summit minimal navbar styles */
+.summit-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summit-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summit-nav-logo img {
+  height: 40px;
+  border-radius: 4px;
+}
+
+.summit-nav-title {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--summit-blue);
+  letter-spacing: -0.02em;
+}
+
+.summit-nav-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--summit-grey);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Mobile responsive overrides for summit components */
+@media (max-width: 768px) {
+  .summit-nav {
+    padding: 16px;
+  }
+  .summit-nav-logo {
+    gap: 8px;
+  }
+  .summit-nav-logo img {
+    height: 32px;
+  }
+  .summit-nav-title {
+    font-size: 1.05rem;
+  }
+  .summit-nav-back {
+    font-size: 0.85rem;
+  }
+  .summit-nav-back span {
+    display: none; /* Only show Back arrow on extra small screens */
+  }
+  
+  .v2v-hero {
+    padding: 100px 16px 40px !important;
+  }
+  
+  .summit-section {
+    padding: 60px 0 !important;
+  }
+  
+  .summit-container {
+    padding: 0 16px !important;
+  }
+
+  .v2v-sticky-card {
+    padding: 20px !important;
+  }
+  
+  .summit-form-card {
+    padding: 24px 20px !important;
+  }
+
+  .summit-pass-card {
+    padding: 32px 24px !important;
+  }
+}
+
+/* Summit form card styles */
+.summit-form-card {
+  background-color: #ffffff;
+  color: #0f0f14;
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}

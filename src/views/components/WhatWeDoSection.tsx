@@ -25,34 +25,22 @@ export const WhatWeDoSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
         >
-          <span className="wwd-eyebrow">WHAT WE DO</span>
           <h2 className="wwd-title">Core Capabilities</h2>
         </motion.div>
         
-        <div className="wwd-grid">
-           {/* Faded lines background */}
-           <div className="wwd-grid-lines">
-             {items.map((_, i) => (
-               <div key={`line-${i}`} className="wwd-grid-line-cell" />
-             ))}
-             <div className="wwd-grid-line-cell" /> {/* 12th cell */}
-           </div>
-
-           {/* Content cards */}
+        <div className="wwd-pills-container">
            {items.map((item, i) => (
              <motion.div 
                key={i} 
-               className="wwd-card"
-               initial={{ opacity: 0 }}
-               whileInView={{ opacity: 1 }}
+               className="wwd-pill"
+               initial={{ opacity: 0, scale: 0.95, y: 10 }}
+               whileInView={{ opacity: 1, scale: 1, y: 0 }}
                viewport={{ once: true, margin: "-50px" }}
-               transition={{ delay: i * 0.05, duration: 0.5 }}
+               transition={{ delay: i * 0.04, duration: 0.4 }}
              >
-               <h3 className="wwd-card-text">{item}</h3>
+               <span className="wwd-pill-text">{item}</span>
              </motion.div>
            ))}
-           {/* 12th empty card */}
-           <div className="wwd-card empty-card" />
         </div>
       </div>
     </section>

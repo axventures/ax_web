@@ -144,15 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
             {NAV_LINKS.map((link) => renderNavLink(link, 'nav-link-item'))}
           </div>
 
-          {/* Desktop CTA Button */}
-          <div className="desktop-menu-cta">
-            <button
-              onClick={onApplyClick}
-              className="btn btn-primary nav-cta-btn"
-            >
-              Apply
-            </button>
-          </div>
+
 
           {/* Mobile Toggle Button */}
           <button
@@ -189,16 +181,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
                 </a>
               )
             )}
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onApplyClick();
-              }}
-              className="btn btn-primary"
-              style={{ width: '100%', marginTop: '8px' }}
-            >
-              Apply
-            </button>
           </div>
         )}
       </header>
@@ -230,15 +212,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
               {NAV_LINKS.map((link) => renderNavLink(link, 'nav-link-item-dock'))}
             </div>
 
-            {/* Desktop CTA Button */}
-            <div className="desktop-menu-cta-dock">
-              <button
-                onClick={onApplyClick}
-                className="btn btn-primary nav-cta-btn-dock"
-              >
-                Apply
-              </button>
-            </div>
+
           </nav>
         </header>
       )}

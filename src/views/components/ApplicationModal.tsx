@@ -68,7 +68,6 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
       style={{
         zIndex: 99999999,
         overflowY: 'auto',
-        padding: '40px 20px',
         alignItems: 'flex-start',
         background: 'rgba(255, 255, 255, 0.7)',
         backdropFilter: 'blur(12px)',
@@ -88,7 +87,6 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           color: 'var(--text-main)', // Dark slate text
           margin: 'auto',
           borderRadius: '24px',
-          padding: '32px',
         }}
       >
         {/* Close Button */}

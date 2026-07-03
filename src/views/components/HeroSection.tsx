@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ROTATING_WORDS = ['Founder', 'Team', 'System', 'Company'];
@@ -19,26 +19,7 @@ export const HeroSection: React.FC = () => {
       id="home"
       className="hero-section-landscape"
     >
-      {/* Upper Tech Badge */}
-      <div
-        className="animate-slide-up"
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '8px',
-          padding: '6px 16px',
-          background: 'rgba(24, 1, 173, 0.06)',
-          border: '1px solid rgba(24, 1, 173, 0.15)',
-          borderRadius: '30px',
-          color: '#1801AD',
-          fontSize: '0.82rem',
-          fontWeight: 600,
-          marginBottom: '32px',
-        }}
-      >
-        <Sparkles size={14} />
-        <span>Vision to Ventures — Cohort 2026</span>
-      </div>
+
 
       {/* Main Stacked Headline - Large Centered Hook */}
       <h1

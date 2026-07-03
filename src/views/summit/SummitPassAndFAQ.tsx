@@ -67,7 +67,7 @@ export const SummitPassAndFAQ: React.FC = () => {
           </div>
 
           {/* Invitation Form & Printable Ticket */}
-          <div style={{ backgroundColor: '#ffffff', color: '#0f0f14', padding: '40px', borderRadius: '12px', border: '1px solid rgba(0, 0, 0, 0.08)', boxShadow: '0 20px 40px rgba(0,0,0,0.06)' }}>
+          <div className="summit-form-card">
             {!showTicket ? (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <h3 style={{ fontSize: '1.6rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '8px', color: '#0f0f14' }}>Request Pass</h3>
