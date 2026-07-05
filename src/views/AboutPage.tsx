@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { ApplicationModal } from './components/ApplicationModal';
 import { useApplicationController } from '../controllers/useApplicationController';
+import { TeamSection } from './components/TeamSection';
 
 const tabs = ['Our Story', 'Vision & Mission', 'Our Philosophy'] as const;
 type TabName = typeof tabs[number];
@@ -166,6 +167,9 @@ export const AboutPage: React.FC = () => {
         {activeTab === 'Vision & Mission' && <VisionMissionTab />}
         {activeTab === 'Our Philosophy' && <PhilosophyTab />}
       </section>
+
+      {/* Team / Mentors Section */}
+      <TeamSection />
 
       {/* Footer */}
       <footer

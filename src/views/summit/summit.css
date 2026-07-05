@@ -1,0 +1,1089 @@
+/* --- AX Ventures Founder Summit 2026 CSS --- */
+/* High-contrast, geometric, vibrant blue theme */
+
+:root {
+  --summit-blue: #1801AD; /* Deep striking blue from brand */
+  --summit-neon-blue: #2a3bf6; /* Lighter vivid blue */
+  --summit-white: #ffffff;
+  --summit-black: #050505;
+  --summit-grey: #1a1a1a;
+  --summit-light-grey: #f4f4f5;
+  --summit-accent: #FF5722; /* Retain the coral/orange for high contrast buttons */
+}
+
+.summit-wrapper {
+  background-color: var(--summit-blue);
+  color: var(--summit-white);
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* --- Summit Geo Background --- */
+.summit-geo-bg {
+  background-color: var(--summit-white);
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.summit-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+
+/* --- V2V Hero Redesign --- */
+:root {
+  --v2v-purple: #7b2cbf;
+  --v2v-purple-light: #9d4edd;
+  --v2v-purple-dark: #5a189a;
+  --v2v-white: #ffffff;
+  --v2v-black: #0a0a0a;
+  --v2v-gray: #f8f9fa;
+  --v2v-text-gray: #e0e0e0;
+}
+
+.v2v-hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--v2v-black);
+  padding: 120px 24px 80px;
+  background-color: var(--summit-white);
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.v2v-hero-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.15; /* Subtle background image */
+  mix-blend-mode: multiply;
+}
+
+.v2v-hero-bg {
+  width: 100%;
+  height: 120%; /* Extra height for parallax */
+  background-image: url('/vision to ventures.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -10%;
+  left: 0;
+  filter: grayscale(100%);
+}
+
+.v2v-hero-overlay {
+  display: none; /* No black gradient overlay needed */
+}
+
+.v2v-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.v2v-hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+@media (max-width: 992px) {
+  .v2v-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+}
+
+.v2v-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .v2v-hero-left {
+    align-items: center;
+  }
+}
+
+.v2v-headline {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--v2v-black);
+}
+
+.v2v-subheadline {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--v2v-purple);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.v2v-description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #555555;
+  max-width: 600px;
+  margin: 0;
+}
+
+.v2v-highlights {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 992px) {
+  .v2v-highlights {
+    justify-content: center;
+  }
+}
+
+.v2v-highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--v2v-purple-dark);
+  background: rgba(123, 44, 191, 0.05);
+  padding: 12px 20px;
+  border-radius: 40px;
+  border: 1px solid rgba(123, 44, 191, 0.15);
+}
+
+.v2v-hero-right {
+  position: sticky;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  z-index: 10;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .v2v-hero-right {
+    position: static;
+    align-items: center;
+  }
+}
+
+.v2v-sticky-card {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(123, 44, 191, 0.15);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.v2v-sticky-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(123, 44, 191, 0.12);
+  border-color: rgba(123, 44, 191, 0.3);
+}
+
+@media (max-width: 992px) {
+  .v2v-sticky-card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.v2v-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.v2v-btn {
+  width: 100%;
+  padding: 20px 32px;
+  border-radius: 60px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .v2v-btn {
+    width: auto;
+    min-width: 200px;
+  }
+}
+
+.v2v-btn-primary {
+  background-color: var(--v2v-purple);
+  color: var(--v2v-white);
+  border: none;
+  box-shadow: 0 10px 30px rgba(123, 44, 191, 0.3);
+}
+
+.v2v-btn-primary:hover {
+  transform: translateY(-4px);
+  background-color: var(--v2v-purple-light);
+  box-shadow: 0 15px 40px rgba(123, 44, 191, 0.5);
+}
+
+.v2v-btn-secondary {
+  background-color: transparent;
+  color: var(--v2v-purple-dark);
+  border: 2px solid var(--v2v-purple-dark);
+  backdrop-filter: blur(10px);
+}
+
+.v2v-btn-secondary:hover {
+  border-color: var(--v2v-purple-dark);
+  background-color: var(--v2v-purple-dark);
+  color: var(--v2v-white);
+  transform: translateY(-4px);
+}
+
+.v2v-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.v2v-mouse {
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(24, 1, 173, 0.35);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.v2v-wheel {
+  width: 4px;
+  height: 8px;
+  background-color: var(--v2v-purple);
+  border-radius: 2px;
+  animation: scrollWheel 2s infinite;
+}
+
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0; }
+}
+
+@keyframes v2v-pulse-red {
+  0% { transform: scale(0.9); opacity: 0.5; box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.5); }
+  70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 8px rgba(255, 87, 34, 0); }
+  100% { transform: scale(0.9); opacity: 0.5; box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 1; }
+}
+
+.v2v-pulse-red {
+  animation: v2v-pulse-red 2s infinite ease-in-out;
+}
+
+/* --- Base Section Styles --- */
+.summit-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.summit-bg-white {
+  background-color: var(--summit-light-grey);
+}
+
+.summit-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  color: var(--summit-white);
+}
+
+.summit-section-title.dark-text {
+  color: var(--summit-blue);
+}
+
+.summit-body-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 24px;
+}
+
+.summit-body-text.dark-text {
+  color: var(--summit-grey);
+}
+
+.summit-subtitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 32px 0 16px;
+  color: var(--summit-white);
+}
+
+.summit-subtitle.dark-text {
+  color: var(--summit-blue);
+}
+
+/* --- Split Layout --- */
+.summit-split-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+}
+
+@media (min-width: 900px) {
+  .summit-split-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+}
+
+.summit-split-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Audience & Features --- */
+.summit-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summit-checklist li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 16px;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.summit-checklist li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--summit-accent);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.summit-checklist.dark-text li {
+  color: var(--summit-grey);
+}
+
+.summit-card-highlight {
+  background-color: var(--summit-blue);
+  padding: 48px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(24, 1, 173, 0.2);
+  color: var(--summit-white);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.summit-comparison-block {
+  margin-bottom: 24px;
+  padding-left: 20px;
+  border-left: 3px solid rgba(255,255,255,0.2);
+}
+
+.summit-comparison-block p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 4px;
+}
+
+.summit-comparison-block p.highlight {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--summit-white);
+  margin-bottom: 0;
+}
+
+.summit-bullet-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.summit-bullet {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--summit-accent);
+  background: rgba(255, 87, 34, 0.1);
+  padding: 10px 16px;
+  border-radius: 6px;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.summit-bold-statement {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--summit-white);
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+/* --- Timeline & Experience --- */
+.summit-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.summit-timeline-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 400px;
+  justify-content: center;
+}
+
+.summit-timeline-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--summit-accent);
+  border-radius: 50%;
+}
+
+.summit-timeline-arrow {
+  color: rgba(255,255,255,0.4);
+}
+
+.summit-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .summit-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .summit-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.summit-feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 32px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.summit-feature-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.summit-icon {
+  color: var(--summit-accent);
+  margin-bottom: 20px;
+  width: 32px;
+  height: 32px;
+}
+
+.summit-feature-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--summit-white);
+}
+
+.summit-feature-card p {
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}
+/* --- Founder Wall --- */
+.summit-founder-wall {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 12px;
+}
+
+@media (min-width: 600px) {
+  .summit-founder-wall {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.summit-founder-card {
+  background: var(--summit-white);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summit-founder-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(24, 1, 173, 0.08);
+}
+
+.summit-founder-avatar {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(24, 1, 173, 0.1);
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.summit-founder-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--summit-black);
+  margin-bottom: 4px;
+}
+
+.summit-founder-company {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--summit-blue);
+  margin-bottom: 12px;
+}
+
+.summit-founder-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.summit-founder-tag {
+  font-size: 0.75rem;
+  background: var(--summit-light-grey);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--summit-grey);
+  font-weight: 600;
+}
+
+.summit-founder-intro {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: rgba(0,0,0,0.6);
+  margin-bottom: 12px;
+}
+
+.summit-founder-city {
+  font-size: 0.8rem;
+  color: rgba(0,0,0,0.5);
+  font-weight: 600;
+}
+
+/* Custom scrollbar for wall */
+.summit-founder-wall::-webkit-scrollbar {
+  width: 6px;
+}
+.summit-founder-wall::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.02);
+}
+.summit-founder-wall::-webkit-scrollbar-thumb {
+  background: rgba(24, 1, 173, 0.2);
+  border-radius: 4px;
+}
+
+/* --- Partners & Venue --- */
+.summit-partner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (min-width: 600px) {
+  .summit-partner-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .summit-partner-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.summit-partner-logo {
+  background: var(--summit-light-grey);
+  border-radius: 8px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--summit-grey);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.summit-venue-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .summit-venue-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.summit-venue-item {
+  background: var(--summit-light-grey);
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--summit-blue);
+  border-left: 4px solid var(--summit-accent);
+}
+
+/* --- Founder Pass & FAQ --- */
+.summit-pass-card {
+  background: var(--summit-white);
+  border-radius: 16px;
+  padding: 48px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--summit-black);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+  position: relative;
+  border-top: 8px solid var(--summit-accent);
+}
+
+.summit-pass-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--summit-blue);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.summit-pass-price {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+
+.summit-pass-subtitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.summit-pass-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+}
+
+.summit-pass-features li {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.summit-pass-features li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: var(--summit-accent);
+  font-size: 1.25rem;
+}
+
+.summit-pass-note {
+  font-size: 0.95rem;
+  color: rgba(0,0,0,0.5);
+  margin-bottom: 32px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.summit-faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summit-faq-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.summit-faq-item:hover, .summit-faq-item.open {
+  background: rgba(255,255,255,0.1);
+}
+
+.summit-faq-header {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summit-faq-q {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.summit-faq-a {
+  padding: 0 24px 24px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+}
+
+/* --- Redesigned Minimal FAQ --- */
+.summit-faq-section {
+  background-color: #ffffff;
+  color: #0f0f14;
+  padding: 120px 24px;
+}
+
+.minimal-faq-list {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.minimal-faq-item {
+  background-color: #ffffff;
+  border: 2px solid #0f0f14;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.minimal-faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 15, 20, 0.06);
+}
+
+.minimal-faq-header {
+  padding: 28px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.minimal-faq-q-block {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.minimal-faq-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f0f14;
+}
+
+.minimal-faq-q {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f0f14;
+  margin: 0;
+}
+
+.minimal-faq-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #0f0f14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f0f14;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.minimal-faq-divider {
+  border-top: 1.5px solid #0f0f14;
+  margin: 0 32px;
+}
+
+.minimal-faq-a {
+  padding: 24px 32px 32px;
+  font-size: 1.05rem;
+  color: #55555d;
+  line-height: 1.6;
+}
+
+.v2v-main-title {
+  font-size: clamp(2.4rem, 10vw, 8.5rem);
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.85;
+  color: #0a0a0a;
+  margin: 0 0 16px 0;
+  font-family: 'Outfit', sans-serif;
+}
+
+.v2v-countdown-container {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.v2v-countdown-grid {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.v2v-countdown-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1.5px solid rgba(123, 44, 191, 0.15);
+  border-radius: 16px;
+  min-width: 80px;
+  padding: 14px 10px;
+  box-shadow: 0 8px 24px rgba(123, 44, 191, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.v2v-countdown-card.secs {
+  background-color: rgba(220, 38, 38, 0.04);
+  border: 1.5px solid #dc2626;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.08);
+}
+
+.v2v-countdown-num {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #0a0a0a;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-family: 'Outfit', sans-serif;
+}
+
+.v2v-countdown-num.secs {
+  color: #dc2626;
+}
+
+.v2v-countdown-label {
+  font-size: 0.7rem;
+  color: var(--v2v-purple);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 6px;
+  letter-spacing: 0.05em;
+}
+
+.v2v-countdown-label.secs {
+  color: #dc2626;
+}
+
+.v2v-countdown-divider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.v2v-countdown-divider.secs {
+  background-color: rgba(220, 38, 38, 0.06);
+}
+
+@media (max-width: 480px) {
+  .v2v-countdown-card {
+    min-width: 65px;
+    padding: 10px 6px;
+  }
+  .v2v-countdown-num {
+    font-size: 1.8rem;
+  }
+  .v2v-countdown-label {
+    font-size: 0.6rem;
+    margin-top: 4px;
+  }
+}
+
+/* Summit minimal navbar styles */
+.summit-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summit-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summit-nav-logo img {
+  height: 40px;
+  border-radius: 4px;
+}
+
+.summit-nav-title {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--summit-blue);
+  letter-spacing: -0.02em;
+}
+
+.summit-nav-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--summit-grey);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Mobile responsive overrides for summit components */
+@media (max-width: 768px) {
+  .summit-nav {
+    padding: 16px;
+  }
+  .summit-nav-logo {
+    gap: 8px;
+  }
+  .summit-nav-logo img {
+    height: 32px;
+  }
+  .summit-nav-title {
+    font-size: 1.05rem;
+  }
+  .summit-nav-back {
+    font-size: 0.85rem;
+  }
+  .summit-nav-back span {
+    display: none; /* Only show Back arrow on extra small screens */
+  }
+  
+  .v2v-hero {
+    padding: 100px 16px 40px !important;
+  }
+  
+  .summit-section {
+    padding: 60px 0 !important;
+  }
+  
+  .summit-container {
+    padding: 0 16px !important;
+  }
+
+  .v2v-sticky-card {
+    padding: 20px !important;
+  }
+  
+  .summit-form-card {
+    padding: 24px 20px !important;
+  }
+
+  .summit-pass-card {
+    padding: 32px 24px !important;
+  }
+}
+
+/* Summit form card styles */
+.summit-form-card {
+  background-color: #ffffff;
+  color: #0f0f14;
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}

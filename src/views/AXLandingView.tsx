@@ -3,13 +3,20 @@ import { useApplicationController } from '../controllers/useApplicationControlle
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { StatsCard } from './components/StatsCard';
+import { ApplicationModal } from './components/ApplicationModal';
+import { FooterSection } from './components/FooterSection';
+
 import { CrowdfundingSection } from './components/CrowdfundingSection';
 import { BrandTickerSection } from './components/BrandTickerSection';
+import { WhatWeDoSection } from './components/WhatWeDoSection';
 import { KeepYouAheadSection } from './components/KeepYouAheadSection';
 import { FounderJourneySection } from './components/FounderJourneySection';
-import { TeamSection } from './components/TeamSection';
 import { OurApproachSection } from './components/OurApproachSection';
-import { ApplicationModal } from './components/ApplicationModal';
+import { FounderReadinessSection } from './components/FounderReadinessSection';
+import { MentorsSection } from './components/MentorsSection';
+
+import { FoundersFRPSection } from './components/FoundersFRPSection';
+import { SectionDivider } from './components/SectionDivider';
 
 export const AXLandingView: React.FC = () => {
   const {
@@ -64,29 +71,27 @@ export const AXLandingView: React.FC = () => {
 
       {/* Main Sections */}
       <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <CrowdfundingSection />
-        <BrandTickerSection />
-        <KeepYouAheadSection />
-        <FounderJourneySection onApplyClick={openModal} />
-        <TeamSection />
-        <OurApproachSection />
+          <CrowdfundingSection />
+          <SectionDivider />
+          <BrandTickerSection />
+          <SectionDivider />
+          <WhatWeDoSection />
+          <SectionDivider />
+          <KeepYouAheadSection />
+          <FounderJourneySection onApplyClick={openModal} />
+          <FounderReadinessSection onApplyClick={openModal} />
+          <SectionDivider />
+          <MentorsSection />
+          <SectionDivider />
+          <div className="hide-on-mobile">
+            <FoundersFRPSection onApplyClick={openModal} />
+            <SectionDivider />
+          </div>
+          <OurApproachSection />
       </main>
 
       {/* Footer */}
-      <footer
-        style={{
-          padding: '80px 24px 120px 24px',
-          borderTop: '1px solid rgba(24, 1, 173, 0.08)',
-          textAlign: 'center',
-          fontSize: '0.85rem',
-          color: 'hsl(var(--text-muted))',
-          backgroundColor: '#ffffff',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        <p>© {new Date().getFullYear()} AX Ventures. All rights reserved.</p>
-      </footer>
+      <FooterSection />
 
       {/* Application Form Modal */}
       <ApplicationModal

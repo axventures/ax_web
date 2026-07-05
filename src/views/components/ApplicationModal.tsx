@@ -32,7 +32,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
   const [pitch, setPitch] = useState('');
   const [stage, setStage] = useState<'idea' | 'mvp' | 'revenue'>('idea');
 
-  // Reset inputs when modal is opened
+  // Reset inputs when modal is opened, and add keydown listener for Escape key
   useEffect(() => {
     if (isOpen) {
       setFullName('');
@@ -41,7 +41,15 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
       setPitch('');
       setStage('idea');
     }
-  }, [isOpen]);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -54,10 +62,12 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
     <div
       className="modal-overlay"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
       style={{
         zIndex: 99999999,
         overflowY: 'auto',
-        padding: '40px 20px',
         alignItems: 'flex-start',
         background: 'rgba(255, 255, 255, 0.7)',
         backdropFilter: 'blur(12px)',
@@ -77,12 +87,12 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           color: 'var(--text-main)', // Dark slate text
           margin: 'auto',
           borderRadius: '24px',
-          padding: '32px',
         }}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
+          aria-label="Close modal window"
           style={{
             position: 'absolute',
             top: '24px',
@@ -181,7 +191,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   100% Confidential
                 </span>
               </div>
-              <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px', letterSpacing: '-0.03em', color: 'var(--text-main)' }}>
+              <h3 id="modal-title" style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px', letterSpacing: '-0.03em', color: 'var(--text-main)' }}>
                 Pitch AX Ventures
               </h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)' }}>
