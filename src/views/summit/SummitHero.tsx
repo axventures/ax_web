@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, animate, useInView } from 'framer-motion';
-import { MapPin } from 'lucide-react';
+import { MapPin, Calendar, Users } from 'lucide-react';
 import { ContourLinesTopRight, SweepingDashedLineAlt } from '../components/DecorativeLines';
 
 const Counter = ({ from, to }: { from: number, to: number }) => {
@@ -65,21 +65,21 @@ const CountdownTimer = () => {
       <div style={{ 
         display: 'flex', 
         alignItems: 'center', 
-        gap: '10px', 
-        padding: '8px 16px', 
-        backgroundColor: 'rgba(255, 87, 34, 0.06)', 
+        gap: '12px', 
+        padding: '10px 16px', 
+        backgroundColor: 'rgba(239, 68, 68, 0.06)', 
         borderRadius: '30px', 
-        border: '1px solid rgba(255, 87, 34, 0.15)',
+        border: '1px solid rgba(239, 68, 68, 0.15)',
         width: 'fit-content'
       }}>
         <span className="v2v-pulse-red" style={{
           width: '8px',
           height: '8px',
-          backgroundColor: '#ff5722',
+          backgroundColor: '#ef4444',
           borderRadius: '50%',
           display: 'inline-block'
         }} />
-        <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ff5722', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+        <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ef4444', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
           Intake closes soon • Limited Seats Available
         </span>
       </div>
@@ -214,7 +214,7 @@ export const SummitHero: React.FC = () => {
               style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', fontSize: '1.4rem', color: 'var(--v2v-purple)', fontWeight: 800, margin: '16px 0 24px' }}
             >
               <span>One Room.</span>
-              <span>200 Builders.</span>
+              <span>100 Builders.</span>
               <span>Countless Opportunities.</span>
             </motion.h2>
 
@@ -246,15 +246,15 @@ export const SummitHero: React.FC = () => {
                   All-Access Pass
                 </span>
                 <span style={{ 
-                  backgroundColor: 'rgba(255, 87, 34, 0.1)', 
-                  color: '#ff5722', 
+                  backgroundColor: 'rgba(239, 68, 68, 0.1)', 
+                  color: '#ef4444', 
                   fontSize: '0.75rem', 
                   fontWeight: 800, 
                   padding: '4px 12px', 
                   borderRadius: '30px',
                   letterSpacing: '0.05em'
                 }}>
-                  <Counter from={0} to={137} /> / 200 REMAINING
+                  <Counter from={0} to={37} /> / 100 REMAINING
                 </span>
               </div>
 
@@ -264,8 +264,8 @@ export const SummitHero: React.FC = () => {
                   <span style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--v2v-black)' }}>₹1,499</span>
                   <span style={{ fontSize: '1.3rem', color: '#888', textDecoration: 'line-through', fontWeight: 500 }}>₹2,000</span>
                 </div>
-                <span style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  ✨ Limited Time Offer Price (Save 25%)
+                <span style={{ fontSize: '0.8rem', color: '#ef4444', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  LIMITED TIME OFFER PRICE (SAVE 25%)
                 </span>
               </div>
 
@@ -278,26 +278,22 @@ export const SummitHero: React.FC = () => {
                   <MapPin size={20} style={{ color: 'var(--v2v-purple)' }} />
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--v2v-black)' }}>Kozhikode, Kerala</span>
-                    <span style={{ fontSize: '0.75rem', color: '#666', fontWeight: 500 }}>📍 Venue Location</span>
+                    <span style={{ fontSize: '0.75rem', color: '#666', fontWeight: 500 }}>Venue Location</span>
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px' }}>
-                    <span style={{ fontSize: '1.15rem' }}>📅</span>
-                  </div>
+                  <Calendar size={20} style={{ color: 'var(--v2v-purple)' }} />
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--v2v-black)' }}>July 25, 2026</span>
-                    <span style={{ fontSize: '0.75rem', color: '#666', fontWeight: 500 }}>⏰ 09:00 AM onwards</span>
+                    <span style={{ fontSize: '0.75rem', color: '#666', fontWeight: 500 }}>08:00 AM onwards</span>
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px' }}>
-                    <span style={{ fontSize: '1.15rem' }}>👥</span>
-                  </div>
+                  <Users size={20} style={{ color: 'var(--v2v-purple)' }} />
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--v2v-black)' }}>200 Founders Only</span>
+                    <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--v2v-black)' }}>100 Founders Only</span>
                     <span style={{ fontSize: '0.75rem', color: '#666', fontWeight: 500 }}>Exclusive Cohort Size</span>
                   </div>
                 </div>
@@ -312,12 +308,6 @@ export const SummitHero: React.FC = () => {
                 >
                   Reserve Your Founder Pass
                 </a>
-                <button 
-                  className="v2v-btn v2v-btn-secondary" 
-                  style={{ padding: '16px 24px', fontSize: '1.05rem', borderRadius: '50px' }}
-                >
-                  Become a Brand Partner
-                </button>
               </div>
             </motion.div>
           </div>

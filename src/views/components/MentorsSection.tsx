@@ -1,7 +1,7 @@
 import React from 'react';
 import { SweepingDashedLine } from './DecorativeLines';
 
-const teamMembers = [
+const mentors = [
   {
     id: 1,
     name: 'MOHAMED HAFEEF',
@@ -25,55 +25,34 @@ const teamMembers = [
   },
   {
     id: 4,
-    name: 'MUHAMMED ADHIL KP',
-    role: 'Tech Lead',
-    image: '/Muhammed Adhil kp tec lead .png',
-    height: '480px'
-  },
-  {
-    id: 5,
-    name: 'ANUBAM',
-    role: 'Data Analyst',
-    image: '/data analatist anubam .png',
-    height: '360px'
-  },
-  {
-    id: 6,
     name: 'SADAR SHANAVAS',
     role: 'Finance',
     image: '/finance-Sadar Shanavas .png',
     height: '440px'
   },
   {
-    id: 7,
-    name: 'MUHAMMED SHAHINSHA',
-    role: 'Event Manager',
-    image: '/Muhammed  Shahinsha Event manager .png',
-    height: '400px'
-  },
-  {
-    id: 8,
-    name: 'AKSHY CK',
-    role: 'HR Manager',
-    image: '/akshy ck hr manager .png',
-    height: '420px'
+    id: 5,
+    name: 'MUHAMMED ADHIL KP',
+    role: 'Tech Lead',
+    image: '/Muhammed Adhil kp tec lead .png',
+    height: '480px'
   }
 ];
 
 // Duplicate the array to create a seamless infinite loop
-const infiniteTeamMembers = [...teamMembers, ...teamMembers];
+const infiniteMentors = [...mentors, ...mentors, ...mentors];
 
-export const TeamSection: React.FC = () => {
+export const MentorsSection: React.FC = () => {
   return (
-    <section id="team" style={{ position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff', padding: '120px 0', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+    <section id="mentors" style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--brand-warm-cream, #FAF9F6)', padding: '120px 0' }}>
       {/* Decorative dashed line cutting through the section */}
       <SweepingDashedLine />
       
       <div style={{ maxWidth: '100%', margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <div style={{ textAlign: 'center', marginBottom: '80px', padding: '0 24px' }}>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--text-main)', marginBottom: '24px' }}>
+          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--text-main)', marginBottom: '24px', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.15 }}>
             The people behind the <br/>
-            <em style={{ color: 'var(--brand-blue)', fontStyle: 'italic' }}>execution.</em>
+            <em style={{ color: 'var(--brand-blue)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>readiness.</em>
           </h2>
         </div>
 
@@ -88,7 +67,7 @@ export const TeamSection: React.FC = () => {
           }}
         >
           <div className="team-scroll-track" style={{ display: 'flex', gap: '24px', paddingLeft: '24px', alignItems: 'center' }}>
-            {infiniteTeamMembers.map((member, index) => (
+            {infiniteMentors.map((member, index) => (
               <div 
                 key={`${member.id}-${index}`} 
                 className="team-card"
@@ -107,7 +86,7 @@ export const TeamSection: React.FC = () => {
                     height: member.height,
                     overflow: 'hidden',
                     marginBottom: '20px',
-                    backgroundColor: '#f5f5f5',
+                    backgroundColor: '#e0e0e0',
                     borderRadius: '12px'
                   }}
                 >
@@ -133,14 +112,15 @@ export const TeamSection: React.FC = () => {
                     color: 'var(--text-main)', 
                     letterSpacing: '0.05em',
                     marginBottom: '4px',
-                    fontFamily: 'var(--font-sans)' // Ensure names use sans-serif
+                    fontFamily: 'var(--font-sans)'
                   }}>
                     {member.name}
                   </h3>
                   <p style={{ 
                     fontSize: '0.9rem', 
                     color: 'var(--text-muted)',
-                    fontWeight: 400
+                    fontWeight: 400,
+                    fontFamily: 'var(--font-sans)'
                   }}>
                     {member.role}
                   </p>

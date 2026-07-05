@@ -51,9 +51,10 @@ const accordionData = [
     title: "Current Founder Cohort",
     subtitle: "Active founders",
     content: [
-      { company: "AI Analytics Pro", founder: "Sarah Chen", industry: "B2B SaaS", stage: "Pre-Seed" },
-      { company: "FinTech Connect", founder: "Michael Rodriguez", industry: "FinTech", stage: "Seed" },
-      { company: "HealthWear App", founder: "Dr. Aisha Khan", industry: "HealthTech", stage: "Pre-Seed" }
+      { company: "ArkytUP", founder: "Basil Mishaal Mathew", industry: "Extended Reality", stage: "Revenue Stage" },
+      { company: "Tomome", founder: "Anees", industry: "Pregnancy & Parenting", stage: "Revenue Stage" },
+      { company: "Kori", founder: "Muhammed Hafis", industry: "Food & Beverage", stage: "Idea Stage" },
+      { company: "Servewise Solutions Pvt. Ltd.", founder: "Aravind Sekhar", industry: "Software Development / Service Marketplace", stage: "MVP Stage" }
     ],
     type: 'table'
   }

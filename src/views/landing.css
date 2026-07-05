@@ -233,9 +233,7 @@ a {
   width: calc(100% - 32px);
   max-width: 740px;
   padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #ffffff !important;
   border: 1px solid rgba(24, 1, 173, 0.08);
   border-radius: 50px;
   box-shadow: 0 -10px 40px -10px rgba(24, 1, 173, 0.15);
@@ -250,9 +248,10 @@ a {
 
 .navbar-container-dock {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
+  gap: 32px;
 }
 
 .navbar-logo-img-dock {
@@ -280,25 +279,34 @@ a {
   color: #0f172a;
   letter-spacing: -0.01em;
   transition: all 0.2s ease;
-  text-decoration: underline;
-  text-decoration-color: rgba(15, 23, 42, 0.2);
-  text-underline-offset: 6px;
-  text-decoration-thickness: 1px;
+  text-decoration: none;
 }
 
 .nav-link-item-dock:hover {
   color: #0f172a;
-  text-decoration-color: #0f172a;
 }
 
 .desktop-menu-cta-dock {
   display: block;
+  margin-left: auto;
 }
 
 .nav-cta-btn-dock {
   padding: 8px 20px !important;
   font-size: 0.88rem !important;
   border-radius: 30px !important;
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.nav-cta-btn-dock:hover {
+  background-color: #1801AD !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(24, 1, 173, 0.3) !important;
 }
 
 /* Mobile Toggle Button */
@@ -2421,3 +2429,349 @@ a {
   }
 }
 
+/* Mobile-only hero styling overrides */
+@media (max-width: 768px) {
+  /* Hide floating dock on mobile */
+  .navbar-floating-dock {
+    display: none !important;
+  }
+  
+  /* Keep static navbar always visible on mobile */
+  .navbar-static.hidden {
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Navbar height and alignment fixes */
+  .navbar-static {
+    padding: 8px 0 !important;
+  }
+  
+  .navbar-static.frosted {
+    padding: 8px 0 !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+  }
+  
+  .navbar-container {
+    padding: 0 16px !important;
+  }
+
+  /* Hero heading colors swap */
+  .hero-strong-title {
+    color: #0f172a !important; /* Black */
+    line-height: 1.1 !important;
+    display: inline-block;
+    padding-bottom: 12px !important;
+  }
+  
+  .hero-rotating-title {
+    background: none !important;
+    -webkit-text-fill-color: #1801AD !important; /* Blue */
+    color: #1801AD !important;
+  }
+
+  /* CTA Button Outline Style & Smaller Size */
+  .hero-summit-btn {
+    background: transparent !important;
+    border: 1.5px solid #000000 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    padding: 6px 12px !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .hero-summit-btn .hero-summit-arrow {
+    color: #000000 !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Hero Subtitle */
+  .hero-subtitle {
+    font-size: 1.05rem !important;
+    margin-top: 16px !important;
+    padding: 0 16px !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Hero CTA wrapper position */
+  .hero-cta-wrapper {
+    margin-top: 56px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  /* 3. Horizontal Scrolling Fix */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    position: relative;
+  }
+
+  /* 4. "Why AX Exist" Animation Removal */
+  .crowdfunding-section {
+    height: auto !important;
+    padding: 80px 16px !important;
+    background-color: transparent !important;
+  }
+  
+  .crowdfunding-sticky {
+    position: relative !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: transparent !important;
+  }
+  
+  .crowdfunding-question {
+    position: static !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 32px !important;
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .crowdfunding-question-inner {
+    transform: none !important;
+    white-space: normal !important;
+    display: block !important;
+  }
+  
+  .crowdfunding-question h1 {
+    font-size: 3.5rem !important;
+    font-weight: 900 !important;
+    white-space: normal !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.03em !important;
+    margin: 0 auto !important;
+  }
+  
+  .crowdfunding-answer {
+    position: relative !important;
+    opacity: 1 !important;
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+    width: 100% !important;
+    top: auto !important;
+    margin: 0 !important;
+  }
+
+  .crowdfunding-answer-text {
+    text-align: center !important;
+    padding: 0 8px !important;
+  }
+  
+  /* The Hook */
+  .crowdfunding-answer-text p:first-child {
+    font-size: 1.6rem !important;
+    line-height: 1.35 !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02em !important;
+    text-align: center !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* The Paragraph */
+  .crowdfunding-answer-text p:last-child {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    font-weight: 400 !important;
+    color: #475569 !important;
+    text-align: center !important;
+  }
+
+  /* Hide image completely on mobile as requested */
+  .crowdfunding-answer-image {
+    display: none !important;
+  }
+
+  /* 5. Core Capabilities Layout Update */
+  .wwd-pills-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 0 16px !important;
+  }
+  
+  .wwd-pill {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 12px 16px !important;
+  }
+}
+
+/* ==========================================================================
+   Founders FRP Section
+   ========================================================================== */
+.frp-checker-section {
+  position: relative;
+  background-color: var(--brand-pure-white);
+  padding-top: 100px;
+}
+
+.frp-checker-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px 60px 24px;
+}
+
+.frp-checker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+
+.checker-founder-group {
+  display: contents;
+}
+
+.checker-block {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.checker-text {
+  padding: 10% 12%;
+}
+
+.checker-text.bg-dark {
+  background-color: #0F1222;
+  color: var(--brand-pure-white);
+}
+
+.checker-text.bg-dark .checker-industry {
+  color: rgba(255,255,255,0.5);
+}
+
+.checker-text.bg-dark .checker-desc {
+  color: rgba(255,255,255,0.7);
+}
+
+.checker-text.bg-dark .checker-name {
+  color: var(--brand-pure-white);
+}
+
+.checker-text.bg-cream {
+  background-color: #E6D5C3;
+  color: #0F1222;
+}
+
+.checker-text.bg-cream .checker-industry {
+  color: rgba(15,18,34,0.5);
+}
+
+.checker-text.bg-cream .checker-desc {
+  color: rgba(15,18,34,0.7);
+}
+
+.checker-text.bg-cream .checker-name {
+  color: #0F1222;
+}
+
+.checker-industry {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: auto;
+}
+
+.frp-heading {
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #0F1222;
+  line-height: 1.1;
+  max-width: 800px;
+  letter-spacing: -0.03em;
+}
+
+.checker-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.checker-desc {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.checker-img-block {
+  overflow: hidden;
+}
+
+.checker-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.checker-img-block:hover .checker-image {
+  transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+  .frp-checker-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .frp-checker-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .checker-founder-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .checker-block {
+    aspect-ratio: auto;
+    min-height: 350px;
+  }
+  .checker-founder-group:nth-child(1),
+  .checker-founder-group:nth-child(2) {
+    flex-direction: column-reverse;
+  }
+}
+
+.frp-footer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.frp-footer-text {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0F1222;
+}
+@media (max-width: 992px) { .hide-on-mobile { display: none !important; } }

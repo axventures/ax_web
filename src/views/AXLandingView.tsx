@@ -11,9 +11,12 @@ import { BrandTickerSection } from './components/BrandTickerSection';
 import { WhatWeDoSection } from './components/WhatWeDoSection';
 import { KeepYouAheadSection } from './components/KeepYouAheadSection';
 import { FounderJourneySection } from './components/FounderJourneySection';
-import { TeamSection } from './components/TeamSection';
 import { OurApproachSection } from './components/OurApproachSection';
 import { FounderReadinessSection } from './components/FounderReadinessSection';
+import { MentorsSection } from './components/MentorsSection';
+
+import { FoundersFRPSection } from './components/FoundersFRPSection';
+import { SectionDivider } from './components/SectionDivider';
 
 export const AXLandingView: React.FC = () => {
   const {
@@ -47,12 +50,21 @@ export const AXLandingView: React.FC = () => {
       {/* Main Sections */}
       <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <CrowdfundingSection />
+          <SectionDivider />
           <BrandTickerSection />
+          <SectionDivider />
           <WhatWeDoSection />
+          <SectionDivider />
           <KeepYouAheadSection />
           <FounderJourneySection onApplyClick={openModal} />
-          <TeamSection />
           <FounderReadinessSection onApplyClick={openModal} />
+          <SectionDivider />
+          <MentorsSection />
+          <SectionDivider />
+          <div className="hide-on-mobile">
+            <FoundersFRPSection onApplyClick={openModal} />
+            <SectionDivider />
+          </div>
           <OurApproachSection />
       </main>
 

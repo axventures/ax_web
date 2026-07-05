@@ -177,12 +177,6 @@ export const SummitCommunity: React.FC = () => {
           }}>
             Ecosystem Directory
           </span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <span style={{ fontSize: '1.2rem', color: '#ff5722' }}>◆</span>
-            <span style={{ fontSize: '1.2rem', color: 'var(--v2v-purple)' }}>◆</span>
-            <span style={{ fontSize: '1.2rem', color: '#888' }}>◆</span>
-            <span style={{ fontSize: '1.5rem', fontWeight: 900, marginLeft: '8px', color: 'var(--v2v-purple)', cursor: 'pointer' }}>→</span>
-          </div>
         </div>
 
       </div>

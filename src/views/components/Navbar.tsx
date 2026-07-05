@@ -6,11 +6,21 @@ interface NavbarProps {
   onApplyClick: () => void;
 }
 
-const NAV_LINKS = [
+const DESKTOP_NAV_LINKS = [
   { label: 'Home', href: '/', isRoute: true },
   { label: 'About', href: '/about', isRoute: true },
   { label: 'Vision to Ventures', href: '/founder-summit', isRoute: true },
   { label: 'Readiness', href: '/#readiness', isRoute: false },
+  { label: 'Founders', href: '/#frp-founders', isRoute: false },
+  { label: 'Contact', href: '/#contact', isRoute: false },
+];
+
+const MOBILE_NAV_LINKS = [
+  { label: 'Home', href: '/', isRoute: true },
+  { label: 'About', href: '/about', isRoute: true },
+  { label: 'Vision to Ventures', href: '/founder-summit', isRoute: true },
+  { label: 'Readiness', href: '/#readiness', isRoute: false },
+  { label: 'Founders', href: '/founders', isRoute: true },
   { label: 'Contact', href: '/#contact', isRoute: false },
 ];
 
@@ -141,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
 
           {/* Desktop Nav Links */}
           <div className="desktop-menu-links">
-            {NAV_LINKS.map((link) => renderNavLink(link, 'nav-link-item'))}
+            {DESKTOP_NAV_LINKS.map((link) => renderNavLink(link, 'nav-link-item'))}
           </div>
 
 
@@ -160,7 +170,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <div className="mobile-menu-dropdown animate-slide-up" role="navigation" aria-label="Mobile Navigation">
-            {NAV_LINKS.map((link) =>
+            {MOBILE_NAV_LINKS.map((link) =>
               link.isRoute ? (
                 <Link
                   key={link.label}
@@ -209,7 +219,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
 
             {/* Desktop Nav Links */}
             <div className="desktop-menu-links-dock">
-              {NAV_LINKS.map((link) => renderNavLink(link, 'nav-link-item-dock'))}
+              {DESKTOP_NAV_LINKS.filter(link => link.label !== 'Founders').map((link) => renderNavLink(link, 'nav-link-item-dock'))}
+            </div>
+
+            <div className="desktop-menu-cta-dock">
+              <button onClick={onApplyClick} className="nav-cta-btn nav-cta-btn-dock">
+                Apply
+              </button>
             </div>
 
 

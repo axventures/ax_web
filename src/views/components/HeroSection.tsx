@@ -53,7 +53,7 @@ export const HeroSection: React.FC = () => {
 
       {/* Subheading */}
       <p
-        className="animate-slide-up"
+        className="animate-slide-up hero-subtitle"
         style={{
           fontSize: 'clamp(1.1rem, 2.8vw, 1.35rem)',
           color: 'hsl(var(--text-muted))',
@@ -68,7 +68,7 @@ export const HeroSection: React.FC = () => {
 
       {/* Single CTA */}
       <div
-        className="animate-slide-up"
+        className="animate-slide-up hero-cta-wrapper"
         style={{
           marginTop: '44px',
         }}

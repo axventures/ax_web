@@ -18,15 +18,18 @@ export const SummitPassAndFAQ: React.FC = () => {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
 
+  const [showToast, setShowToast] = useState(false);
+
   const toggleFAQ = (idx: number) => {
     setOpenIdx(openIdx === idx ? null : idx);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (name && email && company) {
-      setShowTicket(true);
-    }
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
   };
 
   const handlePrint = () => {
@@ -51,7 +54,7 @@ export const SummitPassAndFAQ: React.FC = () => {
             <ul className="summit-pass-features">
               <li>Full-Day Summit Access</li>
               <li>Curated Founder Networking</li>
-              <li>All Sessions</li>
+              <li>All Zones & Experiences</li>
               <li>Founder Welcome Kit</li>
               <li>Lunch & Refreshments</li>
               <li>Community Access</li>
@@ -69,7 +72,7 @@ export const SummitPassAndFAQ: React.FC = () => {
           {/* Invitation Form & Printable Ticket */}
           <div className="summit-form-card">
             {!showTicket ? (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', position: 'relative' }}>
                 <h3 style={{ fontSize: '1.6rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '8px', color: '#0f0f14' }}>Request Pass</h3>
                 <p style={{ color: '#55555d', fontSize: '0.95rem', margin: '0 0 12px 0' }}>Registration is exclusive to deep-tech founders, engineers, and executive builders.</p>
                 
@@ -116,6 +119,26 @@ export const SummitPassAndFAQ: React.FC = () => {
                 >
                   Generate Access Pass
                 </button>
+
+                {showToast && (
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '-60px',
+                    left: 0,
+                    right: 0,
+                    padding: '12px',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    border: '1px solid rgba(231, 76, 60, 0.3)',
+                    color: '#e74c3c',
+                    borderRadius: '8px',
+                    textAlign: 'center',
+                    fontWeight: 700,
+                    fontSize: '0.95rem',
+                    animation: 'fadeIn 0.3s ease-in-out'
+                  }}>
+                    Sorry, pass generation is not available yet. Integration coming soon!
+                  </div>
+                )}
               </form>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
