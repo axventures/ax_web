@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 export const SummitExperience: React.FC = () => {
   const zones = [

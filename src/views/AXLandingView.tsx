@@ -32,29 +32,6 @@ export const AXLandingView: React.FC = () => {
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-      {/* Global Decorative Vertical Line (Left Side) */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          bottom: 0,
-          left: '40px',
-          width: '1px',
-          borderLeft: '1px dashed rgba(24, 1, 173, 0.2)',
-          zIndex: 50,
-          pointerEvents: 'none'
-        }}
-      >
-        <div style={{
-          position: 'absolute',
-          top: '30%',
-          left: '-5px',
-          width: '9px',
-          height: '9px',
-          background: 'var(--brand-blue)',
-          transform: 'rotate(45deg)'
-        }} />
-      </div>
 
       {/* Navigation Header */}
       <Navbar onApplyClick={openModal} />
