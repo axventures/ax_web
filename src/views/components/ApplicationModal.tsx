@@ -32,7 +32,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
   const [pitch, setPitch] = useState('');
   const [stage, setStage] = useState<'idea' | 'mvp' | 'revenue'>('idea');
 
-  // Reset inputs when modal is opened, and add keydown listener for Escape key
+  // Reset inputs when modal is opened
   useEffect(() => {
     if (isOpen) {
       setFullName('');
@@ -41,7 +41,10 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
       setPitch('');
       setStage('idea');
     }
+  }, [isOpen]);
 
+  // Add keydown listener for Escape key
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
         onClose();
