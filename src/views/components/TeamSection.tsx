@@ -53,7 +53,7 @@ const teamMembers = [
   },
   {
     id: 8,
-    name: 'AKSHY CK',
+    name: 'AKSHAY CK',
     role: 'HR Manager',
     image: '/akshy ck hr manager .png',
     height: '420px'

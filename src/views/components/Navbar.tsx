@@ -109,6 +109,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
     );
   };
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       {/* 1. Static Top Header (The first model - scrolls away naturally) */}
@@ -119,6 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
         <nav className="navbar-container">
           <Link
             to="/"
+            onClick={handleLogoClick}
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -204,6 +212,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
           <nav className="navbar-container-dock">
             <Link
               to="/"
+              onClick={handleLogoClick}
               style={{
                 display: 'flex',
                 alignItems: 'center',
