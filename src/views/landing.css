@@ -1871,6 +1871,7 @@ a {
   background-color: var(--brand-warm-cream); /* Light background */
   padding: 120px 0; /* Changed from 24px padding to let container handle it */
   position: relative;
+  scroll-margin-top: 100px;
 }
 
 .readiness-container {
