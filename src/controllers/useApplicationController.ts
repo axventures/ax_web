@@ -61,6 +61,9 @@ export function useApplicationController(): UseApplicationControllerReturn {
 
   const clearError = (field: string) => {
     setErrors((prev) => {
+      if (!(field in prev)) {
+        return prev;
+      }
       const updated = { ...prev };
       delete updated[field];
       return updated;
