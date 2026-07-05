@@ -22,30 +22,11 @@ export const HeroSection: React.FC = () => {
 
 
       {/* Main Stacked Headline - Large Centered Hook */}
-      <h1
-        className="animate-slide-up hero-headline-hook"
-        style={{
-          fontWeight: 950,
-          letterSpacing: '-0.05em',
-          color: '#0f172a',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '8px',
-          width: '100%',
-        }}
-      >
+      <h1 className="animate-slide-up hero-headline-hook">
         <span className="hero-strong-title">Strong</span>
         <span
           key={currentWordIndex}
-          className="rotating-word hero-rotating-title"
-          style={{
-            background: 'linear-gradient(135deg, #1801AD, #4f46e5)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            display: 'inline-block',
-          }}
+          className="rotating-word hero-rotating-title hero-rotating-title-gradient"
         >
           {ROTATING_WORDS[currentWordIndex]}.
         </span>

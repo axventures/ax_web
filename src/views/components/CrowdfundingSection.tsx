@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-export const CrowdfundingSection: React.FC = () => {
+const DesktopCrowdfundingSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -9,31 +9,16 @@ export const CrowdfundingSection: React.FC = () => {
     offset: ['start start', 'end start'],
   });
 
-  // Sticky section is 150vh total. It stays pinned for 50vh of scrolling.
-  // 50vh / 150vh = 0.33. We must finish animations by scrollYProgress = 0.33.
-  // We'll animate everything in parallel from 0 to 0.3.
-  
-  // Question moves from center (50vw) to left edge with gap (5vw)
   const questionX = useTransform(scrollYProgress, [0, 0.3], ['50vw', '5vw']);
-  // Inner offset moves from -50% to 0% to keep it centered initially, then anchor left
   const questionXOffset = useTransform(scrollYProgress, [0, 0.3], ['-50%', '0%']);
-  
-  // Question moves up
   const questionY = useTransform(scrollYProgress, [0, 0.3], ['0vh', '-20vh']);
-  // Question scales down slightly
   const questionScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.7]);
-  
-  // Answer fades in very quickly right at the start of the scroll
   const answerOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
   const answerY = useTransform(scrollYProgress, [0, 0.3], ['10vh', '0vh']);
-
-  // Background smoothly transitions to pure white
   const containerBg = useTransform(scrollYProgress, [0, 0.3], ['#FAF9F6', '#ffffff']);
 
   return (
-    <section id="crowdfunding" ref={sectionRef} className="crowdfunding-section" style={{ position: 'relative', height: '150vh' }}>
-      
-      {/* ---------------- Sticky Container ---------------- */}
+    <section id="crowdfunding-desktop" ref={sectionRef} className="crowdfunding-section" style={{ position: 'relative', height: '150vh' }}>
       <motion.div
         className="crowdfunding-sticky"
         style={{
@@ -45,7 +30,7 @@ export const CrowdfundingSection: React.FC = () => {
           overflow: 'hidden',
         }}
       >
-        {/* ---------------- 1. Question Layer ---------------- */}
+        {/* 1. Question Layer */}
         <motion.div
           className="crowdfunding-question"
           style={{
@@ -86,7 +71,7 @@ export const CrowdfundingSection: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* ---------------- 2. Answer Layer ---------------- */}
+        {/* 2. Answer Layer */}
         <motion.div
           className="crowdfunding-answer"
           style={{
@@ -106,7 +91,6 @@ export const CrowdfundingSection: React.FC = () => {
             gap: '40px',
           }}
         >
-          {/* Text Column */}
           <div
             className="crowdfunding-answer-text"
             style={{
@@ -155,7 +139,6 @@ export const CrowdfundingSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Image Column */}
           <div
             className="crowdfunding-answer-image"
             style={{
@@ -177,10 +160,170 @@ export const CrowdfundingSection: React.FC = () => {
             />
           </div>
         </motion.div>
-
       </motion.div>
     </section>
   );
+};
+
+const MobileCrowdfundingSection: React.FC = () => {
+  return (
+    <section 
+      id="crowdfunding-mobile" 
+      style={{
+        padding: '120px 24px',
+        backgroundColor: '#030303',
+        position: 'relative',
+        overflow: 'hidden',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh'
+      }}
+    >
+      <div 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }}
+      />
+      <div 
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle, rgba(24,1,173,0.3) 0%, rgba(24,1,173,0) 70%)',
+          zIndex: 1,
+          pointerEvents: 'none',
+          filter: 'blur(40px)'
+        }}
+      />
+      <div 
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          maxWidth: '800px',
+          width: '100%',
+          background: 'rgba(20, 20, 25, 0.6)',
+          backdropFilter: 'blur(32px)',
+          WebkitBackdropFilter: 'blur(32px)',
+          borderRadius: '40px',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          padding: '60px',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '48px'
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{
+              width: 'clamp(48px, 6vw, 64px)',
+              height: 'clamp(48px, 6vw, 64px)',
+              borderRadius: '16px',
+              backgroundColor: '#F7F7FA',
+              border: '1px solid rgba(0,0,0,0.06)',
+              padding: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <text x="50" y="55" textAnchor="middle" dominantBaseline="middle" fontSize="60" fontWeight="900" letterSpacing="-2">
+                  <tspan fontFamily="Georgia, serif" fill="#000">A</tspan>
+                  <tspan fill="#000" fontSize="50">/</tspan>
+                  <tspan fill="#1801AD" fontStyle="italic" fontFamily="Arial, sans-serif">X</tspan>
+                </text>
+              </svg>
+            </div>
+            <h1 style={{ color: '#ffffff', fontWeight: 800, fontSize: 'clamp(2.2rem, 6vw, 3.5rem)', letterSpacing: '-0.03em', margin: 0, lineHeight: 1.1 }}>
+              Why AX<br/>Exists?
+            </h1>
+          </div>
+          
+          <div style={{ display: 'flex', gap: '6px', marginTop: '24px' }}>
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.4)' }} />
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.4)' }} />
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.4)' }} />
+          </div>
+        </div>
+
+        <h2 
+          style={{
+            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
+            fontWeight: 800,
+            color: '#ffffff',
+            letterSpacing: '-0.04em',
+            lineHeight: 1.1,
+            margin: 0
+          }}
+        >
+          Most startups don't fail because founders lack ideas.{' '}
+          <span style={{ color: '#5b4df2' }}>
+            They fail because they lack the systems.
+          </span>
+        </h2>
+
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '2px', backgroundColor: '#1801AD', marginRight: '24px', flexShrink: 0, borderRadius: '2px' }} />
+          <p 
+            style={{
+              fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+              fontWeight: 400,
+              color: 'rgba(255, 255, 255, 0.7)',
+              lineHeight: 1.6,
+              margin: 0,
+              maxWidth: '600px'
+            }}
+          >
+            AX Ventures exists to change that. We work alongside founders to help them build stronger businesses through structured execution, strategic partnerships, operational systems, and founder development.
+          </p>
+        </div>
+
+        <img 
+          src="/bgremovequestionmark.png" 
+          alt="Question Mark" 
+          style={{
+            position: 'absolute',
+            right: '-10%',
+            bottom: '-10%',
+            width: '400px',
+            opacity: 0.05,
+            pointerEvents: 'none',
+            zIndex: -1
+          }}
+        />
+      </div>
+    </section>
+  );
+};
+
+export const CrowdfundingSection: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Prevent hydration mismatch
+  if (!mounted) return null;
+
+  return isMobile ? <MobileCrowdfundingSection /> : <DesktopCrowdfundingSection />;
 };
 
 export default CrowdfundingSection;

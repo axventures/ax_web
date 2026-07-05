@@ -64,6 +64,17 @@ body {
   padding-bottom: 80px;
   overflow: hidden;
   z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .hero-wrapper {
+    /* Slight gradient for mobile mimicking the reference image */
+    background: linear-gradient(180deg, #1801AD 0%, #e3e3efff 30%) !important;
+  }
 }
 
 /* Dotted grid pattern inside the hero wrapper */
@@ -171,6 +182,20 @@ a {
   padding: 16px 0; /* slightly thinner when scrolling */
 }
 
+/* Mobile style for Navbar matching reference */
+@media (max-width: 767px) {
+  .navbar-static {
+    background: #ffffff !important;
+    padding: 12px 0 !important;
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -182,12 +207,66 @@ a {
   width: 100%;
 }
 
+@media (max-width: 767px) {
+  .navbar-container {
+    padding: 0 20px;
+  }
+}
+
+.navbar-logo-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  gap: 0px;
+}
+
+.navbar-logo-text-desktop {
+  font-size: 0.65rem;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  color: #0f172a;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-top: -2px;
+  padding-left: 3px;
+}
+
+.navbar-logo-text-mobile {
+  display: none;
+}
+
 /* Static Logo Sizing */
 .navbar-logo-img-static {
   width: 62px;
   height: 62px;
   object-fit: contain;
   display: block;
+}
+
+@media (max-width: 767px) {
+  .navbar-logo-img-static {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .navbar-logo-link {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .navbar-logo-text-desktop {
+    display: none;
+  }
+
+  .navbar-logo-text-mobile {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    font-family: var(--font-sans);
+  }
 }
 
 /* Desktop Nav Links - Spaced & Increased Font Size for Readability */
@@ -357,7 +436,7 @@ a {
    Hero Section Custom Headline (Hook & Landscape)
    ============================================================ */
 .hero-strong-title {
-  font-size: clamp(3.2rem, 11vw, 5.5rem); /* Scaled down for mobile */
+  font-size: clamp(4.5rem, 18vw, 5.5rem); /* Extremely large on mobile */
   font-weight: 950;
   line-height: 0.85;
   letter-spacing: -0.05em;
@@ -366,12 +445,34 @@ a {
 }
 
 .hero-rotating-title {
-  font-size: clamp(2.4rem, 8vw, 3.8rem); /* Scaled down for mobile */
+  font-size: clamp(3.8rem, 15vw, 4.5rem); /* Match strong title presence */
   font-weight: 900;
   letter-spacing: -0.04em;
+  line-height: 0.85;
+  margin-top: -8px; /* Tighter line height between stack */
+}
+
+.hero-rotating-title-gradient {
+  background: linear-gradient(135deg, #1801AD, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  .hero-rotating-title-gradient {
+    background: none !important;
+    -webkit-text-fill-color: #111111 !important;
+    color: #111111 !important;
+  }
 }
 
 @media (min-width: 768px) {
+  .hero-headline-hook {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .hero-strong-title {
     font-size: clamp(5.5rem, 14vw, 9rem); /* Original desktop scale */
   }
@@ -409,6 +510,31 @@ a {
   }
 }
 
+@media (max-width: 767px) {
+  .stats-card-container {
+    padding: 0 40px !important;
+  }
+  .stats-card {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    border-left: 1px solid rgba(0,0,0,0.15) !important;
+    border-right: 1px solid rgba(0,0,0,0.15) !important;
+    padding: 0 !important;
+  }
+  .stat-item {
+    border-bottom: 1px solid rgba(0,0,0,0.15) !important;
+    padding: 32px 0 !important;
+  }
+  .stat-item:first-child {
+    border-top: 1px solid rgba(0,0,0,0.15) !important;
+  }
+}
+
 .stat-item {
   display: flex;
   flex-direction: column;
@@ -428,12 +554,33 @@ a {
   }
 }
 
+.stat-number-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.stat-icon {
+  display: flex;
+  color: #1801AD; /* brand blue */
+}
+
 .stat-number {
   font-size: 2.5rem;
   font-weight: 800;
   color: #000000; /* Black color for numbers */
   letter-spacing: -0.03em;
   line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .stat-number {
+    font-size: 3.2rem !important; /* Huge numbers on mobile */
+  }
+  .stat-label {
+    font-size: 0.9rem !important;
+  }
 }
 
 .stat-label {
@@ -2124,6 +2271,28 @@ a {
   transform: translateX(6px);
 }
 
+@media (max-width: 767px) {
+  .hero-summit-btn {
+    background: linear-gradient(135deg, #0f172a 0%, #1E14A8 100%) !important;
+    border-radius: 30px !important;
+    border: none !important;
+    width: auto !important;
+    justify-content: center !important;
+    text-transform: none !important;
+    font-weight: 500 !important;
+    font-size: 1.05rem !important;
+    padding: 14px 28px !important;
+    box-shadow: 0 4px 14px rgba(37, 27, 220, 0.25) !important;
+    display: inline-flex !important;
+    flex-direction: row-reverse !important; /* Put arrow on the left */
+    gap: 12px !important;
+  }
+
+  .hero-summit-btn .hero-summit-arrow {
+    display: block !important;
+  }
+}
+
 /* ============================================================
    Mobile-First and Optimization Additions
    ============================================================ */
@@ -2151,7 +2320,9 @@ a {
 
 @media (max-width: 768px) {
   .hero-section-landscape {
-    padding: 120px 16px 60px 16px;
+    padding: 180px 16px 80px 16px !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
   }
 }
 
@@ -2391,42 +2562,21 @@ a {
     font-size: 0.95rem !important;
   }
   
-  /* Brand Marquee into 2-Column Grid on Mobile (Peak XV Reference) */
+  /* Brand Marquee Mobile Styling - Preserve Sliding Layout */
   .brand-ticker-section {
-    padding: 60px 0 40px !important;
+    padding: 40px 0 !important;
   }
   .brand-ticker-container {
-    padding: 0 20px !important;
-  }
-  .brand-marquee-wrapper {
-    overflow: visible !important;
-    padding: 0 !important;
+    padding: 0 16px !important;
   }
   .brand-marquee-fade {
-    display: none !important; /* Remove gradients */
+    width: 60px !important; /* Smaller fade for mobile */
   }
   .brand-marquee-track {
-    animation: none !important;
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-    width: 100% !important;
+    gap: 40px !important; /* Smaller gap for mobile */
   }
   .brand-marquee-item {
-    background-color: #f8fafc !important; /* Light grey box like reference */
-    padding: 24px 12px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border-radius: 8px !important;
-    font-size: 0.95rem !important; /* Smaller text size so user won't get bored */
-    color: #475569 !important;
-    white-space: normal !important;
-    text-align: center !important;
-  }
-  /* Hide the duplicated marquee items */
-  .brand-marquee-item:nth-child(n+9) {
-    display: none !important;
+    font-size: 1.1rem !important; /* Slightly smaller text for mobile */
   }
 }
 
@@ -2599,18 +2749,33 @@ a {
     display: none !important;
   }
 
-  /* 5. Core Capabilities Layout Update */
+  /* 5. Core Capabilities Layout Update - 2 Column Cards */
   .wwd-pills-container {
     display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
     padding: 0 16px !important;
   }
   
   .wwd-pill {
     width: 100% !important;
-    text-align: center !important;
-    padding: 12px 16px !important;
+    min-height: 110px !important;
+    background: linear-gradient(135deg, #f7f9ff 0%, #eef2ff 100%) !important;
+    border: 1px solid rgba(24, 1, 173, 0.05) !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+    padding: 20px 16px !important;
+    box-shadow: 0 4px 14px rgba(24, 1, 173, 0.05) !important;
+  }
+
+  .wwd-pill-text {
+    text-align: left !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    line-height: 1.2 !important;
   }
 }
 

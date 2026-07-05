@@ -127,33 +127,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
           <Link
             to="/"
             onClick={handleLogoClick}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textDecoration: 'none',
-              gap: '0px',
-            }}
+            className="navbar-logo-link"
           >
             <img
               src="/ax_logo.jpg"
               alt="AX Ventures"
               className="navbar-logo-img-static"
             />
-            <span
-              className="navbar-logo-text-static"
-              style={{
-                fontSize: '0.65rem',
-                fontWeight: 300,
-                fontFamily: "'Montserrat', sans-serif",
-                color: '#0f172a',
-                letterSpacing: '0.28em',
-                textTransform: 'uppercase',
-                marginTop: '-2px',
-                paddingLeft: '3px',
-              }}
-            >
+            <span className="navbar-logo-text-desktop">
               ventures
+            </span>
+            <span className="navbar-logo-text-mobile">
+              AX VENTURES
             </span>
           </Link>
 

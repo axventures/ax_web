@@ -13,7 +13,9 @@ export const StatsCard: React.FC = () => {
       <div className="stats-card">
         {stats.map((stat, idx) => (
           <div key={idx} className="stat-item">
-            <span className="stat-number">{stat.number}</span>
+            <div className="stat-number-wrapper">
+              <span className="stat-number">{stat.number}</span>
+            </div>
             <span className="stat-label">{stat.label}</span>
           </div>
         ))}
