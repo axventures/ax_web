@@ -24,7 +24,10 @@ app.use(helmet({
 }));
 
 // 2. CORS: Enable Cross-Origin Resource Sharing
-app.use(cors());
+app.use(cors({
+    origin: ["https://axventures.in", "http://localhost:3000"],
+    credentials: true
+}));
 
 // 3. Body Parser: Parse incoming JSON requests
 app.use(express.json({ limit: '10kb' })); // Limit body size to prevent payload too large attacks
@@ -57,7 +60,6 @@ app.use(generalLimiter);
 // ==========================================
 // SERVING FRONTEND
 // ==========================================
-
 // Serve static files from the React dist folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
