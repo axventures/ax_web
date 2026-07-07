@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
 import helmet from 'helmet';
-import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import { sendWelcomeEmail } from './backend/mailService.js';
 
@@ -33,9 +32,8 @@ app.use(cors({
 app.use(express.json({ limit: '10kb' })); // Limit body size to prevent payload too large attacks
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
-// 4. Data Sanitization against NoSQL query injection
-// Removes any keys containing prohibited characters (like $)
-app.use(mongoSanitize());
+// 4. Data Sanitization
+// Removed express-mongo-sanitize because it's incompatible with Express 5 and MongoDB is not used.
 
 // 5. Rate Limiting: Prevent Brute Force & DDoS
 // Limit each IP to 100 requests per 15 minutes
