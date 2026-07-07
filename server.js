@@ -67,3 +67,30 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'Server is secure and running.' });
 });
 
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+// ==========================================
+// GLOBAL ERROR HANDLER
+// ==========================================
+app.use((err, req, res, next) => {
+  console.error('🔥 Error caught by Global Handler:', err);
+
+  const statusCode = err.statusCode || 500;
+  const status = err.status || 'error';
+
+  // In production, we don't want to leak stack traces
+  res.status(statusCode).json({
+    status: status,
+    message: err.message || 'Something went very wrong!',
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(\`🛡️  Secure Server running on port \${PORT}\`);
+});
+
