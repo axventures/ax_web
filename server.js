@@ -6,7 +6,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
-import nodemailer from './backend/mailService'
+import { sendWelcomeEmail } from './backend/mailService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -65,6 +65,25 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'Server is secure and running.' });
+});
+
+app.post('/api/send-welcome-email', async (req, res) => {
+  try {
+    const { email, fullName, companyName } = req.body;
+    if (!email || !fullName) {
+      return res.status(400).json({ error: 'Email and Full Name are required' });
+    }
+
+    const success = await sendWelcomeEmail(email, fullName, companyName);
+    if (!success) {
+      return res.status(500).json({ error: 'Failed to send email due to server configuration' });
+    }
+
+    res.status(200).json({ message: 'Email sent successfully' });
+  } catch (error) {
+    console.error('Error in send-welcome-email route:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // The "catchall" handler: for any request that doesn't
