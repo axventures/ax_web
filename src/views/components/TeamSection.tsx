@@ -12,7 +12,7 @@ const teamMembers = [
   {
     id: 2,
     name: 'BILAL',
-    role: 'CEO of AX Ventures',
+    role: 'Founder & CEO',
     image: '/ceo of ex ventures Bilal.png',
     height: '380px'
   },

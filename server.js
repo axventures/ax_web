@@ -91,6 +91,6 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(\`🛡️  Secure Server running on port \${PORT}\`);
+  console.log(` Secure Server running on port ${PORT}`);
 });
 
