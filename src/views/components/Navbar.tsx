@@ -9,7 +9,7 @@ interface NavbarProps {
 const DESKTOP_NAV_LINKS = [
   { label: 'Home', href: '/', isRoute: true },
   { label: 'About', href: '/about', isRoute: true },
-  { label: 'Vision to Ventures', href: '/founder-summit', isRoute: true },
+  { label: 'Events', href: '/founder-summit', isRoute: true },
   { label: 'Readiness', href: '/#readiness', isRoute: false },
   { label: 'Founders', href: '/#frp-founders', isRoute: false },
   { label: 'Contact', href: '/#contact', isRoute: false },

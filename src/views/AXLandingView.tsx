@@ -43,7 +43,7 @@ export const AXLandingView: React.FC = () => {
         <HeroSection />
 
         {/* Stats Card */}
-        <StatsCard />
+        <StatsCard onApplyClick={openModal} />
       </div>
 
       {/* Main Sections */}
