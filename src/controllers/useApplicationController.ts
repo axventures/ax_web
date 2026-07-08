@@ -121,7 +121,7 @@ export function useApplicationController(): UseApplicationControllerReturn {
 
       // Send welcome email (non-blocking for UI success)
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || '';
+        const apiUrl = (import.meta as any).env.VITE_API_URL || '';
         fetch(`${apiUrl}/api/send-welcome-email`, {
           method: 'POST',
           headers: {
