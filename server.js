@@ -27,7 +27,9 @@ app.use(helmet({
 
 // 2. CORS: Enable Cross-Origin Resource Sharing
 app.use(cors({
-    origin: ["https://axventures.in", "http://localhost:3000"],
+    origin: function(origin, callback) {
+        return callback(null, true);
+    },
     credentials: true
 }));
 
