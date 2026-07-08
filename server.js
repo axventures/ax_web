@@ -13,6 +13,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Enable trust proxy so rate limiters work correctly behind Render's load balancers
+app.set('trust proxy', 1);
+
 // ==========================================
 // SECURITY MIDDLEWARES
 // ==========================================
