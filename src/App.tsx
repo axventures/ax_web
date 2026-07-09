@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import AXLandingView from './views/AXLandingView';
 import AboutPage from './views/AboutPage';
 import { FounderSummitView } from './views/summit/FounderSummitView';
@@ -17,8 +18,6 @@ function ScrollToTop() {
   return null;
 }
 
-import { Analytics } from '@vercel/analytics/react';
-
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +30,7 @@ function App() {
         <Route path="*" element={<NotFoundView />} />
       </Routes>
       <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   );
 }
