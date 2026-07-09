@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import AXLandingView from './views/AXLandingView';
 import AboutPage from './views/AboutPage';
 import { FounderSummitView } from './views/summit/FounderSummitView';
@@ -27,6 +28,7 @@ function App() {
         <Route path="/founders" element={<FoundersPage />} />
         <Route path="*" element={<NotFoundView />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 }
