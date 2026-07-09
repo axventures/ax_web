@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import type { FounderApplication } from '../models/Application';
 import { ApplicationModel } from '../models/Application';
 
@@ -122,16 +123,10 @@ export function useApplicationController(): UseApplicationControllerReturn {
       // Send welcome email (non-blocking for UI success)
       try {
         const apiUrl = (import.meta as any).env.VITE_API_URL || '';
-        fetch(`${apiUrl}/api/send-welcome-email`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email.trim(),
-            fullName: fullName.trim(),
-            companyName: companyName.trim(),
-          }),
+        axios.post(`${apiUrl}/api/send-welcome-email`, {
+          email: email.trim(),
+          fullName: fullName.trim(),
+          companyName: companyName.trim(),
         }).catch(err => console.error('Failed to send welcome email:', err));
       } catch (emailErr) {
         console.error('Failed to trigger welcome email API:', emailErr);
