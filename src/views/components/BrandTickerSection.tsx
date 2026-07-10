@@ -4,7 +4,7 @@ const PARTNERS = [
   { name: 'Y Combinator', font: "'Outfit', sans-serif", weight: '800', letterSpacing: '-0.03em' },
   { name: 'SEQUOIA', font: "'Georgia', serif", weight: 'bold', letterSpacing: '0.1em' },
   { name: 'techstars', font: "'Outfit', sans-serif", weight: '300', letterSpacing: '0.05em' },
-  { name: 'Google for Startups', font: "'Outfit', sans-serif", weight: '500', letterSpacing: '-0.01em' },
+  { name: 'ADHILCO Startups', font: "'Outfit', sans-serif", weight: '500', letterSpacing: '-0.01em' },
   { name: 'a16z', font: "'Georgia', serif", weight: '900', letterSpacing: '-0.05em' },
   { name: 'FOUNDERS FUND', font: "'Courier New', monospace", weight: 'bold', letterSpacing: '0.05em' },
   { name: 'BENCHMARK', font: "'Times New Roman', serif", weight: 'normal', letterSpacing: '0.15em' },

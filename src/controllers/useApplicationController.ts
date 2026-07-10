@@ -109,7 +109,7 @@ export function useApplicationController(): UseApplicationControllerReturn {
 
     try {
       await fetch(
-        'https://docs.google.com/forms/d/e/1FAIpQLSfG1AnkSfuxe14VDsi_HhRGgCkvczHeStzDA8A6l2mQyQfgzQ/formResponse',
+        "https://docs.google.com/forms/d/e/1FAIpQLSdZxKPe1OWxzFkHSkFul0TIjCt6fQv6JqS-lqP2fEhFYKjskA/viewform?usp=publish-editor",
         {
           method: 'POST',
           mode: 'no-cors',

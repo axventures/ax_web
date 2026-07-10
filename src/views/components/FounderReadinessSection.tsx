@@ -78,7 +78,7 @@ export const FounderReadinessSection: React.FC<FounderReadinessProps> = ({ onApp
       <SweepingDashedLine />
 
       <div className="readiness-container">
-        <h2 className="readiness-heading">Founder Readiness</h2>
+        <h2 className="readiness-heading">Founder <span style={{ color: 'var(--brand-blue)' }}>Readiness</span></h2>
         
         <div className="readiness-accordion-list">
           {accordionData.map((item) => {
