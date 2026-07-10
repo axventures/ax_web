@@ -77,7 +77,7 @@ export const MentorsSection: React.FC = () => {
         </style>
         
         <div className="mentors-grid">
-          {mentors.map((member, index) => (
+          {mentors.map((member) => (
             <div 
               key={member.id} 
               style={{ 
