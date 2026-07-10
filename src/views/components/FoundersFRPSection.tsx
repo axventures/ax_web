@@ -12,8 +12,6 @@ const foundersData = [
     industry: "EXTENDED REALITY",
     desc: "Building the future of extended reality. Currently scaling at the Revenue Stage.",
     image: "frp/ArkytUP-Basil Mishaal Mathew.png",
-    type: "dark",
-    textFirst: true
   },
   {
     name: "Muhammed Hafis",
@@ -21,8 +19,6 @@ const foundersData = [
     industry: "FOOD & BEVERAGE",
     desc: "Innovating in the food & beverage industry. Currently in the Idea Stage.",
     image: "frp/Kori -Muhammed Hafis.png",
-    type: "dark",
-    textFirst: false
   },
   {
     name: "Aravind Sekhar",
@@ -30,8 +26,6 @@ const foundersData = [
     industry: "SOFTWARE & SERVICES",
     desc: "Developing a premier service marketplace. Currently at the MVP Stage.",
     image: "frp/Servewise Solutions Pvt. Ltd. -Aravind Sekhar.png",
-    type: "light",
-    textFirst: true
   },
   {
     name: "Anees",
@@ -39,8 +33,6 @@ const foundersData = [
     industry: "PREGNANCY & PARENTING",
     desc: "Supporting the journey of parenting. Currently operating at the Revenue Stage.",
     image: "frp/Tomome -Anees.png",
-    type: "light",
-    textFirst: false
   },
   {
     name: "Mohammed Nasil",
@@ -48,8 +40,6 @@ const foundersData = [
     industry: "DESIGN & TECHNOLOGY",
     desc: "Empowering businesses with end-to-end design, technology, automation, and AI solutions. Currently at the Validation Stage.",
     image: "frp/Mohammed Nasil Creoture - Empowering businesses with end-to-end design, technology, automation, and Al solutions. Currently at the Validation Stage..png",
-    type: "dark",
-    textFirst: true
   },
   {
     name: "Sangeeth Karunakaran",
@@ -57,227 +47,195 @@ const foundersData = [
     industry: "COMMUNICATION TECHNOLOGY",
     desc: "Building a next-generation messaging platform for secure, user-first digital communication. Currently at the MVP Stage.",
     image: "frp/Sangeeth Karunakaran XMO - Building a next-generation messaging platform for secure, user-first digital communication. Currently at the MVP Stage..png",
-    type: "light",
-    textFirst: false
   }
 ];
 
 export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick }) => {
-  // Split founders into two rows (3 per row)
-  const row1 = foundersData.slice(0, 3);
-  const row2 = foundersData.slice(3, 6);
-
-  // Duplicate arrays to create a seamless infinite loop
-  const infiniteRow1 = [...row1, ...row1, ...row1, ...row1];
-  const infiniteRow2 = [...row2, ...row2, ...row2, ...row2];
-
-  const FounderBlock = ({ founder, idx }: { founder: any, idx: number }) => {
-    const [isExpanded, setIsExpanded] = React.useState(false);
-
-    return (
-      <div 
-        className={`checker-founder-group ${isExpanded ? 'is-expanded' : ''}`} 
-        key={idx}
-        onClick={() => {
-          if (window.innerWidth <= 768) {
-            setIsExpanded(!isExpanded);
-          }
-        }}
-      >
-        <div className={`checker-block checker-text ${founder.type === 'dark' ? 'bg-dark' : 'bg-cream'}`}>
-          <span className="checker-industry">{founder.industry}</span>
-          <h3 className="checker-name">{founder.name}</h3>
-          <p className="checker-desc">
-            <strong className="checker-company">{founder.company}</strong>
-            <span className="checker-desc-text"> — {founder.desc}</span>
-          </p>
-        </div>
-        <div className="checker-block checker-img-block">
-          <img src={`/${founder.image}`} alt={founder.name} className="checker-image" />
-        </div>
-      </div>
-    );
-  };
-
   return (
     <section id="frp-founders" className="frp-checker-section" style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--brand-warm-cream, #FAF9F6)', padding: '120px 0' }}>
       <ContourLinesTopRight opacity={0.05} />
       
       <style>
         {`
-          .marquee-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px; /* Space between rows */
-            width: 100vw;
-            overflow: hidden;
-            margin-top: 40px;
+          /* ── Marquee Container ── */
+          .frp-marquee-wrapper {
             position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 60px;
           }
-          .edge-blur {
+          .frp-marquee-blur-left,
+          .frp-marquee-blur-right {
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 15vw;
-            z-index: 2;
+            width: 12vw;
+            z-index: 5;
             pointer-events: none;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
           }
-          .edge-blur-left {
+          .frp-marquee-blur-left {
             left: 0;
-            background: linear-gradient(to right, rgba(235, 245, 255, 1) 20%, rgba(235, 245, 255, 0) 100%);
-            -webkit-mask-image: linear-gradient(to right, black, transparent);
-            mask-image: linear-gradient(to right, black, transparent);
+            background: linear-gradient(to right, var(--brand-warm-cream, #FAF9F6) 15%, transparent 100%);
           }
-          .edge-blur-right {
+          .frp-marquee-blur-right {
             right: 0;
-            background: linear-gradient(to left, rgba(235, 245, 255, 1) 20%, rgba(235, 245, 255, 0) 100%);
-            -webkit-mask-image: linear-gradient(to left, black, transparent);
-            mask-image: linear-gradient(to left, black, transparent);
+            background: linear-gradient(to left, var(--brand-warm-cream, #FAF9F6) 15%, transparent 100%);
           }
-          .marquee-track {
+          .frp-marquee-track {
             display: flex;
+            gap: 32px;
             width: max-content;
-            gap: 12px; /* Separation between founder cards */
+            animation: frpScroll 60s linear infinite;
           }
-          .marquee-left {
-            animation: scrollLeft 90s linear infinite;
+          .frp-marquee-track:hover {
+            animation-play-state: paused;
           }
-          .marquee-right {
-            animation: scrollRight 90s linear infinite;
-          }
-          @keyframes scrollLeft {
+          @keyframes frpScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-33.333%); }
           }
-          @keyframes scrollRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-          }
-          .checker-founder-group {
-            /* One founder card (image + text) with no gap inside, but a double line border on the right */
-            border-right: 4px double rgba(0, 0, 0, 0.15);
-            padding-right: 12px;
+
+          /* ── Single Card ── */
+          .frp-premium-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a2e 0%, #0d0d3a 30%, #1801AD 100%);
+            aspect-ratio: 3/4;
             display: flex;
-            flex-direction: row;
-            width: 50vw;
-            height: 374px;
-            flex: 0 0 50vw;
+            flex-direction: column;
+            justify-content: flex-end;
+            cursor: default;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+            box-shadow: 0 12px 40px rgba(24, 1, 173, 0.15);
           }
-          .checker-block {
-            width: 25vw;
-            height: 374px;
-            flex: 0 0 25vw;
+          .frp-premium-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 24px 60px rgba(24, 1, 173, 0.3);
           }
-          .checker-image {
+
+          /* ── Side Tag ("FRP") ── */
+          .frp-side-tag {
+            position: absolute;
+            left: 16px;
+            top: 24px;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-family: var(--font-sans, 'Outfit', sans-serif);
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.12);
+            text-transform: uppercase;
+            line-height: 1;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+          }
+
+          /* ── Cutout Photo ── */
+          .frp-card-photo {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 10%;
           }
-          .checker-text {
-            /* Add any specific flex layouts for text here if needed */
+          .frp-card-photo img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            object-position: bottom center;
+            filter: grayscale(20%) contrast(1.1);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
           }
+          .frp-premium-card:hover .frp-card-photo img {
+            transform: scale(1.05);
+          }
+
+          /* ── Bottom Gradient Overlay (ensures text readability) ── */
+          .frp-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background: linear-gradient(to top, rgba(10, 10, 46, 0.95) 0%, rgba(10, 10, 46, 0.6) 50%, transparent 100%);
+            z-index: 3;
+            pointer-events: none;
+          }
+
+          /* ── Bottom Text Block ── */
+          .frp-card-info {
+            position: relative;
+            z-index: 4;
+            padding: 0 28px 32px 28px;
+          }
+          .frp-card-name {
+            font-family: var(--font-sans, 'Outfit', sans-serif);
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 4px 0;
+            letter-spacing: 0.01em;
+            line-height: 1.25;
+          }
+          .frp-card-role {
+            font-family: var(--font-sans, 'Outfit', sans-serif);
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.65);
+            margin: 0 0 6px 0;
+            line-height: 1.4;
+          }
+          .frp-card-detail {
+            font-family: var(--font-sans, 'Outfit', sans-serif);
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            margin: 0;
+            line-height: 1.4;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+          }
+
+          /* ── Premium Card Sizing ── */
+          .frp-premium-card {
+            width: 320px;
+            flex: 0 0 320px;
+          }
+
+          /* ── Responsive ── */
           @media (max-width: 768px) {
-            /* Single row on mobile */
-            .marquee-right {
-              display: none !important;
+            .frp-premium-card {
+              width: 260px;
+              flex: 0 0 260px;
             }
-            .marquee-container {
-              padding: 0 16px;
+            .frp-marquee-track {
+              gap: 20px;
+              animation-duration: 45s;
             }
-            .marquee-track {
-              gap: 16px;
+            .frp-marquee-blur-left,
+            .frp-marquee-blur-right {
+              width: 8vw;
             }
-            
-            /* Unified Blue Card Container */
-            .checker-founder-group {
-              width: 85vw !important;
-              flex: 0 0 85vw !important;
-              height: auto !important;
-              flex-direction: column !important;
-              border-right: none;
-              border-bottom: none;
-              padding: 0;
-              margin: 0;
-              background-color: var(--brand-blue, #1801AD) !important;
-              border-radius: 24px;
-              overflow: hidden;
-              box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            .frp-side-tag {
+              font-size: 56px;
             }
-            
-            /* Image on top */
-            .checker-img-block {
-              order: 1;
-              width: 100% !important;
-              flex: 0 0 auto !important;
-              height: 340px !important;
-              background: transparent;
+            .frp-card-name {
+              font-size: 18px;
             }
-            .checker-image {
-              border-radius: 0 !important;
-              object-fit: cover;
-              object-position: top center;
+            .frp-card-role {
+              font-size: 12px;
             }
-            
-            /* Text Block on bottom inside the blue card */
-            .checker-text {
-              order: 2;
-              width: 100% !important;
-              flex: 0 0 auto !important;
-              height: auto !important;
-              min-height: auto !important;
-              padding: 24px 24px 32px 24px !important;
-              cursor: pointer;
-              background: transparent !important;
-              display: flex;
-              flex-direction: column;
-              align-items: flex-start;
-              text-align: left;
-            }
-            
-            /* Text styling inside the blue card (white text) */
-            .checker-industry {
-              display: none !important;
-            }
-            
-            /* Company Name (Large, like the reference image title) */
-            .checker-desc {
-              order: 1;
-              margin-bottom: 4px;
-              color: #ffffff !important;
-            }
-            .checker-desc strong {
-              font-size: 24px;
-              font-weight: 800;
-              letter-spacing: 0.02em;
-            }
-            
-            /* Founder Name (Smaller, below company) */
-            .checker-name {
-              order: 2;
-              margin-bottom: 0;
-              font-size: 16px;
-              font-weight: 400;
-              color: rgba(255, 255, 255, 0.8) !important;
-            }
-            
-            /* Expanding details text (middle aligned as requested) */
-            .checker-desc-text {
-              display: block;
-              margin-top: 16px;
-              font-weight: normal;
-              color: rgba(255, 255, 255, 0.9);
-              font-size: 15px;
-              line-height: 1.5;
-              text-align: center;
-              align-self: center; /* Center horizontally in the flex column */
-              width: 100%;
-            }
-            
-            /* Hide extra details by default on mobile */
-            .checker-founder-group:not(.is-expanded) .checker-desc-text {
-              display: none;
+            .frp-card-detail {
+              font-size: 11px;
             }
           }
         `}
@@ -287,22 +245,23 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
         <h2 className="frp-heading">Founders like you, <br/> building through <em style={{ color: 'var(--brand-blue)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>FRP.</em></h2>
       </div>
 
-      <div className="marquee-container">
-        {/* Blurry Edges */}
-        <div className="edge-blur edge-blur-left"></div>
-        <div className="edge-blur edge-blur-right"></div>
-
-        {/* Row 1: Scrolls Left */}
-        <div className="marquee-track marquee-left">
-          {infiniteRow1.map((founder, idx) => (
-            <FounderBlock key={`r1-${idx}`} founder={founder} idx={idx} />
-          ))}
-        </div>
-
-        {/* Row 2: Scrolls Right */}
-        <div className="marquee-track marquee-right">
-          {infiniteRow2.map((founder, idx) => (
-            <FounderBlock key={`r2-${idx}`} founder={founder} idx={idx} />
+      <div className="frp-marquee-wrapper">
+        <div className="frp-marquee-blur-left" />
+        <div className="frp-marquee-blur-right" />
+        <div className="frp-marquee-track">
+          {[...foundersData, ...foundersData, ...foundersData].map((founder, idx) => (
+            <div className="frp-premium-card" key={idx}>
+              <span className="frp-side-tag">FRP</span>
+              <div className="frp-card-photo">
+                <img src={`/${founder.image}`} alt={founder.name} loading="lazy" />
+              </div>
+              <div className="frp-card-overlay" />
+              <div className="frp-card-info">
+                <h3 className="frp-card-name">{founder.name}</h3>
+                <p className="frp-card-role">{founder.company} — {founder.industry}</p>
+                <p className="frp-card-detail">{founder.desc}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -318,3 +277,4 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
     </section>
   );
 };
+

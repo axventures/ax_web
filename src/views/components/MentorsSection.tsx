@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { SweepingDashedLine, TopoLinesTopLeft } from './DecorativeLines';
 
 const mentors = [
@@ -35,8 +35,34 @@ const mentors = [
 
 
 export const MentorsSection: React.FC = () => {
-  // Duplicate mentors for the infinite mobile marquee
-  const infiniteMentors = [...mentors, ...mentors];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Only apply the observer on mobile screens
+    if (window.innerWidth > 768) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = cardRefs.current.indexOf(entry.target as HTMLDivElement);
+          if (index !== -1) {
+            setActiveIndex(index);
+          }
+        }
+      });
+    }, {
+      root: scrollContainerRef.current,
+      threshold: 0.6 // Trigger when 60% of the card is visible
+    });
+
+    cardRefs.current.forEach(card => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="mentors" style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--brand-warm-cream, #FAF9F6)', padding: '120px 0' }}>
@@ -54,10 +80,10 @@ export const MentorsSection: React.FC = () => {
           </h2>
         </div>
 
-        {/* Founders Grid / Mobile Marquee */}
+        {/* Founders Grid / Carousel */}
         <style>
           {`
-            .mentors-track {
+            .mentors-grid {
               display: grid;
               grid-template-columns: repeat(4, 1fr);
               gap: 24px;
@@ -70,63 +96,50 @@ export const MentorsSection: React.FC = () => {
               display: flex;
               flex-direction: column;
             }
-            /* Hide the duplicates on desktop/tablet */
-            .mobile-duplicate {
-              display: none !important;
-            }
-            
             @media (max-width: 1024px) {
-              .mentors-track {
+              .mentors-grid {
                 grid-template-columns: repeat(2, 1fr);
               }
             }
-            
             @media (max-width: 768px) {
-              .mentors-container {
-                overflow: hidden;
-                width: 100vw;
-                position: relative;
-                left: 50%;
-                transform: translateX(-50%); /* bleed out to the edges of the screen */
-              }
-              .mentors-track {
+              .mentors-grid {
                 display: flex;
-                width: max-content;
-                animation: mentorMarquee 30s linear infinite;
-                padding: 0;
-                gap: 20px; /* spacing between cards in marquee */
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding: 0 5vw; /* Padding on sides so cards can be centered */
+                gap: 16px;
+                scroll-behavior: smooth;
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
               }
-              
-              /* Show the duplicates for the infinite loop */
-              .mobile-duplicate {
-                display: flex !important;
+              .mentors-grid::-webkit-scrollbar {
+                display: none;
               }
               
               .mentor-card-wrapper {
-                /* Perfect fit for mobile */
-                width: 75vw;
-                flex: 0 0 75vw;
-                transition: none;
-                transform: none;
-                opacity: 1;
-                filter: none;
+                flex: 0 0 75%;
+                scroll-snap-align: center;
+                transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                            opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                            filter 0.4s cubic-bezier(0.25, 1, 0.5, 1);
               }
               
-              @keyframes mentorMarquee {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); } /* scrolls exactly 1 full set of mentors */
+              .mentor-card-wrapper:not(.active) {
+                transform: scale(0.85);
+                opacity: 0.5;
+                filter: blur(2px);
               }
             }
           `}
         </style>
         
-        <div className="mentors-container">
-          <div className="mentors-track">
-            {infiniteMentors.map((member, index) => (
-              <div 
-                key={`${member.id}-${index}`} 
-                className={`mentor-card-wrapper ${index >= mentors.length ? 'mobile-duplicate' : ''}`}
-              >
+        <div className="mentors-grid" ref={scrollContainerRef}>
+          {mentors.map((member, index) => (
+            <div 
+              key={member.id} 
+              ref={(el) => { cardRefs.current[index] = el; }}
+              className={`mentor-card-wrapper ${index === activeIndex ? 'active' : ''}`}
+            >
               {/* Card Container */}
               <div 
                 style={{
@@ -180,7 +193,6 @@ export const MentorsSection: React.FC = () => {
               </div>
             </div>
           ))}
-          </div>
         </div>
       </div>
     </section>
