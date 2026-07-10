@@ -16,58 +16,62 @@ const DESKTOP_NAV_LINKS = [
 ];
 
 const MOBILE_NAV_LINKS = [
-  { label: 'Home', href: '/', isRoute: true },
-  { label: 'About', href: '/about', isRoute: true },
-  { label: 'Events', href: '/founder-summit', isRoute: true },
-  { label: 'Readiness', href: '/#readiness', isRoute: false },
-  { label: 'Founders', href: '/founders', isRoute: true },
-  { label: 'Contact', href: '/#contact', isRoute: false },
+  { label: 'Home', href: '/', anchorId: 'top' },
+  { label: 'About', href: '/about', anchorId: 'about' },
+  { label: 'Events', href: '/founder-summit', anchorId: 'events' },
+  { label: 'Readiness', href: '/#readiness', anchorId: 'readiness' },
+  { label: 'Founders', href: '/founders', anchorId: 'frp-founders' },
+  { label: 'Contact', href: '/#contact', anchorId: 'contact' },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolledSlightly, setIsScrolledSlightly] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isAboutPage = location.pathname === '/about';
 
+  // Prevent background scrolling when mobile menu is open
   useEffect(() => {
-    let ticking = false;
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
 
+  useEffect(() => {
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          const windowHeight = window.innerHeight;
-          const documentHeight = document.documentElement.scrollHeight;
+      // For standard static navbar fade out
+      if (window.scrollY > 200) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+      
+      // For frosting effect on static navbar before it fades
+      if (window.scrollY > 10) {
+        setIsScrolledSlightly(true);
+      } else {
+        setIsScrolledSlightly(false);
+      }
 
-          if (scrollY > 20) {
-            setIsScrolledSlightly(true);
-          } else {
-            setIsScrolledSlightly(false);
-          }
-
-          // Show floating dock and hide top header after scrolling past most of the hero section
-          if (scrollY > windowHeight * 0.8) {
-            setIsScrolled(true);
-          } else {
-            setIsScrolled(false);
-          }
-
-          // Hide floating dock if within 120px of the bottom (footer)
-          if (windowHeight + scrollY >= documentHeight - 120) {
-            setIsAtBottom(true);
-          } else {
-            setIsAtBottom(false);
-          }
-          ticking = false;
-        });
-        ticking = true;
+      // Hide dock when user hits bottom of page
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const bottomThreshold = document.body.offsetHeight - 100;
+      
+      if (scrollPosition >= bottomThreshold) {
+        setIsAtBottom(true);
+      } else {
+        setIsAtBottom(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -83,24 +87,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
     }
   };
 
-  const renderNavLink = (link: { label: string; href: string; isRoute: boolean }, className: string) => {
+  const renderNavLink = (link: { label: string; href: string; isRoute?: boolean }, className: string) => {
     if (link.isRoute) {
       return (
-        <Link
-          key={link.label}
-          to={link.href}
-          className={className}
-          style={link.href === location.pathname ? { color: '#1801AD' } : undefined}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
+        <Link key={link.label} to={link.href} className={className}>
           {link.label}
         </Link>
       );
     }
     return (
-      <a
-        key={link.label}
-        href={link.href}
+      <a 
+        key={link.label} 
+        href={link.href} 
         className={className}
         onClick={(e) => handleAnchorClick(e, link.href)}
       >
@@ -116,38 +114,57 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
     }
   };
 
+  const handleMobileNavClick = (e: React.MouseEvent, anchorId: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    if (anchorId === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const element = document.getElementById(anchorId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <>
-      {/* 1. Static Top Header (The first model - scrolls away naturally) */}
+      {/* 1. Standard Static Navbar */}
       <header 
         className={`navbar-static ${!isAboutPage && isScrolled ? 'hidden' : ''} ${isScrolledSlightly ? 'frosted' : ''}`}
         aria-label="Main Navigation"
       >
         <nav className="navbar-container">
-          <Link
-            to="/"
-            onClick={handleLogoClick}
+          {/* Logo Area */}
+          <div className="navbar-logo">
+            <Link 
+            to="/" 
             className="navbar-logo-link"
-          >
-            <img
-              src="/ax_logo.jpg"
-              alt="AX Ventures"
+            >
+              {/* Only show image logo on desktop */}
+              <img 
+              src="/logo_black.png" 
+              alt="AX Group Logo" 
               className="navbar-logo-img-static"
-            />
+              />
             <span className="navbar-logo-text-desktop">
-              ventures
+                The AX Formula®
             </span>
             <span className="navbar-logo-text-mobile">
-              AX VENTURES
+                The AX Formula®
             </span>
-          </Link>
-
-          {/* Desktop Nav Links */}
-          <div className="desktop-menu-links">
-            {DESKTOP_NAV_LINKS.map((link) => renderNavLink(link, 'nav-link-item'))}
+            </Link>
           </div>
 
-
+          {/* Desktop Nav Links */}
+          <div className="nav-links-desktop">
+            {DESKTOP_NAV_LINKS.map((link) => renderNavLink(link, 'nav-link-item'))}
+            <button onClick={onApplyClick} className="nav-cta-btn">
+              Apply Now
+            </button>
+          </div>
 
           {/* Mobile Toggle Button */}
           <button
@@ -163,27 +180,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <div className="mobile-menu-dropdown animate-slide-up" role="navigation" aria-label="Mobile Navigation">
-            {MOBILE_NAV_LINKS.map((link) =>
-              link.isRoute ? (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mobile-nav-link"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mobile-nav-link"
-                >
-                  {link.label}
-                </a>
-              )
-            )}
+            {MOBILE_NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={`#${link.anchorId}`}
+                onClick={(e) => handleMobileNavClick(e, link.anchorId || '')}
+                className="mobile-nav-link"
+              >
+                {link.label}
+              </a>
+            ))}
+
           </div>
         )}
       </header>
