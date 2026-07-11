@@ -32,6 +32,42 @@ export const ContourLinesTopRight: React.FC<{ opacity?: number }> = ({ opacity =
   </svg>
 );
 
+/** Flowing dense contour/topographic lines — upper left corner */
+export const TopoLinesTopLeft: React.FC<{ opacity?: number }> = ({ opacity = 0.4 }) => (
+  <svg
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '600px',
+      height: '400px',
+      pointerEvents: 'none',
+      zIndex: 0,
+      mixBlendMode: 'multiply',
+      transform: 'rotate(-15deg) translate(-20px, -20px)',
+    }}
+    viewBox="0 0 600 400"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {Array.from({ length: 10 }).map((_, i) => (
+      <path
+        key={i}
+        d={`M ${-20 + i * 10} ${200 + i * 8} 
+            C ${80 + i * 8} ${200 + i * 12}, 
+              ${120 + i * 4} ${100 + i * 18}, 
+              ${220 + i * 6} ${120 + i * 14} 
+            S ${320 - i * 4} ${220 + i * 10}, 
+              ${480 + i * 12} ${180 + i * 16}`}
+        stroke="#1801AD"
+        strokeWidth={1 - i * 0.05}
+        opacity={opacity - (i * 0.02)}
+        fill="none"
+      />
+    ))}
+  </svg>
+);
+
 /** Dashed curve — like the red dashed curve in Peak XV, but in brand blue */
 export const DashedCurveLeft: React.FC<{ opacity?: number }> = ({ opacity = 0.25 }) => (
   <svg
@@ -176,6 +212,7 @@ export const SweepingDashedLineAlt: React.FC = () => (
 
 export default {
   ContourLinesTopRight,
+  TopoLinesTopLeft,
   DashedCurveLeft,
   WaveLinesBottomRight,
   ScatteredDots,

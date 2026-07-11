@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import type { FounderApplication } from '../models/Application';
 import { ApplicationModel } from '../models/Application';
 
@@ -108,7 +109,7 @@ export function useApplicationController(): UseApplicationControllerReturn {
 
     try {
       await fetch(
-        'https://docs.google.com/forms/d/e/1FAIpQLSfG1AnkSfuxe14VDsi_HhRGgCkvczHeStzDA8A6l2mQyQfgzQ/formResponse',
+        "https://docs.google.com/forms/d/e/1FAIpQLSdZxKPe1OWxzFkHSkFul0TIjCt6fQv6JqS-lqP2fEhFYKjskA/viewform?usp=publish-editor",
         {
           method: 'POST',
           mode: 'no-cors',
@@ -121,16 +122,11 @@ export function useApplicationController(): UseApplicationControllerReturn {
 
       // Send welcome email (non-blocking for UI success)
       try {
-        fetch('/api/send-welcome-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email.trim(),
-            fullName: fullName.trim(),
-            companyName: companyName.trim(),
-          }),
+        const apiUrl = (import.meta as any).env.VITE_API_URL || '';
+        axios.post(`${apiUrl}/api/send-welcome-email`, {
+          email: email.trim(),
+          fullName: fullName.trim(),
+          companyName: companyName.trim(),
         }).catch(err => console.error('Failed to send welcome email:', err));
       } catch (emailErr) {
         console.error('Failed to trigger welcome email API:', emailErr);

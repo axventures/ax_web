@@ -66,7 +66,7 @@ const DesktopKeepYouAheadSection: React.FC = () => {
         {/* Header text */}
         <div className="kyah-header">
           <h2 className="kyah-title" id="kyah-heading">
-            The AX Formula<span className="kyah-reg">®</span>
+            The <span style={{ color: 'var(--brand-blue)' }}>AX</span> Formula<span className="kyah-reg">®</span>
           </h2>
           <p className="kyah-subtitle">
             From structured daily execution to deep operational support, we give founders every advantage they need to build lasting companies.
@@ -152,7 +152,7 @@ const MobileKeepYouAheadSection: React.FC = () => {
         {/* Header text */}
         <div className="kyah-header">
           <h2 className="kyah-title" id="kyah-heading">
-            The AX Formula<span className="kyah-reg">®</span>
+            The <span style={{ color: 'var(--brand-blue)' }}>AX</span> Formula<span className="kyah-reg">®</span>
           </h2>
           <p className="kyah-subtitle">
             From structured daily execution to deep operational support, we give founders every advantage they need to build lasting companies.

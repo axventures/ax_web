@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { sendWelcomeEmail } from './utils/mailService.js';
+import { sendWelcomeEmail } from './backend/mailService.js';
 
 // https://vitejs.dev/config/
 export default defineConfig({

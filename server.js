@@ -1,10 +1,11 @@
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
 import helmet from 'helmet';
-import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
+import { sendWelcomeEmail } from './backend/mailService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,81 +13,143 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ==========================================
-// SECURITY MIDDLEWARES
-// ==========================================
+// Trust Render's proxy
+app.set('trust proxy', 1);
 
-// 1. Helmet: Sets various HTTP headers for security
-app.use(helmet({
-  contentSecurityPolicy: false, // Disabling CSP for now to prevent issues with Vite's inline scripts/styles during dev
-}));
+// Security Headers
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 
-// 2. CORS: Enable Cross-Origin Resource Sharing
-app.use(cors());
+// Allowed Origins
+const allowedOrigins = [
+  'https://axventures.in',
+  'https://www.axventures.in',
+  'http://localhost:5173',
+  'http://localhost:3000' // Local development
+];
 
-// 3. Body Parser: Parse incoming JSON requests
-app.use(express.json({ limit: '10kb' })); // Limit body size to prevent payload too large attacks
+app.use(
+  cors({
+    origin(origin, callback) {
+      // Allow Postman/server-to-server requests
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST'],
+    credentials: true,
+  })
+);
+
+// Body Parsers
+app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
-// 4. Data Sanitization against NoSQL query injection
-// Removes any keys containing prohibited characters (like $)
-app.use(mongoSanitize());
-
-// 5. Rate Limiting: Prevent Brute Force & DDoS
-// Limit each IP to 100 requests per 15 minutes
-const limiter = rateLimit({
+// API Rate Limiter
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
   max: 100,
-  windowMs: 15 * 60 * 1000, 
-  message: 'Too many requests from this IP, please try again in 15 minutes.',
+  message: {
+    error: 'Too many requests. Please try again in 15 minutes.',
+  },
   standardHeaders: true,
   legacyHeaders: false,
 });
-// Apply rate limiter to all /api routes (if you add an API later)
-app.use('/api', limiter);
 
-// Apply a more relaxed general rate limiter to the whole app (serving static files)
+app.use('/api', apiLimiter);
+
+// General Rate Limiter
 const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
   max: 500,
-  windowMs: 15 * 60 * 1000, 
-  message: 'Too many requests from this IP.',
+  message: {
+    error: 'Too many requests.',
+  },
 });
+
 app.use(generalLimiter);
 
-// ==========================================
-// SERVING FRONTEND
-// ==========================================
-
-// Serve static files from the React dist folder
+// Serve Frontend
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// Example API Route
+// Health Check
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'success', message: 'Server is secure and running.' });
+  res.status(200).json({
+    status: 'success',
+    message: 'Server is secure and running.',
+  });
 });
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
+// Send Welcome Email
+app.post('/api/send-welcome-email', async (req, res) => {
+  try {
+    const { email, fullName, companyName } = req.body;
+
+    if (!email || !fullName) {
+      return res.status(400).json({
+        error: 'Email and Full Name are required.',
+      });
+    }
+
+    const success = await sendWelcomeEmail(
+      email,
+      fullName,
+      companyName
+    );
+
+    if (!success) {
+      return res.status(500).json({
+        error: 'Failed to send email.',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Email sent successfully.',
+    });
+  } catch (error) {
+    console.error('Email Route Error:', error);
+
+    res.status(500).json({
+      success: false,
+      error: 'Internal Server Error',
+    });
+  }
+});
+
+// Unknown API Routes
+app.use('/api/*', (req, res) => {
+  res.status(404).json({
+    error: 'API route not found',
+  });
+});
+
+// React Catch-all Route
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-// ==========================================
-// GLOBAL ERROR HANDLER
-// ==========================================
+// Global Error Handler
 app.use((err, req, res, next) => {
-  console.error('🔥 Error caught by Global Handler:', err);
+  console.error('Global Error:', err);
 
-  const statusCode = err.statusCode || 500;
-  const status = err.status || 'error';
-
-  // In production, we don't want to leak stack traces
-  res.status(statusCode).json({
-    status: status,
-    message: err.message || 'Something went very wrong!',
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+  res.status(err.status || 500).json({
+    status: err.status || 'error',
+    message: err.message || 'Something went wrong!',
+    ...(process.env.NODE_ENV === 'development' && {
+      stack: err.stack,
+    }),
   });
 });
 
+// Start Server
 app.listen(PORT, () => {
-  console.log(`🛡️  Secure Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
