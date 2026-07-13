@@ -108,9 +108,13 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
             cursor: default;
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
             box-shadow: 0 12px 40px rgba(24, 1, 173, 0.15);
+            /* Fix for WebKit border-radius clipping bug during child transform */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            isolation: isolate;
+            transform: translateZ(0);
           }
           .frp-premium-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateZ(0) translateY(-8px) scale(1.02);
             box-shadow: 0 24px 60px rgba(24, 1, 173, 0.3);
           }
 
@@ -153,10 +157,11 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
             object-fit: contain;
             object-position: bottom center;
             filter: grayscale(20%) contrast(1.1);
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: scale(1);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
           }
           .frp-premium-card:hover .frp-card-photo img {
-            transform: scale(1.05);
+            transform: scale(1.15); /* More pronounced zoom in */
           }
 
           /* ── Bottom Gradient Overlay (ensures text readability) ── */
@@ -174,7 +179,7 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
           /* ── Bottom Text Block ── */
           .frp-card-info {
             position: relative;
-            z-index: 4;
+            z-index: 6; /* Above the hover overlay */
             padding: 0 28px 32px 28px;
           }
           .frp-card-name {
@@ -194,15 +199,41 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
             margin: 0 0 6px 0;
             line-height: 1.4;
           }
-          .frp-card-detail {
+          /* ── Hover Detail Overlay ── */
+          .frp-card-detail-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 46, 0.85); /* Dark shadow layer */
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 32px 80px 32px; /* Extra bottom padding to avoid name/role overlap */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            backdrop-filter: blur(4px);
+          }
+          .frp-premium-card:hover .frp-card-detail-overlay {
+            opacity: 1;
+            visibility: visible;
+          }
+          .frp-card-detail-overlay p {
             font-family: var(--font-sans, 'Outfit', sans-serif);
-            font-size: 12px;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.4);
+            font-size: 15px;
+            font-weight: 400;
+            color: #ffffff;
             margin: 0;
-            line-height: 1.4;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+            line-height: 1.6;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+          }
+          .frp-premium-card:hover .frp-card-detail-overlay p {
+            transform: translateY(0);
           }
 
           /* ── Premium Card Sizing ── */
@@ -234,15 +265,15 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
             .frp-card-role {
               font-size: 12px;
             }
-            .frp-card-detail {
-              font-size: 11px;
+            .frp-card-detail-overlay p {
+              font-size: 13px;
             }
           }
         `}
       </style>
 
       <div className="frp-checker-header">
-        <h2 className="frp-heading">Founders like you, <br/> building through <em style={{ color: 'var(--brand-blue)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>FRP.</em></h2>
+        <h2 className="frp-heading">Founders like <span style={{ color: 'var(--brand-blue)' }}>you</span>, <br/> building through <span style={{ color: 'var(--brand-blue)' }}>FRP.</span></h2>
       </div>
 
       <div className="frp-marquee-wrapper">
@@ -259,7 +290,9 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
               <div className="frp-card-info">
                 <h3 className="frp-card-name">{founder.name}</h3>
                 <p className="frp-card-role">{founder.company} — {founder.industry}</p>
-                <p className="frp-card-detail">{founder.desc}</p>
+              </div>
+              <div className="frp-card-detail-overlay">
+                <p>{founder.desc}</p>
               </div>
             </div>
           ))}

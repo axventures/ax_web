@@ -20,14 +20,14 @@ const mentors = [
     id: 3,
     name: 'ABDULLAH MOHAMMED T',
     role: 'Founder, Webynix Technologies & Co-founder, Growcaptain',
-    image: '/mentors/Abdullah Mohammed T Founder, Webynix Technologies Co- founder, Growcaptain.png',
+    image: '/mentors/Abdullah Mohammed T Founder, Webynix Technologies , Growcaptain.png',
     height: '460px'
   },
   {
     id: 4,
     name: 'FAHEEM RAZI',
     role: 'Founder & Head of agency - The Oglas',
-    image: '/mentors/Faheem Razi .png',
+    image: '/mentors/Faheem Razi Founder  of agency - The Oglas.png',
     height: '420px'
   }
 
