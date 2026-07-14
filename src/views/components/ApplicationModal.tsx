@@ -249,7 +249,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   id="fullName"
                   type="text"
                   className={`form-input ${errors.fullName ? 'error' : ''}`}
-                  placeholder="e.g. Steve Jobs"
+                  placeholder="e.g. John Doe"
                   value={fullName}
                   onChange={(e) => {
                     setFullName(e.target.value);
@@ -267,7 +267,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   id="email"
                   type="email"
                   className={`form-input ${errors.email ? 'error' : ''}`}
-                  placeholder="steve@apple.com"
+                  placeholder="john@xyzcompany.com"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -285,7 +285,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                   id="companyName"
                   type="text"
                   className={`form-input ${errors.companyName ? 'error' : ''}`}
-                  placeholder="Apple Computer"
+                  placeholder="e.g. XYZ Company"
                   value={companyName}
                   onChange={(e) => {
                     setCompanyName(e.target.value);
