@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { SweepingDashedLine, TopoLinesTopLeft } from './DecorativeLines';
 
 const mentors = [
@@ -7,13 +7,15 @@ const mentors = [
     name: 'HARIS I M',
     role: 'Founder, CEO & MD at myResto Today Pvt Ltd',
     image: '/mentors/Haris I M Founder, CEO & MD at myResto Today Pvt Ltd.png',
+    linkedin: 'https://www.linkedin.com/in/harisimetpa/',
     height: '480px'
   },
-    {
+  {
     id: 2,
     name: 'ADHISH VINAYAK',
     role: 'Founder & CEO - Hustlify Sales School',
     image: '/mentors/Adhish Vinayak Founder & CEO - Hustlify Sales School.png',
+    linkedin: 'https://www.linkedin.com/in/adhish-vinayak-340646330/',
     height: '380px'
   },
   {
@@ -21,6 +23,7 @@ const mentors = [
     name: 'ABDULLAH MOHAMMED T',
     role: 'Founder, Webynix Technologies & Co-founder, Growcaptain',
     image: '/mentors/Abdullah Mohammed T Founder, Webynix Technologies , Growcaptain.png',
+    linkedin: 'https://www.linkedin.com/in/abdullah-mohammed-thoppil/',
     height: '460px'
   },
   {
@@ -28,42 +31,13 @@ const mentors = [
     name: 'FAHEEM RAZI',
     role: 'Founder & Head of agency - The Oglas',
     image: '/mentors/Faheem Razi Founder  of agency - The Oglas.png',
+    linkedin: 'https://www.linkedin.com/in/faheemrazi/',
     height: '420px'
   }
-
 ];
 
 
 export const MentorsSection: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    // Only apply the observer on mobile screens
-    if (window.innerWidth > 768) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = cardRefs.current.indexOf(entry.target as HTMLDivElement);
-          if (index !== -1) {
-            setActiveIndex(index);
-          }
-        }
-      });
-    }, {
-      root: scrollContainerRef.current,
-      threshold: 0.6 // Trigger when 60% of the card is visible
-    });
-
-    cardRefs.current.forEach(card => {
-      if (card) observer.observe(card);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section id="mentors" style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--brand-warm-cream, #FAF9F6)', padding: '120px 0' }}>
       {/* Dense topographic contour lines in the top left corner */}
@@ -96,67 +70,86 @@ export const MentorsSection: React.FC = () => {
               display: flex;
               flex-direction: column;
             }
+            @media (min-width: 769px) {
+              .mobile-duplicate {
+                display: none !important;
+              }
+            }
             @media (max-width: 1024px) {
               .mentors-grid {
                 grid-template-columns: repeat(2, 1fr);
               }
             }
             @media (max-width: 768px) {
+              .mentors-grid-container {
+                overflow: hidden;
+                width: 100vw;
+                position: relative;
+                left: 50%;
+                right: 50%;
+                margin-left: -50vw;
+                margin-right: -50vw;
+              }
               .mentors-grid {
                 display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                padding: 0 5vw; /* Padding on sides so cards can be centered */
+                width: max-content;
+                animation: scroll-mentors 25s linear infinite;
                 gap: 16px;
-                scroll-behavior: smooth;
-                -ms-overflow-style: none;  /* IE and Edge */
-                scrollbar-width: none;  /* Firefox */
+                padding: 0;
+              }
+              .mentors-grid:active {
+                animation-play-state: paused;
+              }
+              @keyframes scroll-mentors {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-1184px); } /* 4 cards * (280px + 16px) */
               }
               .mentors-grid::-webkit-scrollbar {
                 display: none;
               }
               
               .mentor-card-wrapper {
-                flex: 0 0 75%;
-                scroll-snap-align: center;
-                transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                            opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                            filter 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-              }
-              
-              .mentor-card-wrapper:not(.active) {
-                transform: scale(0.85);
-                opacity: 0.5;
-                filter: blur(2px);
+                flex: 0 0 280px;
+                width: 280px;
+                transform: none !important;
+                opacity: 1 !important;
+                filter: none !important;
               }
             }
           `}
         </style>
         
-        <div className="mentors-grid" ref={scrollContainerRef}>
-          {mentors.map((member, index) => (
-            <div 
-              key={member.id} 
-              ref={(el) => { cardRefs.current[index] = el; }}
-              className={`mentor-card-wrapper ${index === activeIndex ? 'active' : ''}`}
-            >
+        <div className="mentors-grid-container">
+          <div className="mentors-grid">
+            {[...mentors, ...mentors, ...mentors, ...mentors].map((member, index) => (
+              <div 
+                key={`${member.id}-${index}`} 
+                className={`mentor-card-wrapper ${index >= mentors.length ? 'mobile-duplicate' : ''}`}
+              >
               {/* Card Container */}
               <div 
                 style={{
+                  position: 'relative',
                   width: '100%',
                   aspectRatio: '3/4',
                   overflow: 'hidden',
-                  backgroundColor: '#E5E7EB',
+                  backgroundImage: "url('/mentorsbg.png')",
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
                   borderRadius: '24px',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
                   marginBottom: '16px'
                 }}
               >
+
                 <img 
                   src={member.image} 
                   alt={member.name}
                   loading="lazy"
                   style={{
+                    position: 'relative',
+                    zIndex: 1,
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
@@ -166,27 +159,64 @@ export const MentorsSection: React.FC = () => {
                   onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                   onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                 />
+                
+                {member.linkedin && (
+                  <a 
+                    href={member.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{
+                      position: 'absolute',
+                      bottom: '12px',
+                      right: '12px',
+                      zIndex: 2,
+                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                      backdropFilter: 'blur(4px)',
+                      WebkitBackdropFilter: 'blur(4px)',
+                      padding: '8px',
+                      borderRadius: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'background-color 0.2s',
+                      color: 'white'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.7)'}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                  </a>
+                )}
               </div>
 
               {/* Text info padding box */}
-              <div style={{ textAlign: 'left' }}>
+              <div style={{ textAlign: 'left', padding: '0 8px' }}>
                 <h3 style={{ 
-                  fontSize: '18px', 
+                  fontSize: '20px', 
                   fontWeight: 800, 
                   color: 'var(--text-main, #0A0A0A)', 
-                  letterSpacing: '0.02em',
-                  marginBottom: '4px',
-                  fontFamily: 'var(--font-sans)'
+                  letterSpacing: '0.01em',
+                  marginBottom: '8px',
+                  fontFamily: 'var(--font-sans)',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
                 }}>
                   {member.name}
                 </h3>
                 <p style={{ 
-                  fontSize: '14px', 
+                  fontSize: '15px', 
                   color: 'var(--text-muted, #4B5563)',
-                  fontWeight: 400,
+                  fontWeight: 500,
                   fontFamily: 'var(--font-sans)',
                   margin: 0,
-                  lineHeight: 1.4
+                  lineHeight: 1.5,
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
                 }}>
                   {member.role}
                 </p>
@@ -194,6 +224,7 @@ export const MentorsSection: React.FC = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

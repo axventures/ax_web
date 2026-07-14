@@ -65,7 +65,7 @@ interface FounderReadinessProps {
 }
 
 export const FounderReadinessSection: React.FC<FounderReadinessProps> = ({ onApplyClick }) => {
-  const [openId, setOpenId] = useState<number | null>(1);
+  const [openId, setOpenId] = useState<number | null>(null);
 
   const toggleAccordion = (id: number) => {
     setOpenId(openId === id ? null : id);
@@ -97,6 +97,12 @@ export const FounderReadinessSection: React.FC<FounderReadinessProps> = ({ onApp
                   </h3>
                   <div className="readiness-item-meta">
                     {item.subtitle} <span className="readiness-meta-icon">✳</span>
+                  </div>
+                  <div className="readiness-mobile-arrow">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
                   </div>
                 </div>
 

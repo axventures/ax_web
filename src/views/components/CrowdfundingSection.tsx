@@ -215,76 +215,76 @@ const MobileCrowdfundingSection: React.FC = () => {
           WebkitBackdropFilter: 'blur(32px)',
           borderRadius: '40px',
           border: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '60px',
+          padding: '40px 24px',
           boxShadow: '0 24px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
           display: 'flex',
           flexDirection: 'column',
           gap: '48px'
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <div style={{
-              width: 'clamp(48px, 6vw, 64px)',
-              height: 'clamp(48px, 6vw, 64px)',
-              borderRadius: '16px',
-              backgroundColor: '#F7F7FA',
-              border: '1px solid rgba(0,0,0,0.06)',
-              padding: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0
-            }}>
-              <svg viewBox="0 0 100 100" width="100%" height="100%">
-                <text x="50" y="55" textAnchor="middle" dominantBaseline="middle" fontSize="60" fontWeight="900" letterSpacing="-2">
-                  <tspan fontFamily="Georgia, serif" fill="#000">A</tspan>
-                  <tspan fill="#000" fontSize="50">/</tspan>
-                  <tspan fill="#1801AD" fontStyle="italic" fontFamily="Arial, sans-serif">X</tspan>
-                </text>
-              </svg>
-            </div>
-            <h1 style={{ color: '#ffffff', fontWeight: 800, fontSize: 'clamp(2.2rem, 6vw, 3.5rem)', letterSpacing: '-0.03em', margin: 0, lineHeight: 1.1 }}>
-              Why AX<br/>Exists?
-            </h1>
-          </div>
-          
-          <div style={{ display: 'flex', gap: '6px', marginTop: '24px' }}>
-            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.4)' }} />
-            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.4)' }} />
-            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.4)' }} />
-          </div>
-        </div>
-
-        <h2 
+        <img 
+          src="/bgremovequestionmark.png" 
+          alt="Question Mark" 
           style={{
-            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
-            fontWeight: 800,
-            color: '#ffffff',
-            letterSpacing: '-0.04em',
-            lineHeight: 1.1,
-            margin: 0
+            position: 'absolute',
+            right: '16px',
+            top: '40px',
+            height: '160px',
+            width: 'auto',
+            objectFit: 'contain',
+            pointerEvents: 'none',
+            filter: 'brightness(0) invert(1)',
+            opacity: 0.8,
+            zIndex: 0
           }}
-        >
-          Most startups don't fail because founders lack ideas.{' '}
-          <span style={{ color: '#5b4df2' }}>
-            They fail because they lack the systems.
-          </span>
-        </h2>
-
-        <div style={{ display: 'flex' }}>
-          <div style={{ width: '2px', backgroundColor: '#1801AD', marginRight: '24px', flexShrink: 0, borderRadius: '2px' }} />
-          <p 
-            style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
-              fontWeight: 400,
-              color: 'rgba(255, 255, 255, 0.7)',
-              lineHeight: 1.6,
+        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', position: 'relative', zIndex: 1 }}>
+          <div style={{ alignSelf: 'flex-start' }}>
+            <h2 style={{ 
+              fontSize: 'clamp(64px, 15vw, 80px)', 
+              fontWeight: 900, 
+              lineHeight: 0.9, 
               margin: 0,
-              maxWidth: '600px'
-            }}
-          >
-            AX Ventures exists to change that. We work alongside founders to help them build stronger businesses through structured execution, strategic partnerships, operational systems, and founder development.
+              textTransform: 'uppercase',
+              color: '#cbd5e1', 
+              letterSpacing: '-0.04em',
+              fontFamily: 'var(--font-sans, "Outfit", sans-serif)'
+            }}>
+              WHY<br/>
+              <span style={{ color: 'var(--brand-blue, #5b4df2)' }}>AX</span><br/>
+              EXISTS.
+            </h2>
+          </div>
+
+          <h3 style={{ 
+            fontSize: 'clamp(22px, 6vw, 26px)', 
+            fontWeight: 700, 
+            lineHeight: 1.25, 
+            margin: 0,
+            marginTop: '16px',
+            color: '#ffffff',
+            letterSpacing: '-0.02em'
+          }}>
+            Most startups don't fail because founders lack ideas.{' '}
+            <span style={{ 
+              background: 'linear-gradient(90deg, #7A71EC 0%, var(--brand-blue, #1801AD) 100%)', 
+              WebkitBackgroundClip: 'text', 
+              WebkitTextFillColor: 'transparent',
+              display: 'inline-block'
+            }}>
+              They fail because they lack the systems to scale.
+            </span>
+          </h3>
+
+          <p style={{
+            fontSize: 'clamp(16px, 4.5vw, 18px)',
+            fontWeight: 500,
+            color: 'rgba(255, 255, 255, 0.75)',
+            lineHeight: 1.6,
+            margin: 0,
+            maxWidth: '560px'
+          }}>
+            AX Ventures partners with ambitious founders to build scalable businesses through structured execution, operational systems, strategic partnerships, and founder development.
           </p>
         </div>
 

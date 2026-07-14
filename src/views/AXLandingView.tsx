@@ -60,10 +60,8 @@ export const AXLandingView: React.FC = () => {
           <SectionDivider />
           <MentorsSection />
           <SectionDivider />
-          <div className="hide-on-mobile">
-            <FoundersFRPSection onApplyClick={openModal} />
-            <SectionDivider />
-          </div>
+          <FoundersFRPSection onApplyClick={openModal} />
+          <SectionDivider />
           <OurApproachSection />
       </main>
 

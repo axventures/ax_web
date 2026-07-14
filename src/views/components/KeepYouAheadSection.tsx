@@ -142,28 +142,62 @@ const MobileKeepYouAheadSection: React.FC = () => {
   };
 
   return (
-    <section className="kyah-section" id="how-we-help" aria-labelledby="kyah-heading" style={{ position: 'relative', overflow: 'hidden' }}>
+    <section className="kyah-section" id="how-we-help" aria-labelledby="kyah-heading" style={{ position: 'relative', overflow: 'hidden', padding: '60px 0', backgroundColor: 'var(--brand-warm-cream, #FAF9F6)' }}>
       {/* Decorative line drawings */}
       <DashedArcTopLeft />
       <WaveLinesBottomRight />
       <SweepingDashedLineAlt />
 
-      <div className="kyah-container">
-        {/* Header text */}
-        <div className="kyah-header">
-          <h2 className="kyah-title" id="kyah-heading">
-            The <span style={{ color: 'var(--brand-blue)' }}>AX</span> Formula<span className="kyah-reg">®</span>
+      <div className="kyah-container" style={{ position: 'relative', zIndex: 2 }}>
+        
+        {/* Header matching the reference design */}
+        <div style={{ padding: '0 20px', marginBottom: '40px' }}>
+          <h2 style={{ 
+            fontFamily: 'var(--font-serif, "Playfair Display", serif)', 
+            fontSize: '56px', 
+            fontWeight: 800, 
+            lineHeight: 0.85, 
+            letterSpacing: '-2px',
+            color: '#111',
+            marginBottom: '32px'
+          }}>
+            The <span style={{ fontFamily: 'var(--font-sans, "Outfit", sans-serif)', color: 'var(--brand-blue, #1801AD)', letterSpacing: '-3px' }}>AX</span><br />
+            Formula
           </h2>
-          <p className="kyah-subtitle">
-            From structured daily execution to deep operational support, we give founders every advantage they need to build lasting companies.
-          </p>
-          <p className="kyah-tagline">
-            Here's how we deliver on that promise every day.
-          </p>
+          
+          <div style={{ 
+            borderLeft: '3px solid var(--brand-blue, #1801AD)', 
+            paddingLeft: '20px',
+            marginBottom: '40px'
+          }}>
+            <p style={{ 
+              fontFamily: 'var(--font-sans, "Outfit", sans-serif)',
+              fontSize: '17px', 
+              color: '#334155', 
+              lineHeight: 1.5,
+              fontWeight: 600,
+              margin: 0
+            }}>
+              From structured daily execution to deep operational support, we give founders every advantage they need to build lasting companies.
+            </p>
+          </div>
+
+          <h3 style={{
+            fontFamily: 'var(--font-serif, "Playfair Display", serif)',
+            fontSize: '32px',
+            fontWeight: 800,
+            lineHeight: 1.1,
+            color: '#111',
+            margin: 0,
+            letterSpacing: '-1px'
+          }}>
+            Here's how we deliver on<br />
+            that <em style={{ color: 'var(--brand-blue, #1801AD)', fontStyle: 'italic' }}>promise</em>, every day.
+          </h3>
         </div>
 
-        {/* Stacked Cards */}
-        <div style={{ maxWidth: '600px', margin: '40px auto 0', display: 'flex', flexDirection: 'column' }}>
+        {/* Separated Outline Accordions */}
+        <div style={{ padding: '0 20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {axFormulaCards.map((card, index) => {
             const isExpanded = expandedIndex === index;
             return (
@@ -171,31 +205,47 @@ const MobileKeepYouAheadSection: React.FC = () => {
                 key={card.id}
                 onClick={() => toggleCard(index)}
                 style={{
-                  backgroundColor: card.bg,
-                  borderRadius: '20px',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  padding: '24px',
-                  marginTop: index === 0 ? '0' : '-12px',
-                  position: 'relative',
-                  zIndex: axFormulaCards.length - index,
+                  backgroundColor: 'transparent',
+                  borderRadius: '24px',
+                  border: '1px solid rgba(0,0,0,0.12)',
+                  padding: '24px 20px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  backdropFilter: 'blur(10px)',
-                  boxShadow: '0 -4px 12px rgba(0,0,0,0.02)'
+                  boxShadow: isExpanded ? '0 8px 24px rgba(0,0,0,0.03)' : 'none'
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#0f172a', margin: 0 }}>
+                  <h3 style={{ 
+                    fontFamily: 'var(--font-sans, "Outfit", sans-serif)', 
+                    fontSize: '19px', 
+                    fontWeight: 800, 
+                    color: '#111', 
+                    margin: 0,
+                    lineHeight: 1.2,
+                    maxWidth: '85%'
+                  }}>
                     {card.title}
                   </h3>
-                  <ChevronRight 
-                    size={20} 
-                    color="#1801AD" 
-                    style={{ 
-                      transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)', 
-                      transition: 'transform 0.3s ease' 
-                    }} 
-                  />
+                  
+                  <div style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(0,0,0,0.15)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <ChevronRight 
+                      size={20} 
+                      color="var(--brand-blue, #1801AD)" 
+                      style={{ 
+                        transform: isExpanded ? 'rotate(-90deg)' : 'rotate(90deg)',
+                        transition: 'transform 0.3s ease' 
+                      }} 
+                    />
+                  </div>
                 </div>
                 
                 <div 
@@ -204,30 +254,13 @@ const MobileKeepYouAheadSection: React.FC = () => {
                     opacity: isExpanded ? 1 : 0, 
                     overflow: 'hidden', 
                     transition: 'all 0.3s ease',
-                    marginTop: isExpanded ? '12px' : '0'
+                    marginTop: isExpanded ? '16px' : '0'
                   }}
                 >
-                  <p style={{ margin: 0, fontSize: '0.95rem', color: '#334155', lineHeight: 1.5 }}>
+                  <p style={{ margin: 0, fontSize: '15px', color: '#475569', lineHeight: 1.6, fontWeight: 500 }}>
                     {card.description}
                   </p>
                 </div>
-                
-                {/* Peek preview text for mobile if closed */}
-                {!isExpanded && (
-                  <p 
-                    style={{ 
-                      margin: '8px 0 0', 
-                      fontSize: '0.9rem', 
-                      color: '#475569', 
-                      opacity: 0.5,
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis'
-                    }}
-                  >
-                    {card.description}
-                  </p>
-                )}
               </div>
             );
           })}

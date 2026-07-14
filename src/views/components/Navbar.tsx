@@ -160,7 +160,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
           </button>
         </nav>
 
-        {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <div className="mobile-menu-dropdown animate-slide-up" role="navigation" aria-label="Mobile Navigation">
             {MOBILE_NAV_LINKS.map((link) =>
@@ -171,16 +170,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="mobile-nav-link"
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.3 }}><path d="m9 18 6-6-6-6"/></svg>
                 </Link>
               ) : (
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleAnchorClick(e as any, link.href)}
                   className="mobile-nav-link"
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.3 }}><path d="m9 18 6-6-6-6"/></svg>
                 </a>
               )
             )}

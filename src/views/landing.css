@@ -72,12 +72,51 @@ body {
 
 @media (max-width: 767px) {
   .hero-wrapper {
-    /* Slight gradient for mobile mimicking the reference image */
-    background: linear-gradient(180deg, #1801AD 0%, #e3e3efff 30%) !important;
+    /* Premium fintech gradient for mobile */
+    background: linear-gradient(180deg, #3D2BC9 0%, #7569D8 45%, #F3F2FA 100%) !important;
+  }
+
+  .hero-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* 1. Dotted pattern (extremely subtle 3-5%)
+       2. Radial light glow near upper-middle
+       3. Vignette light falloff */
+    background-image: 
+      radial-gradient(rgba(255,255,255,0.05) 1.5px, transparent 1.5px),
+      radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.25) 0%, transparent 65%),
+      radial-gradient(circle at center, transparent 40%, rgba(0,0,50,0.2) 130%);
+    background-size: 24px 24px, 100% 100%, 100% 100%;
+    background-position: center, center, center;
+    background-repeat: repeat, no-repeat, no-repeat;
+    opacity: 1 !important;
+    z-index: -2 !important;
+  }
+
+  /* Oversized exact AX monogram watermark */
+  .hero-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(/ax_logo.jpg);
+    background-size: 180% auto;
+    background-position: center 10%;
+    background-repeat: no-repeat;
+    /* Convert black-on-white JPG to white silhouette */
+    filter: invert(1);
+    mix-blend-mode: screen;
+    opacity: 0.16; /* 15-20% requested */
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .hero-subtitle {
+    color: #0E1630 !important;
   }
 }
 
-/* Dotted grid pattern inside the hero wrapper */
+/* Dotted grid pattern inside the hero wrapper (Desktop) */
 .hero-wrapper::before {
   content: "";
   position: absolute;
@@ -397,27 +436,35 @@ a {
   display: block;
 }
 
-/* Mobile Dropdown Menu */
+/* Mobile Dropdown Menu (Premium Apple-style List) */
 .mobile-menu-dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: #ffffff;
-  border-bottom: 1px solid hsl(var(--border-color));
-  padding: 24px;
+  top: calc(100% + 12px);
+  left: 16px;
+  width: calc(100% - 32px);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 8px 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  gap: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   z-index: 999;
+  overflow: hidden;
 }
 
 .mobile-nav-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.05rem;
-  font-weight: 600;
-  color: #475569;
-  padding: 4px 0;
+  font-weight: 500;
+  color: #111827;
+  padding: 16px 8px;
+  text-decoration: none;
 }
 
 @media (min-width: 1024px) {
@@ -2053,9 +2100,11 @@ a {
   padding: 40px 0;
   cursor: pointer;
   transition: all 0.3s ease;
+  gap: 32px;
 }
 
 .readiness-item-title {
+  flex: 1;
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -2069,7 +2118,32 @@ a {
 }
 
 .readiness-item-num {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 800;
+  color: var(--text-main);
+  opacity: 0.2;
   margin-right: 12px;
+}
+
+.readiness-mobile-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--text-main);
+  opacity: 0.6;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.readiness-mobile-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.readiness-accordion-item.is-open .readiness-mobile-arrow {
+  transform: rotate(135deg); /* smoothly points down */
 }
 
 .readiness-item-meta {
@@ -2494,16 +2568,36 @@ a {
     padding-bottom: 16px !important;
   }
 
-  /* Mobile menu links touch targets */
+  /* Founder Readiness Mobile Menu-Style Accordion */
+  .readiness-item-num,
+  .readiness-item-meta {
+    display: none !important;
+  }
+  
+  .readiness-accordion-header {
+    padding: 24px 0 !important;
+  }
+  
+  .readiness-item-title {
+    font-size: 1.6rem !important;
+    font-weight: 600 !important;
+  }
+
+  /* Mobile menu links touch targets (Apple style override) */
   .mobile-menu-dropdown {
-    padding: 24px 20px !important;
-    gap: 12px !important;
+    padding: 8px 16px !important;
+    gap: 0 !important;
   }
   .mobile-nav-link {
     font-size: 1.1rem !important;
-    padding: 14px 0 !important;
-    border-bottom: 1.5px solid rgba(0, 0, 0, 0.04) !important;
-    display: block !important;
+    padding: 16px 8px !important;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.06) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  .mobile-nav-link:last-child {
+    border-bottom: none !important;
   }
 
   /* Footer touch targets and responsive separators */

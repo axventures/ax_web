@@ -65,9 +65,12 @@ export const FooterSection: React.FC = () => {
             <div className="footer-column">
               <h4 className="footer-col-title">Contact</h4>
               <ul className="footer-links">
-                <li><a href="mailto:axventures@gmail.com">axventures@gmail.com</a></li>
-                {/* Add placeholders based on the mockup structure */}
-                <li>Calicut Hilite Business Park</li>
+                <li><a href="mailto:info@axventures.in">info@axventures.in</a></li>
+                <li style={{ lineHeight: '1.6', marginTop: '12px' }}>
+                  2/1149/l 100, Hilite Business Park,<br />
+                  Iringallur, Kozhikode,<br />
+                  Kozhikode - 673014, Kerala.
+                </li>
               </ul>
             </div>
           </div>
