@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { EventsHoldModal } from './EventsHoldModal';
 
 const ROTATING_WORDS = ['Founder', 'Team', 'System', 'Company'];
 
 export const HeroSection: React.FC = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [isEventsModalOpen, setIsEventsModalOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,14 +55,23 @@ export const HeroSection: React.FC = () => {
           marginTop: '44px',
         }}
       >
-        <Link
-          to="/founder-summit"
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setIsEventsModalOpen(true);
+          }}
           className="hero-summit-btn"
         >
           <span>Explore Vision to Ventures</span>
           <ArrowRight size={22} className="hero-summit-arrow" />
-        </Link>
+        </a>
       </div>
+
+      <EventsHoldModal 
+        isOpen={isEventsModalOpen} 
+        onClose={() => setIsEventsModalOpen(false)} 
+      />
     </section>
   );
 };

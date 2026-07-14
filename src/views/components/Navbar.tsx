@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { EventsHoldModal } from './EventsHoldModal';
 
 interface NavbarProps {
   onApplyClick: () => void;
@@ -9,7 +10,7 @@ interface NavbarProps {
 const DESKTOP_NAV_LINKS = [
   { label: 'Home', href: '/', isRoute: true },
   { label: 'About', href: '/about', isRoute: true },
-  { label: 'Events', href: '/founder-summit', isRoute: true },
+  { label: 'Events', href: '#', isRoute: false },
   { label: 'Readiness', href: '/#readiness', isRoute: false },
   { label: 'Founders', href: '/#frp-founders', isRoute: false },
   { label: 'Contact', href: '/#contact', isRoute: false },
@@ -18,7 +19,7 @@ const DESKTOP_NAV_LINKS = [
 const MOBILE_NAV_LINKS = [
   { label: 'Home', href: '/', isRoute: true },
   { label: 'About', href: '/about', isRoute: true },
-  { label: 'Events', href: '/founder-summit', isRoute: true },
+  { label: 'Events', href: '#', isRoute: false },
   { label: 'Readiness', href: '/#readiness', isRoute: false },
   { label: 'Founders', href: '/founders', isRoute: true },
   { label: 'Contact', href: '/#contact', isRoute: false },
@@ -26,6 +27,7 @@ const MOBILE_NAV_LINKS = [
 
 export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isEventsModalOpen, setIsEventsModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolledSlightly, setIsScrolledSlightly] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(false);
@@ -71,7 +73,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, label: string) => {
+    if (label === 'Events') {
+      e.preventDefault();
+      setIsEventsModalOpen(true);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
     if (href.startsWith('/#') && location.pathname === '/') {
       const targetId = href.substring(2);
       const targetElement = document.getElementById(targetId);
@@ -102,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
         key={link.label}
         href={link.href}
         className={className}
-        onClick={(e) => handleAnchorClick(e, link.href)}
+        onClick={(e) => handleAnchorClick(e, link.href, link.label)}
       >
         {link.label}
       </a>
@@ -177,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={(e) => handleAnchorClick(e as any, link.href)}
+                  onClick={(e) => handleAnchorClick(e as any, link.href, link.label)}
                   className="mobile-nav-link"
                 >
                   <span>{link.label}</span>
@@ -218,7 +227,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
             </div>
 
             <div className="desktop-menu-cta-dock">
-              <button onClick={onApplyClick} className="nav-cta-btn nav-cta-btn-dock">
+               <button onClick={onApplyClick} className="nav-cta-btn nav-cta-btn-dock">
                 Apply
               </button>
             </div>
@@ -227,6 +236,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
           </nav>
         </header>
       )}
+
+      {/* Events On Hold Modal */}
+      <EventsHoldModal 
+        isOpen={isEventsModalOpen} 
+        onClose={() => setIsEventsModalOpen(false)} 
+      />
     </>
   );
 };

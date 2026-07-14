@@ -171,7 +171,7 @@ const MobileCrowdfundingSection: React.FC = () => {
       id="crowdfunding-mobile" 
       style={{
         padding: '120px 24px',
-        backgroundColor: '#030303',
+        backgroundColor: '#FAF9F6',
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
@@ -184,7 +184,7 @@ const MobileCrowdfundingSection: React.FC = () => {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
           zIndex: 0,
           pointerEvents: 'none'
@@ -198,7 +198,7 @@ const MobileCrowdfundingSection: React.FC = () => {
           transform: 'translate(-50%, -50%)',
           width: '600px',
           height: '600px',
-          background: 'radial-gradient(circle, rgba(24,1,173,0.3) 0%, rgba(24,1,173,0) 70%)',
+          background: 'radial-gradient(circle, rgba(24,1,173,0.15) 0%, rgba(24,1,173,0) 70%)',
           zIndex: 1,
           pointerEvents: 'none',
           filter: 'blur(40px)'
@@ -210,13 +210,13 @@ const MobileCrowdfundingSection: React.FC = () => {
           zIndex: 2,
           maxWidth: '800px',
           width: '100%',
-          background: 'rgba(20, 20, 25, 0.6)',
+          background: 'linear-gradient(145deg, #090B14 0%, #10162A 100%)',
           backdropFilter: 'blur(32px)',
           WebkitBackdropFilter: 'blur(32px)',
           borderRadius: '40px',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          border: '1px solid rgba(24, 1, 173, 0.3)',
           padding: '40px 24px',
-          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(24, 1, 173, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
           display: 'flex',
           flexDirection: 'column',
           gap: '48px'
