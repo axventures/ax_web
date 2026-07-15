@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "cd frontend && npm run dev",
-    "build": "cd frontend && npm install && npm run build",
+    "build": "cd frontend && npm install && npm run build && cd .. && rm -rf dist && cp -R frontend/dist dist",
     "start": "cd backend && npm start",
     "install:all": "cd frontend && npm install && cd ../backend && npm install"
   }
