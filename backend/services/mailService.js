@@ -44,80 +44,117 @@ export const sendWelcomeEmail = async (email, fullName, companyName) => {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="color-scheme" content="light">
+            <meta name="supported-color-schemes" content="light">
             <title>Welcome to AX Ventures</title>
+            <style>
+                :root {
+                    color-scheme: light;
+                    supported-color-schemes: light;
+                }
+            </style>
         </head>
-        <body style="margin: 0; padding: 0; font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #030303; -webkit-font-smoothing: antialiased;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#030303">
+        <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #FFFFFF; color: #000000; -webkit-font-smoothing: antialiased;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" style="background-color: #FFFFFF;">
                 <tr>
                     <td align="center" style="padding: 40px 20px;">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background: linear-gradient(145deg, #0A0A0A 0%, #0F0F16 100%); border-radius: 16px; border: 1px solid rgba(24, 1, 173, 0.2); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(24, 1, 173, 0.1);">
+                        <!-- Main Container (Minimal) -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; text-align: left; border: 1px solid #E5E7EB; border-radius: 16px; overflow: hidden;">
                             
                             <!-- Header -->
                             <tr>
-                                <td align="center" style="padding: 50px 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-                                    <h2 style="color: #FFFFFF; font-size: 28px; font-weight: 800; letter-spacing: -0.04em; text-transform: uppercase; margin: 0;">
+                                <td align="center" style="padding: 56px 48px; border-bottom: 1px solid #E5E7EB;">
+                                    <h1 style="font-size: 38px; font-weight: 800; letter-spacing: -0.04em; text-transform: uppercase; color: #000000; margin: 0;">
                                         AX <span style="color: #1801AD;">Ventures</span>
-                                    </h2>
-                                </td>
-                            </tr>
-                            
-                            <!-- Body Content -->
-                            <tr>
-                                <td style="padding: 50px 40px;">
-                                    <div style="display: inline-block; background-color: rgba(24, 1, 173, 0.15); border: 1px solid rgba(24, 1, 173, 0.3); color: #4facfe; padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 0.1em;">
-                                        Application Received
-                                    </div>
-                                    
-                                    <h1 style="font-size: 24px; font-weight: 700; color: #FFFFFF; margin-top: 0; margin-bottom: 20px; letter-spacing: -0.02em;">
-                                        Hello ${fullName},
                                     </h1>
                                     
-                                    <p style="font-size: 16px; line-height: 1.7; color: #94A3B8; margin-bottom: 24px; margin-top: 0;">
-                                        Thank you for submitting your application to AX Ventures. We are excited to learn more about <strong style="color: #FFFFFF;">${companyName}</strong>.
-                                    </p>
+                                    <!-- Divider -->
+                                    <div style="margin: 24px auto 0; height: 4px; width: 80px; border-radius: 9999px; background-color: #1801AD;"></div>
                                     
-                                    <p style="font-size: 16px; line-height: 1.7; color: #94A3B8; margin-bottom: 36px; margin-top: 0;">
-                                        Our investment team reviews every pitch carefully. We partner with bold founders at the earliest stages who are obsessed with solving hard problems. We will reach out to you within <strong style="color: #FFFFFF;">48 hours</strong> if there is alignment.
+                                    <!-- Badge -->
+                                    <div style="margin-top: 32px; display: inline-block; border-radius: 9999px; background-color: #EEF2FF; padding: 8px 16px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #1801AD;">
+                                        Application Received
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Body -->
+                            <tr>
+                                <td style="padding: 48px;">
+                                    <h2 style="font-size: 30px; font-weight: 700; color: #111827; margin: 0 0 32px 0;">
+                                        Hello ${fullName},
+                                    </h2>
+
+                                    <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 32px; color: #4B5563;">
+                                        Thank you for submitting your application to <span style="font-weight: 600; color: #000000;">AX Ventures</span>. We are excited to learn more about <span style="font-weight: 600; color: #000000;">${companyName}</span>.
                                     </p>
-                                    
-                                    <!-- Status Card -->
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 36px;">
+
+                                    <p style="margin: 0 0 48px 0; font-size: 16px; line-height: 32px; color: #4B5563;">
+                                        Our investment team reviews every pitch carefully. We partner with bold founders at the earliest stages who are obsessed with solving hard problems. We will reach out to you within <span style="font-weight: 600; color: #000000;">48 hours</span> if there is alignment.
+                                    </p>
+
+                                    <!-- Application Details (Minimal) -->
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #E5E7EB; border-radius: 12px; background-color: #F9FAFB;">
                                         <tr>
-                                            <td style="padding: 24px;">
+                                            <td style="padding: 32px;">
+                                                <h3 style="margin: 0 0 32px 0; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: #6B7280;">
+                                                    Application Details
+                                                </h3>
+
                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                     <tr>
-                                                        <td style="padding-bottom: 12px; font-size: 13px; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Applicant</td>
-                                                        <td align="right" style="padding-bottom: 12px; font-size: 14px; color: #FFFFFF; font-weight: 500;">${fullName}</td>
+                                                        <td style="padding-bottom: 16px; border-bottom: 1px solid #E5E7EB;">
+                                                            <span style="font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280;">Applicant</span>
+                                                        </td>
+                                                        <td align="right" style="padding-bottom: 16px; border-bottom: 1px solid #E5E7EB;">
+                                                            <span style="font-size: 16px; font-weight: 600; color: #111827;">${fullName}</span>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding-bottom: 12px; font-size: 13px; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Company</td>
-                                                        <td align="right" style="padding-bottom: 12px; font-size: 14px; color: #FFFFFF; font-weight: 500;">${companyName}</td>
+                                                        <td style="padding: 16px 0; border-bottom: 1px solid #E5E7EB;">
+                                                            <span style="font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280;">Company</span>
+                                                        </td>
+                                                        <td align="right" style="padding: 16px 0; border-bottom: 1px solid #E5E7EB;">
+                                                            <span style="font-size: 16px; font-weight: 600; color: #111827;">${companyName}</span>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="font-size: 13px; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Status</td>
-                                                        <td align="right" style="font-size: 14px; color: #10B981; font-weight: 700; letter-spacing: 0.02em;">Under Review</td>
+                                                        <td style="padding-top: 16px;">
+                                                            <span style="font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280;">Status</span>
+                                                        </td>
+                                                        <td align="right" style="padding-top: 16px;">
+                                                            <span style="display: inline-block; border-radius: 9999px; background-color: #DCFCE7; padding: 8px 16px; font-size: 14px; font-weight: 700; color: #15803D;">Under Review</span>
+                                                        </td>
                                                     </tr>
                                                 </table>
                                             </td>
                                         </tr>
                                     </table>
 
-                                    <p style="font-size: 15px; line-height: 1.6; color: #64748B; margin-bottom: 30px; margin-top: 0; font-style: italic;">
+                                    <p style="margin: 40px 0 0 0; font-size: 15px; line-height: 28px; color: #4B5563;">
                                         If you have any additional pitch materials or details to share in the meantime, feel free to reply directly to this email.
                                     </p>
                                     
-                                    <p style="font-size: 16px; line-height: 1.6; color: #94A3B8; margin-bottom: 0; margin-top: 0;">
-                                        Best regards,<br>
-                                        <strong style="color: #FFFFFF; display: inline-block; margin-top: 8px;">The AX Ventures Team</strong>
-                                    </p>
+                                    <div style="margin-top: 48px; border-top: 1px solid #E5E7EB; padding-top: 32px;">
+                                        <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 28px; color: #374151;">
+                                            Best regards,
+                                        </p>
+                                        <p style="margin: 0; font-size: 18px; font-weight: 700; color: #000000;">
+                                            The AX Ventures Team
+                                        </p>
+                                    </div>
                                 </td>
                             </tr>
-                            
+
                             <!-- Footer -->
                             <tr>
-                                <td align="center" style="padding: 30px 40px; background-color: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.03); font-size: 12px; color: #475569; letter-spacing: 0.02em;">
-                                    &copy; ${new Date().getFullYear()} AX Ventures. All rights reserved.<br>
-                                    <span style="display: inline-block; margin-top: 8px;">Confidential & Proprietary</span>
+                                <td align="center" style="border-top: 1px solid #E5E7EB; background-color: #F9FAFB; padding: 32px 40px;">
+                                    <p style="margin: 0 0 8px 0; font-size: 14px; color: #6B7280;">
+                                        &copy; ${new Date().getFullYear()} AX Ventures. All rights reserved.
+                                    </p>
+                                    <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #9CA3AF;">
+                                        Confidential &amp; Proprietary
+                                    </p>
                                 </td>
                             </tr>
                         </table>
