@@ -34,7 +34,13 @@ app.use(
       // Allow requests without an Origin (Postman, server-to-server)
       if (!origin) return callback(null, true);
 
+      // Allow exactly matched allowed origins
       if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      
+      // Allow any Vercel preview/production deployments
+      if (origin.endsWith('.vercel.app')) {
         return callback(null, true);
       }
 
