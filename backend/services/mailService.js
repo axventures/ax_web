@@ -8,8 +8,8 @@ dotenv.config()
 
 const transporter = nodemailer.createTransport({
     host: "smtp.hostinger.com",
-    port: 465,
-    secure: true,
+    port: 587, // Try port 587 (STARTTLS) instead of 465
+    secure: false, // Must be false for port 587
     auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD
