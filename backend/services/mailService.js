@@ -1,5 +1,8 @@
 import nodemailer from "nodemailer"
 import dotenv from "dotenv"
+import dns from "dns"
+
+dns.setDefaultResultOrder('ipv4first'); // Force IPv4 to fix Render's ENETUNREACH IPv6 error
 
 dotenv.config()
 
@@ -10,7 +13,14 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD
-    }
+    },
+    tls: {
+        rejectUnauthorized: false
+    },
+    connectionTimeout: 10000, // 10 seconds timeout
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+    family: 4 // Force IPv4 routing to prevent hanging on Render
 })
 
 export const sentOtp = async (email) => {
