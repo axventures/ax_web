@@ -18,6 +18,12 @@ app.use(
   })
 );
 
+// Request Logging Middleware
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} | Origin: ${req.headers.origin || 'None'}`);
+  next();
+});
+
 // Allowed Origins
 const allowedOrigins = [
   'https://axventures.in',

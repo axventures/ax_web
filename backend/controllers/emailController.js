@@ -2,6 +2,7 @@ import { sendWelcomeEmail } from '../services/mailService.js';
 
 export const handleWelcomeEmail = async (req, res) => {
   try {
+    console.log(`[EmailController] Received email request:`, req.body);
     const { email, fullName, companyName } = req.body;
 
     if (!email || !fullName) {
