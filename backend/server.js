@@ -1,14 +1,9 @@
 import 'dotenv/config';
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import { sendWelcomeEmail } from './backend/mailService.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import apiRoutes from './routes/api.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -78,64 +73,29 @@ const generalLimiter = rateLimit({
 
 app.use(generalLimiter);
 
-// Serve Frontend
-app.use(express.static(path.join(__dirname, 'dist')));
+// Use API Routes
+app.use('/api', apiRoutes);
 
-// Health Check
-app.get('/api/health', (req, res) => {
+// Root Endpoint (For Backend Health/Status)
+app.get('/', (req, res) => {
   res.status(200).json({
     status: 'success',
-    message: 'Server is secure and running.',
+    message: 'AX Ventures API is running.',
   });
 });
 
-// Send Welcome Email
-app.post('/api/send-welcome-email', async (req, res) => {
-  try {
-    const { email, fullName, companyName } = req.body;
-
-    if (!email || !fullName) {
-      return res.status(400).json({
-        error: 'Email and Full Name are required.',
-      });
-    }
-
-    const success = await sendWelcomeEmail(
-      email,
-      fullName,
-      companyName
-    );
-
-    if (!success) {
-      return res.status(500).json({
-        error: 'Failed to send email.',
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      message: 'Email sent successfully.',
-    });
-  } catch (error) {
-    console.error('Email Route Error:', error);
-
-    res.status(500).json({
-      success: false,
-      error: 'Internal Server Error',
-    });
-  }
-});
-
 // Unknown API Routes
-app.use('/api/', (req, res) => {
+app.use('/api', (req, res) => {
   res.status(404).json({
     error: 'API route not found',
   });
 });
 
-// React Catch-all Route
+// Fallback for any other unmatched routes
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.status(404).json({
+    error: 'Not found',
+  });
 });
 
 // Global Error Handler

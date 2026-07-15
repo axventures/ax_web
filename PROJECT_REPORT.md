@@ -4,6 +4,24 @@
 This document serves as a comprehensive report on the architecture, technology stack, and scalability roadmap for the AX Ventures web platform. The platform is designed to be a modern, high-performance landing page and application portal for startup founders, featuring dynamic animations, responsive design, and an integrated application pipeline.
 
 ## 2. Architecture
+
+```text
+                    User
+                      │
+                      ▼
+             Frontend (Vercel)
+      https://axventures.in
+                      │
+          Axios HTTPS Requests
+                      │
+                      ▼
+         Backend (Render)
+ https://axventures-api.onrender.com
+                      │
+                      ▼
+        Email / Database / APIs.
+```
+
 The project strictly follows a modernized **Model-View-Controller (MVC)** architectural pattern adapted for a React + TypeScript environment.
 
 * **Models (`src/models/`)**: Defines the data structures, types, and validation logic. E.g., `Application.ts` manages the shape and constraints of the founder application form data.
