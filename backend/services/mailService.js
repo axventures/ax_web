@@ -1,54 +1,12 @@
-import nodemailer from "nodemailer"
-import dotenv from "dotenv"
-import dns from "dns"
+import { Resend } from 'resend';
+import dotenv from "dotenv";
 
-dns.setDefaultResultOrder('ipv4first'); // Force IPv4 to fix Render's ENETUNREACH IPv6 error
+dotenv.config();
 
-dotenv.config()
-
-const transporter = nodemailer.createTransport({
-    host: "smtp.hostinger.com",
-    port: 587, // Try port 587 (STARTTLS) instead of 465
-    secure: false, // Must be false for port 587
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD
-    },
-    tls: {
-        rejectUnauthorized: false
-    },
-    connectionTimeout: 10000, // 10 seconds timeout
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
-    family: 4 // Force IPv4 routing to prevent hanging on Render
-})
-
-export const sentOtp = async (email) => {
-    const mailOptions = {
-        from: process.env.EMAIL,
-        to: email,
-        subject: "Welcome to AX Ventures",
-    }
-    try {
-        await transporter.sendMail(mailOptions)
-        console.log("Success")
-    } catch (e) {
-        console.log("Error while sending otp ", e)
-    }
-}
+const resend = new Resend('re_Uaq5Lgiv_Lgp42G7tuo95S3NyZZ61ouMx');
 
 export const sendWelcomeEmail = async (email, fullName, companyName) => {
-    // Check if EMAIL and PASSWORD are configured
-    if (!process.env.EMAIL || !process.env.PASSWORD) {
-        console.warn("[MailService] SMTP credentials missing in environment variables. Email not sent.");
-        return false;
-    }
-
-    const mailOptions = {
-        from: `"AX Ventures" <${process.env.EMAIL}>`,
-        to: email,
-        subject: `Welcome to AX Ventures - ${companyName}`,
-        html: `
+    const htmlContent = `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -174,14 +132,24 @@ export const sendWelcomeEmail = async (email, fullName, companyName) => {
         </body>
         </html>
         `
-    }
 
     try {
-        await transporter.sendMail(mailOptions);
-        console.log(`[MailService] Welcome email successfully sent to ${email}`);
+        const { data, error } = await resend.emails.send({
+            from: 'AX Ventures <info@axventures.in>',
+            to: email, // Note: You must verify axventures.in in Resend for this to work
+            subject: `Welcome to AX Ventures - ${companyName}`,
+            html: htmlContent
+        });
+
+        if (error) {
+            console.error("[MailService] Error from Resend:", error);
+            return false;
+        }
+
+        console.log(`[MailService] Welcome email successfully sent to ${email} via Resend. ID: ${data?.id}`);
         return true;
-    } catch (e) {
-        console.error("[MailService] Error while sending welcome email:", e);
-        throw e;
+    } catch (error) {
+        console.error("[MailService] Exception while sending welcome email via Resend:", error);
+        return false;
     }
-}
+};
