@@ -50,7 +50,7 @@ export const FooterSection: React.FC = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://instagram.com/axventuresindia" target="_blank" rel="noopener noreferrer" className="social-link">
+                  <a href="https://instagram.com/axventures.in" target="_blank" rel="noopener noreferrer" className="social-link">
                     <Instagram size={20} className="footer-social-icon" /> Instagram
                   </a>
                 </li>
