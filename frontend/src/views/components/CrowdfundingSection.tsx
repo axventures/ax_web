@@ -120,7 +120,7 @@ const DesktopCrowdfundingSection: React.FC = () => {
                   fontWeight: 700,
                 }}
               >
-                They fail because they lack the systems.
+                They fail because founders fail to build themselves before they build their companies.
               </span>
             </p>
 
@@ -133,9 +133,8 @@ const DesktopCrowdfundingSection: React.FC = () => {
               }}
             >
               AX Ventures exists to change that. We work alongside founders to
-              help them build stronger businesses through structured execution,
-              strategic partnerships, operational systems, and founder
-              development.
+              strengthen leadership, sharpen decision-making, build operational excellence,
+              and create businesses that can scale with confidence.
             </p>
           </div>
 
@@ -272,7 +271,7 @@ const MobileCrowdfundingSection: React.FC = () => {
               WebkitTextFillColor: 'transparent',
               display: 'inline-block'
             }}>
-              They fail because they lack the systems to scale.
+              They fail because founders fail to build themselves before they build their companies.
             </span>
           </h3>
 
@@ -284,7 +283,7 @@ const MobileCrowdfundingSection: React.FC = () => {
             margin: 0,
             maxWidth: '560px'
           }}>
-            AX Ventures partners with ambitious founders to build scalable businesses through structured execution, operational systems, strategic partnerships, and founder development.
+            AX Ventures exists to change that. We work alongside founders to strengthen leadership, sharpen decision-making, build operational excellence, and create businesses that can scale with confidence.
           </p>
         </div>
 

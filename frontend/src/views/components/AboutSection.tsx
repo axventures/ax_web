@@ -87,10 +87,21 @@ export const AboutSection: React.FC = () => {
               fontWeight: 400,
               color: '#475569',
               lineHeight: 1.6,
+              marginBottom: '16px'
+            }}
+          >
+            Most startups don't fail because founders lack ideas.
+          </p>
+          <p 
+            style={{
+              fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
+              fontWeight: 400,
+              color: '#475569',
+              lineHeight: 1.6,
               marginBottom: '32px'
             }}
           >
-            Many talented founders struggle not because their ideas are weak, but because they lack the right systems, leadership support, execution frameworks, and ecosystem.
+            They fail because founders fail to build themselves before they build their companies.
           </p>
 
           <div 
@@ -109,10 +120,22 @@ export const AboutSection: React.FC = () => {
                 fontWeight: 600,
                 color: '#0f172a',
                 lineHeight: 1.5,
+                margin: 0,
+                marginBottom: '12px'
+              }}
+            >
+              AX Ventures exists to change that.
+            </p>
+            <p
+              style={{
+                fontSize: 'clamp(1.05rem, 1.8vw, 1.15rem)',
+                fontWeight: 400,
+                color: '#475569',
+                lineHeight: 1.6,
                 margin: 0
               }}
             >
-              AX Ventures exists to solve that problem.
+              We work alongside founders to strengthen leadership, sharpen decision-making, build operational excellence, and create businesses that can scale with confidence.
             </p>
           </div>
         </div>
