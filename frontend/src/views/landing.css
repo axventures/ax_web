@@ -109,10 +109,11 @@ body {
     opacity: 0.16; /* 15-20% requested */
     z-index: -1;
     pointer-events: none;
+    animation: none !important; /* Stop the noise animation from shaking the logo */
   }
 
   .hero-subtitle {
-    color: #0E1630 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
   }
 }
 
@@ -127,6 +128,95 @@ body {
   z-index: -1;
   pointer-events: none;
 }
+
+/* ============================================================
+   Premium Hero — Interactive Grid & Ambient Lighting
+   ============================================================ */
+
+/* Interactive tile grid canvas container — covers full hero-wrapper */
+.hero-grid-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: auto;
+  overflow: hidden;
+  /* Premium fade out at the bottom so it seamlessly blends into the next section */
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+/* Hide interactive grid on mobile */
+@media (max-width: 767px) {
+  .hero-grid-container {
+    display: none !important;
+  }
+}
+
+/* Ambient radial blue light behind hero content */
+.hero-ambient-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(900px, 80vw);
+  height: min(600px, 60vh);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(24, 1, 173, 0.06) 0%,
+    rgba(24, 1, 173, 0.02) 40%,
+    transparent 70%
+  );
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+@media (max-width: 767px) {
+  .hero-ambient-light {
+    display: none !important;
+  }
+}
+
+/* Decorative contour lines wrapper — brand design touch */
+.hero-decorative-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .hero-decorative-lines {
+    display: none !important;
+  }
+}
+
+/* Hero content wrapper for z-index stacking above grid */
+.hero-content-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* Subtle animated noise texture overlay */
+.hero-wrapper::after {
+  animation: hero-noise 0.5s steps(5) infinite;
+}
+
+@keyframes hero-noise {
+  0%, 100% { background-position: 0 0; }
+  10% { background-position: -5% -10%; }
+  30% { background-position: 3% -15%; }
+  50% { background-position: 12% 9%; }
+  70% { background-position: 9% 4%; }
+  90% { background-position: -1% 7%; }
+}
+
 
 /* Typography */
 h1, h2, h3, h4 {
@@ -488,6 +578,7 @@ a {
   line-height: 0.85;
   letter-spacing: -0.05em;
   color: #0f172a;
+  margin-top:15px;
   text-transform: uppercase;
 }
 
@@ -495,8 +586,10 @@ a {
   font-size: clamp(3.8rem, 15vw, 4.5rem); /* Match strong title presence */
   font-weight: 900;
   letter-spacing: -0.04em;
-  line-height: 0.85;
-  margin-top: -8px; /* Tighter line height between stack */
+  line-height: 1.1; /* Enough room for descenders (p, y, g) */
+  margin-top: 25px; /* Breathing room between Strong and rotating word */
+  padding-bottom: 8px; /* Extra safety for descender tails */
+  overflow: visible;
 }
 
 .hero-rotating-title-gradient {
@@ -507,10 +600,13 @@ a {
 }
 
 @media (max-width: 767px) {
+  .hero-strong-title {
+    color: #FFFFFF;
+  }
   .hero-rotating-title-gradient {
     background: none !important;
-    -webkit-text-fill-color: #111111 !important;
-    color: #111111 !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    color: #FFFFFF !important;
   }
 }
 
@@ -519,6 +615,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: visible;
   }
   .hero-strong-title {
     font-size: clamp(5.5rem, 14vw, 9rem); /* Original desktop scale */
@@ -535,6 +632,8 @@ a {
   margin: 0 auto;
   padding: 0 24px;
   margin-top: 60px;
+  position: relative;
+  z-index: 5;
   animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -2079,6 +2178,37 @@ a {
   color: var(--brand-blue);
 }
 
+.social-icon-link {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon-link:hover {
+  color: var(--brand-blue);
+  transform: translateY(-2px);
+}
+
+.social-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.social-icon-box:hover {
+  background-color: var(--brand-blue);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
 /* --- Founder Readiness Accordion Section --- */
 .readiness-section {
   background-color: var(--brand-warm-cream); /* Light background */
@@ -2324,16 +2454,18 @@ a {
   display: none;
 }
 
-/* --- Explore Vision Ventures Hero Button --- */
+/* --- Explore Vision Ventures Hero Button — Premium Glass --- */
 .hero-summit-btn {
-  background: linear-gradient(135deg, #0f172a 0%, #1E14A8 100%);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(24, 1, 173, 0.85) 100%);
   color: #fff;
-  border-radius: 10px;
-  border: none;
-  border-top: 1px solid rgba(255,255,255,0.15);
-  box-shadow: 0 4px 20px rgba(37, 27, 220, 0.35),
-              inset 0 1px 0 rgba(255,255,255,0.1);
-  padding: 14px 28px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 4px 24px rgba(24, 1, 173, 0.25),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  padding: 16px 32px;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -2343,17 +2475,23 @@ a {
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease;
 }
 
 .hero-summit-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(37, 27, 220, 0.45);
+  transform: scale(1.03) translateY(-1px);
+  box-shadow:
+    0 8px 32px rgba(24, 1, 173, 0.4),
+    0 0 20px rgba(24, 1, 173, 0.15),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  border-color: rgba(24, 1, 173, 0.4);
   color: #fff;
 }
 
 .hero-summit-arrow {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-summit-btn:hover .hero-summit-arrow {

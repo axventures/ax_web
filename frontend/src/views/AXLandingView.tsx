@@ -5,6 +5,7 @@ import { HeroSection } from './components/HeroSection';
 import { StatsCard } from './components/StatsCard';
 import { ApplicationModal } from './components/ApplicationModal';
 import { FooterSection } from './components/FooterSection';
+import { InteractiveTileGrid } from './components/InteractiveTileGrid';
 
 import { CrowdfundingSection } from './components/CrowdfundingSection';
 import { BrandTickerSection } from './components/BrandTickerSection';
@@ -38,6 +39,11 @@ export const AXLandingView: React.FC = () => {
 
       {/* Hero Wrapper containing Hero and Stats Card */}
       <div className="hero-wrapper">
+
+        {/* Interactive tile grid — covers full hero wrapper */}
+        <div className="hero-grid-container">
+          <InteractiveTileGrid />
+        </div>
 
         {/* Hero Section */}
         <HeroSection />

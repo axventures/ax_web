@@ -13,7 +13,7 @@ const DESKTOP_NAV_LINKS = [
   { label: 'Events', href: '#', isRoute: false },
   { label: 'Readiness', href: '/#readiness', isRoute: false },
   { label: 'Founders', href: '/#frp-founders', isRoute: false },
-  { label: 'Contact', href: '/#contact', isRoute: false },
+  { label: 'Contact', href: '/contact', isRoute: true },
 ];
 
 const MOBILE_NAV_LINKS = [
@@ -22,7 +22,7 @@ const MOBILE_NAV_LINKS = [
   { label: 'Events', href: '#', isRoute: false },
   { label: 'Readiness', href: '/#readiness', isRoute: false },
   { label: 'Founders', href: '/founders', isRoute: true },
-  { label: 'Contact', href: '/#contact', isRoute: false },
+  { label: 'Contact', href: '/contact', isRoute: true },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {

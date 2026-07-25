@@ -18,64 +18,75 @@ export const FooterSection: React.FC = () => {
   return (
     <footer id="contact" className="footer-section">
       <div className="footer-container">
-        <div className="footer-top">
+        
+        <div className="footer-top" style={{ alignItems: 'flex-start' }}>
           
-          <div className="footer-left">
-            <h2 className="footer-headline">
+          <div className="footer-left" style={{ flex: '1.5', maxWidth: '420px' }}>
+            <h2 className="footer-headline" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', marginBottom: '24px', letterSpacing: '0.01em', lineHeight: '1.15' }}>
               STRONG FOUNDER.<br />
               STRONG TEAM.<br />
               STRONG SYSTEM.<br />
               <span className="blue-text">STRONG COMPANY.</span>
             </h2>
-            <div className="footer-divider"></div>
-            <p className="footer-subtext">
+            <div className="footer-divider" style={{ width: '40px', height: '2px', marginBottom: '20px' }}></div>
+            <p className="footer-subtext" style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.6)', margin: 0 }}>
               Building the next generation of founders.
             </p>
-            
-            <div className="footer-brand">
-              <span className="footer-logo">AX</span>
-              <span className="footer-copyright">
-                © {new Date().getFullYear()} AX Ventures. All rights reserved.
-              </span>
-            </div>
           </div>
 
-          <div className="footer-right">
+          <div className="footer-right" style={{ flex: '2', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '40px' }}>
+            
             <div className="footer-column">
-              <h4 className="footer-col-title">Connect</h4>
-              <ul className="footer-links">
-                <li>
-                  <a href="https://x.com/advisorxgrowth" target="_blank" rel="noopener noreferrer" className="social-link">
-                    <XIcon /> X (Twitter)
-                  </a>
-                </li>
-                <li>
-                  <a href="https://instagram.com/axventures.in" target="_blank" rel="noopener noreferrer" className="social-link">
-                    <Instagram size={20} className="footer-social-icon" /> Instagram
-                  </a>
-                </li>
-                <li>
-                  <a href="https://linkedin.com/company/ax-venture-studio" target="_blank" rel="noopener noreferrer" className="social-link">
-                    <Linkedin size={20} className="footer-social-icon" /> LinkedIn
-                  </a>
-                </li>
+              <h4 className="footer-col-title" style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.8rem', marginBottom: '24px' }}>PAGES</h4>
+              <ul className="footer-links" style={{ gap: '20px' }}>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
               </ul>
             </div>
             
             <div className="footer-column">
-              <h4 className="footer-col-title">Contact</h4>
-              <ul className="footer-links">
-                <li><a href="mailto:info@axventures.in">info@axventures.in</a></li>
-                <li style={{ lineHeight: '1.6', marginTop: '12px' }}>
-                  2/1149/l 100, Hilite Business Park,<br />
-                  Iringallur, Kozhikode,<br />
-                  Kozhikode - 673014, Kerala.
-                </li>
+              <h4 className="footer-col-title" style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.8rem', marginBottom: '24px' }}>PAGES</h4>
+              <ul className="footer-links" style={{ gap: '20px' }}>
+                <li><a href="/#readiness">Readiness</a></li>
+                <li><a href="/founders">Founders</a></li>
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </div>
+
+            <div className="footer-column">
+              <h4 className="footer-col-title" style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.8rem', marginBottom: '24px' }}>CONTACT</h4>
+              <ul className="footer-links">
+                <li><a href="mailto:info@axventures.in" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>info@axventures.in</a></li>
+              </ul>
+              
+              <div className="footer-socials-horizontal" style={{ display: 'flex', gap: '12px', marginTop: '24px', alignItems: 'center' }}>
+                <a href="https://instagram.com/axventures.in" target="_blank" rel="noopener noreferrer" className="social-icon-box" aria-label="Instagram">
+                  <Instagram size={18} />
+                </a>
+                <a href="https://x.com/advisorxgrowth" target="_blank" rel="noopener noreferrer" className="social-icon-box" aria-label="X (Twitter)">
+                  <XIcon />
+                </a>
+                <a href="https://linkedin.com/company/ax-venture-studio" target="_blank" rel="noopener noreferrer" className="social-icon-box" aria-label="LinkedIn">
+                  <Linkedin size={18} />
+                </a>
+              </div>
+            </div>
+            
           </div>
-          
         </div>
+
+        <div className="footer-bottom-divider" style={{ width: '100%', height: '1px', backgroundColor: 'rgba(255, 255, 255, 0.1)', marginTop: '80px', marginBottom: '32px' }}></div>
+        
+        <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span className="footer-copyright" style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.4)' }}>
+            © {new Date().getFullYear()} AX Ventures
+          </span>
+          <span className="footer-copyright" style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.4)' }}>
+            axventures.in
+          </span>
+        </div>
+
       </div>
     </footer>
   );

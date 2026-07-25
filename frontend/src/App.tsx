@@ -5,6 +5,7 @@ import AboutPage from './views/AboutPage';
 import { FounderSummitView } from './views/summit/FounderSummitView';
 import { FoundersPage } from './views/FoundersPage';
 import { NotFoundView } from './views/NotFoundView';
+import { ContactPage } from './views/ContactPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AXLandingView />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/founder-summit" element={<FounderSummitView />} />
         <Route path="/founders" element={<FoundersPage />} />
         <Route path="*" element={<NotFoundView />} />
