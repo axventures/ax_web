@@ -64,7 +64,7 @@ export const FooterSection: React.FC = () => {
                 <a href="https://instagram.com/axventures.in" target="_blank" rel="noopener noreferrer" className="social-icon-box" aria-label="Instagram">
                   <Instagram size={18} />
                 </a>
-                <a href="https://x.com/advisorxgrowth" target="_blank" rel="noopener noreferrer" className="social-icon-box" aria-label="X (Twitter)">
+                <a href="https://x.com/axventures_in" target="_blank" rel="noopener noreferrer" className="social-icon-box" aria-label="X (Twitter)">
                   <XIcon />
                 </a>
                 <a href="https://linkedin.com/company/ax-venture-studio" target="_blank" rel="noopener noreferrer" className="social-icon-box" aria-label="LinkedIn">
