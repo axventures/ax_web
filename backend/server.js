@@ -29,6 +29,7 @@ const allowedOrigins = [
   'https://axventures.in',
   'https://www.axventures.in',
   'http://localhost:5173',
+  'http://localhost:5174', // Local development (Vite alternate port)
   'http://localhost:3000' // Local development
 ];
 

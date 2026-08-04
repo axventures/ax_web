@@ -1,9 +1,8 @@
 import React from 'react';
-import { useApplicationController } from '../controllers/useApplicationController';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { StatsCard } from './components/StatsCard';
-import { ApplicationModal } from './components/ApplicationModal';
 import { FooterSection } from './components/FooterSection';
 import { InteractiveTileGrid } from './components/InteractiveTileGrid';
 
@@ -20,22 +19,14 @@ import { FoundersFRPSection } from './components/FoundersFRPSection';
 import { SectionDivider } from './components/SectionDivider';
 
 export const AXLandingView: React.FC = () => {
-  const {
-    isModalOpen,
-    isSubmitting,
-    isSuccess,
-    errors,
-    openModal,
-    closeModal,
-    submitApplication,
-    clearError,
-  } = useApplicationController();
+  const navigate = useNavigate();
+  const handleApplyClick = () => navigate('/apply');
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
 
       {/* Navigation Header */}
-      <Navbar onApplyClick={openModal} />
+      <Navbar onApplyClick={handleApplyClick} />
 
       {/* Hero Wrapper containing Hero and Stats Card */}
       <div className="hero-wrapper">
@@ -49,7 +40,7 @@ export const AXLandingView: React.FC = () => {
         <HeroSection />
 
         {/* Stats Card */}
-        <StatsCard onApplyClick={openModal} />
+        <StatsCard onApplyClick={handleApplyClick} />
       </div>
 
       {/* Main Sections */}
@@ -61,29 +52,18 @@ export const AXLandingView: React.FC = () => {
           <WhatWeDoSection />
           <SectionDivider />
           <KeepYouAheadSection />
-          <FounderJourneySection onApplyClick={openModal} />
-          <FounderReadinessSection onApplyClick={openModal} />
+          <FounderJourneySection onApplyClick={handleApplyClick} />
+          <FounderReadinessSection onApplyClick={handleApplyClick} />
           <SectionDivider />
           <MentorsSection />
           <SectionDivider />
-          <FoundersFRPSection onApplyClick={openModal} />
+          <FoundersFRPSection onApplyClick={handleApplyClick} />
           <SectionDivider />
           <OurApproachSection />
       </main>
 
       {/* Footer */}
       <FooterSection />
-
-      {/* Application Form Modal */}
-      <ApplicationModal
-        isOpen={isModalOpen}
-        isSubmitting={isSubmitting}
-        isSuccess={isSuccess}
-        errors={errors}
-        onClose={closeModal}
-        onSubmit={submitApplication}
-        clearError={clearError}
-      />
     </div>
   );
 };

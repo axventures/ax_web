@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Target, Compass, Heart, BookOpen, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { ApplicationModal } from './components/ApplicationModal';
-import { useApplicationController } from '../controllers/useApplicationController';
 import { TeamSection } from './components/TeamSection';
 
 const tabs = ['Our Story', 'Vision & Mission', 'Our Philosophy'] as const;
@@ -11,20 +9,13 @@ type TabName = typeof tabs[number];
 
 export const AboutPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabName>('Our Story');
-  const {
-    isModalOpen,
-    isSubmitting,
-    isSuccess,
-    errors,
-    openModal,
-    closeModal,
-    submitApplication,
-    clearError,
-  } = useApplicationController();
+
+  const navigate = useNavigate();
+  const handleApplyClick = () => navigate('/apply');
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#fafafa' }}>
-      <Navbar onApplyClick={openModal} />
+      <Navbar onApplyClick={handleApplyClick} />
 
       {/* Hero Header */}
       <section
@@ -184,17 +175,6 @@ export const AboutPage: React.FC = () => {
       >
         <p>© {new Date().getFullYear()} AX Ventures. All rights reserved.</p>
       </footer>
-
-      {/* Application Modal */}
-      <ApplicationModal
-        isOpen={isModalOpen}
-        isSubmitting={isSubmitting}
-        isSuccess={isSuccess}
-        errors={errors}
-        onClose={closeModal}
-        onSubmit={submitApplication}
-        clearError={clearError}
-      />
     </div>
   );
 };

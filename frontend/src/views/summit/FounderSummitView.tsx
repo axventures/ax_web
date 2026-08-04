@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './summit.css';
 import { SummitHero } from './SummitHero';
 import { SummitAudience } from './SummitAudience';
@@ -9,24 +10,15 @@ import { SummitVenue } from './SummitVenue';
 import { SummitPassAndFAQ } from './SummitPassAndFAQ';
 import { SummitFooter } from './SummitFooter';
 import { Navbar } from '../components/Navbar';
-import { useApplicationController } from '../../controllers/useApplicationController';
-import { ApplicationModal } from '../components/ApplicationModal';
 
 export const FounderSummitView: React.FC = () => {
-  const {
-    isModalOpen,
-    isSubmitting,
-    isSuccess,
-    errors,
-    openModal,
-    closeModal,
-    submitApplication,
-    clearError,
-  } = useApplicationController();
+
+  const navigate = useNavigate();
+  const handleApplyClick = () => navigate('/apply');
 
   return (
     <div className="summit-wrapper" style={{ minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-      <Navbar onApplyClick={openModal} />
+      <Navbar onApplyClick={handleApplyClick} />
       
       <SummitHero />
       <SummitAudience />
@@ -36,15 +28,6 @@ export const FounderSummitView: React.FC = () => {
       <SummitVenue />
       <SummitPassAndFAQ />
       <SummitFooter />
-      <ApplicationModal
-        isOpen={isModalOpen}
-        isSubmitting={isSubmitting}
-        isSuccess={isSuccess}
-        errors={errors}
-        onClose={closeModal}
-        onSubmit={submitApplication}
-        clearError={clearError}
-      />
     </div>
   );
 };

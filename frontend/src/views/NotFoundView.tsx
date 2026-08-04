@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Navbar } from './components/Navbar';
+import { useNavigate } from 'react-router-dom';
 import { FooterSection } from './components/FooterSection';
 
 export const NotFoundView: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#fafafa' }}>
-      <Navbar onApplyClick={() => window.location.href = '/'} />
+      <Navbar onApplyClick={() => navigate('/apply')} />
 
       <main style={{
         flexGrow: 1, 

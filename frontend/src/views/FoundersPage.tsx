@@ -1,41 +1,23 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { ApplicationModal } from './components/ApplicationModal';
-import { useApplicationController } from '../controllers/useApplicationController';
 import { FoundersFRPSection } from './components/FoundersFRPSection';
 import { FooterSection } from './components/FooterSection';
 
 export const FoundersPage: React.FC = () => {
-  const {
-    isModalOpen,
-    isSubmitting,
-    isSuccess,
-    errors,
-    openModal,
-    closeModal,
-    submitApplication,
-    clearError,
-  } = useApplicationController();
+
+  const navigate = useNavigate();
+  const handleApplyClick = () => navigate('/apply');
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#fcfaff' }}>
-      <Navbar onApplyClick={openModal} />
+      <Navbar onApplyClick={handleApplyClick} />
 
       <main style={{ flexGrow: 1, paddingTop: '120px' }}>
-        <FoundersFRPSection onApplyClick={openModal} />
+        <FoundersFRPSection onApplyClick={handleApplyClick} />
       </main>
 
       <FooterSection />
 
-      <ApplicationModal
-        isOpen={isModalOpen}
-        isSubmitting={isSubmitting}
-        isSuccess={isSuccess}
-        errors={errors}
-        onClose={closeModal}
-        onSubmit={submitApplication}
-        clearError={clearError}
-      />
     </div>
   );
 };

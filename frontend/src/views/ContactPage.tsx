@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Globe, SendHorizontal, Instagram, Linkedin, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { FooterSection } from './components/FooterSection';
 import { InteractiveTileGrid } from './components/InteractiveTileGrid';
@@ -38,7 +38,10 @@ export const ContactPage: React.FC = () => {
     console.log('Form submitted:', formData);
     alert('Message sent successfully!');
     setFormData({ fullName: '', contactNumber: '', email: '', message: '' });
+    setFormData({ fullName: '', contactNumber: '', email: '', message: '' });
   };
+
+  const navigate = useNavigate();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -46,7 +49,7 @@ export const ContactPage: React.FC = () => {
         
         {/* Navigation Header */}
         <div style={{ position: 'relative', zIndex: 100 }}>
-          <Navbar onApplyClick={() => {}} />
+          <Navbar onApplyClick={() => navigate('/apply')} />
         </div>
 
         {/* Interactive tile grid — covers full background */}
