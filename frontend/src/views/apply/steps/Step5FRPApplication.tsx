@@ -10,7 +10,7 @@ export const Step5FRPApplication: React.FC = () => {
 
   React.useEffect(() => {
     // Forcefully clear any ghost errors that RHF might have cached from previous step validations
-    clearErrors(['whyJoinFRP', 'expectations', 'hearAboutUs', 'declaration']);
+    clearErrors(['whyJoinFRP', 'hearAboutUs', 'declaration']);
   }, [clearErrors]);
 
   return (
@@ -34,13 +34,7 @@ export const Step5FRPApplication: React.FC = () => {
           required
         />
 
-        <FormInput
-          name="expectations"
-          label="What are your expectations from this program?"
-          as="textarea"
-          placeholder="e.g. Seeking funding, looking for a co-founder, need help with GTM..."
-          required
-        />
+
 
         <FormSelect
           name="hearAboutUs"
@@ -49,10 +43,14 @@ export const Step5FRPApplication: React.FC = () => {
           options={[
             { label: 'LinkedIn', value: 'LinkedIn' },
             { label: 'Instagram', value: 'Instagram' },
-            { label: 'Twitter / X', value: 'Twitter / X' },
-            { label: 'Referral / Word of Mouth', value: 'Referral / Word of Mouth' },
-            { label: 'Event / Conference', value: 'Event / Conference' },
-            { label: 'Search Engine (Google, etc.)', value: 'Search Engine (Google, etc.)' },
+            { label: 'Facebook', value: 'Facebook' },
+            { label: 'WhatsApp', value: 'WhatsApp' },
+            { label: 'Friend / Referral', value: 'Friend / Referral' },
+            { label: 'Google Search', value: 'Google Search' },
+            { label: 'Startup Community', value: 'Startup Community' },
+            { label: 'College / University', value: 'College / University' },
+            { label: 'Incubator / Accelerator', value: 'Incubator / Accelerator' },
+            { label: 'Event', value: 'Event' },
             { label: 'Other', value: 'Other' },
           ]}
         />

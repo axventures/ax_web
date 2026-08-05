@@ -3,15 +3,11 @@ import { useFormContext } from 'react-hook-form';
 import { FormInput } from '../components/FormInput';
 import { FormRadioGroup } from '../components/FormRadioGroup';
 import { FormSelect } from '../components/FormSelect';
-import { FormCheckboxGroup } from '../components/FormCheckboxGroup';
 import { motion } from 'framer-motion';
 
 export const Step3BusinessDetails: React.FC = () => {
   const { watch } = useFormContext();
-  const hasIP = watch('ip');
   const businessSegment = watch('businessSegment');
-  const lookingForInvestment = watch('lookingForInvestment');
-  const lookingForMentorship = watch('lookingForMentorship');
 
   return (
     <motion.div
@@ -36,51 +32,44 @@ export const Step3BusinessDetails: React.FC = () => {
           ]}
         />
 
-        {hasIP === 'Yes' && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            <FormInput
-              name="ipDescription"
-              label="IP Description"
-              as="textarea"
-              placeholder="Describe your patents, trademarks, or proprietary tech..."
-              required
-            />
-          </motion.div>
-        )}
-
         <FormSelect
           name="customerFocus"
           label="Customer Focus"
           required
           options={[
-            { label: 'B2B (Business to Business)', value: 'B2B' },
-            { label: 'B2C (Business to Consumer)', value: 'B2C' },
-            { label: 'B2G (Business to Government)', value: 'B2G' },
+            { label: 'B2B', value: 'B2B' },
+            { label: 'B2C', value: 'B2C' },
+            { label: 'B2G', value: 'B2G' },
             { label: 'B2B2C', value: 'B2B2C' },
-            { label: 'D2C (Direct to Consumer)', value: 'D2C' },
+            { label: 'D2C', value: 'D2C' },
           ]}
         />
 
         <FormSelect
           name="businessSegment"
-          label="Business Segment / Industry"
+          label="Business Segment"
           required
           options={[
-            { label: 'SaaS / Software', value: 'SaaS / Software' },
-            { label: 'Hardware / IoT', value: 'Hardware / IoT' },
-            { label: 'E-commerce / D2C', value: 'E-commerce / D2C' },
-            { label: 'FinTech', value: 'FinTech' },
-            { label: 'HealthTech / MedTech', value: 'HealthTech / MedTech' },
-            { label: 'EdTech', value: 'EdTech' },
-            { label: 'AgriTech', value: 'AgriTech' },
-            { label: 'DeepTech (AI/ML/Web3)', value: 'DeepTech (AI/ML/Web3)' },
             { label: 'Food & Beverage (F&B)', value: 'Food & Beverage (F&B)' },
-            { label: 'Logistics & Supply Chain', value: 'Logistics & Supply Chain' },
-            { label: 'CleanTech / Sustainability', value: 'CleanTech / Sustainability' },
+            { label: 'Fashion & Apparel', value: 'Fashion & Apparel' },
+            { label: 'Beauty & Personal Care', value: 'Beauty & Personal Care' },
+            { label: 'Health & Wellness', value: 'Health & Wellness' },
+            { label: 'Home & Living', value: 'Home & Living' },
+            { label: 'Consumer Electronics & Gadgets', value: 'Consumer Electronics & Gadgets' },
+            { label: 'Baby & Kids', value: 'Baby & Kids' },
+            { label: 'Pet Care', value: 'Pet Care' },
+            { label: 'Personal Services (Consumer-facing Brands)', value: 'Personal Services (Consumer-facing Brands)' },
+            { label: 'Lifestyle & Accessories', value: 'Lifestyle & Accessories' },
+            { label: 'Mobility & Auto (Consumer-facing)', value: 'Mobility & Auto (Consumer-facing)' },
+            { label: 'Digital-First Consumer Brands', value: 'Digital-First Consumer Brands' },
+            { label: 'Luxury & Premium Experiences', value: 'Luxury & Premium Experiences' },
+            { label: 'Sustainable / Conscious Brands', value: 'Sustainable / Conscious Brands' },
+            { label: 'Defence, Aerospace & Technology', value: 'Defence, Aerospace & Technology' },
+            { label: 'SportsTech & Gaming', value: 'SportsTech & Gaming' },
+            { label: 'Social Impact, Rural Livelihood & Sustainability', value: 'Social Impact, Rural Livelihood & Sustainability' },
+            { label: 'Manufacturing', value: 'Manufacturing' },
+            { label: 'Distribution / Distributor', value: 'Distribution / Distributor' },
+            { label: 'Import / Exports', value: 'Import / Exports' },
             { label: 'Others', value: 'Others' },
           ]}
         />
@@ -93,8 +82,8 @@ export const Step3BusinessDetails: React.FC = () => {
           >
             <FormInput
               name="businessSegmentOther"
-              label="Specify Business Segment"
-              placeholder="e.g. SpaceTech, Agritech..."
+              label="If Others, please specify"
+              placeholder="Please specify..."
               required
             />
           </motion.div>
@@ -102,7 +91,7 @@ export const Step3BusinessDetails: React.FC = () => {
 
         <FormSelect
           name="revenueStage"
-          label="Current Revenue Stage"
+          label="Business Stage (Revenue Per Annum)"
           required
           options={[
             { label: 'Pre-Revenue Stage', value: 'Pre-Revenue Stage' },
@@ -118,7 +107,7 @@ export const Step3BusinessDetails: React.FC = () => {
 
         <FormSelect
           name="fundingStatus"
-          label="Current Funding Status"
+          label="Funding Status"
           required
           options={[
             { label: 'Bootstrapped', value: 'Bootstrapped' },
@@ -131,64 +120,26 @@ export const Step3BusinessDetails: React.FC = () => {
 
         <FormRadioGroup
           name="lookingForInvestment"
-          label="Are you looking for investment currently?"
+          label="Are you looking for funding?"
           required
           options={[
             { label: 'Yes', value: 'Yes' },
             { label: 'No', value: 'No' },
           ]}
         />
-
-        {lookingForInvestment === 'Yes' && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            <FormInput
-              name="fundingAmount"
-              label="How much are you looking to raise?"
-              placeholder="e.g. $500k, ₹1 Crore..."
-              required
-            />
-          </motion.div>
-        )}
 
         <FormRadioGroup
           name="lookingForMentorship"
-          label="Are you looking for Mentorship / Guidance?"
+          label="Are you looking for business mentorship from experts?"
           required
           options={[
             { label: 'Yes', value: 'Yes' },
             { label: 'No', value: 'No' },
           ]}
         />
-
-        {lookingForMentorship === 'Yes' && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            <FormCheckboxGroup
-              name="mentorshipAreas"
-              label="Which areas do you need mentorship in? (Select all that apply)"
-              required
-              options={[
-                { label: 'Fundraising & Pitching', value: 'Fundraising & Pitching' },
-                { label: 'Go-to-Market Strategy', value: 'Go-to-Market Strategy' },
-                { label: 'Product Development', value: 'Product Development' },
-                { label: 'Scaling Operations', value: 'Scaling Operations' },
-                { label: 'Hiring & Team Building', value: 'Hiring & Team Building' },
-                { label: 'Legal & Compliance', value: 'Legal & Compliance' },
-                { label: 'Marketing & Branding', value: 'Marketing & Branding' },
-                { label: 'Financial Modeling', value: 'Financial Modeling' },
-              ]}
-            />
-          </motion.div>
-        )}
 
       </div>
     </motion.div>
   );
 };
+

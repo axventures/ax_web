@@ -40,30 +40,22 @@ export const FRPApplicationPage: React.FC = () => {
       socialMedia: '',
       companyName: '',
       yearOfIncorporation: '',
-      legalEntity: '',
+      legalEntity: undefined,
       gstRegistered: undefined,
-      gstNumber: '',
       website: '',
       cityState: '',
       companyDescription: '',
       productService: '',
       ip: undefined,
-      ipDescription: '',
       customerFocus: undefined,
       businessSegment: '',
       businessSegmentOther: '',
       revenueStage: undefined,
       fundingStatus: undefined,
       lookingForInvestment: undefined,
-      fundingAmount: '',
       lookingForMentorship: undefined,
-      mentorshipAreas: [],
       currentTools: '',
-      teamSize: '',
-      monthlyActiveCustomers: '',
-      biggestChallenge: '',
       whyJoinFRP: '',
-      expectations: '',
       hearAboutUs: undefined,
       declaration: false,
     }
@@ -138,17 +130,13 @@ export const FRPApplicationPage: React.FC = () => {
         break;
       case 2:
         fieldsToValidate = ['companyName', 'yearOfIncorporation', 'legalEntity', 'gstRegistered', 'website', 'cityState', 'companyDescription', 'productService'];
-        if (getValues('gstRegistered') === 'Yes') fieldsToValidate.push('gstNumber');
         break;
       case 3:
         fieldsToValidate = ['ip', 'customerFocus', 'businessSegment', 'revenueStage', 'fundingStatus', 'lookingForInvestment', 'lookingForMentorship'];
-        if (getValues('ip') === 'Yes') fieldsToValidate.push('ipDescription');
         if (getValues('businessSegment') === 'Other') fieldsToValidate.push('businessSegmentOther');
-        if (getValues('lookingForInvestment') === 'Yes') fieldsToValidate.push('fundingAmount');
-        if (getValues('lookingForMentorship') === 'Yes') fieldsToValidate.push('mentorshipAreas');
         break;
       case 4:
-        fieldsToValidate = ['currentTools', 'teamSize', 'monthlyActiveCustomers', 'biggestChallenge'];
+        fieldsToValidate = ['currentTools'];
         break;
       default:
         break;
@@ -188,7 +176,6 @@ export const FRPApplicationPage: React.FC = () => {
       formData.append('entry.1800196945', data.yearOfIncorporation);
       formData.append('entry.8620196', data.legalEntity);
       if (data.gstRegistered) formData.append('entry.349514980', data.gstRegistered);
-      formData.append('entry.219077940', data.gstNumber || '');
       formData.append('entry.1962618055', data.website || '');
       formData.append('entry.1453979368', data.cityState);
       formData.append('entry.505650792', data.companyDescription);
@@ -196,31 +183,19 @@ export const FRPApplicationPage: React.FC = () => {
       
       // Step 3
       if (data.ip) formData.append('entry.1056825011', data.ip);
-      formData.append('entry.1830933875', data.ipDescription || '');
       if (data.customerFocus) formData.append('entry.272613480', data.customerFocus);
       formData.append('entry.606459004', data.businessSegment);
       formData.append('entry.2088586275', data.businessSegmentOther || '');
       if (data.revenueStage) formData.append('entry.1459170982', data.revenueStage);
       if (data.fundingStatus) formData.append('entry.1979542946', data.fundingStatus);
       if (data.lookingForInvestment) formData.append('entry.620680348', data.lookingForInvestment);
-      formData.append('entry.252446569', data.fundingAmount || '');
       if (data.lookingForMentorship) formData.append('entry.168204896', data.lookingForMentorship);
-      
-      if (data.mentorshipAreas && data.mentorshipAreas.length > 0) {
-        data.mentorshipAreas.forEach(area => {
-          formData.append('entry.489911646', area);
-        });
-      }
       
       // Step 4
       formData.append('entry.902708671', data.currentTools);
-      formData.append('entry.1224274060', data.teamSize);
-      formData.append('entry.868815797', data.monthlyActiveCustomers);
-      formData.append('entry.1966462283', data.biggestChallenge);
       
       // Step 5
       formData.append('entry.1958409274', data.whyJoinFRP);
-      formData.append('entry.1635697151', data.expectations);
       formData.append('entry.1755611175', data.hearAboutUs);
       if (data.declaration) {
         formData.append('entry.1203904325', 'I declare that all the information provided above is true and accurate to the best of my knowledge.');
