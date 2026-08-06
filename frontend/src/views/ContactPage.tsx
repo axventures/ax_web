@@ -92,9 +92,9 @@ export const ContactPage: React.FC = () => {
                 </h1>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  <a href="mailto:info@axventures.in" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#475569', textDecoration: 'none', fontSize: '1.1rem', fontWeight: 500, transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#1801AD'} onMouseLeave={(e) => e.currentTarget.style.color = '#475569'}>
+                  <a href="mailto:axventuresindia@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#475569', textDecoration: 'none', fontSize: '1.1rem', fontWeight: 500, transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#1801AD'} onMouseLeave={(e) => e.currentTarget.style.color = '#475569'}>
                     <Mail size={22} color="#1801AD" />
-                    info@axventures.in
+                    axventuresindia@gmail.com
                   </a>
                   <a href="https://axventures.in" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#475569', textDecoration: 'none', fontSize: '1.1rem', fontWeight: 500, transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#1801AD'} onMouseLeave={(e) => e.currentTarget.style.color = '#475569'}>
                     <Globe size={22} color="#1801AD" />

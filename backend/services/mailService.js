@@ -135,8 +135,8 @@ export const sendWelcomeEmail = async (email, fullName, companyName) => {
 
     try {
         const { data, error } = await resend.emails.send({
-            from: 'AX Ventures <info@axventures.in>',
-            to: email, // Note: You must verify axventures.in in Resend for this to work
+            from: 'AX Ventures <axventuresindia@gmail.com>',
+            to: email, // Note: You must verify the from domain in Resend for this to work
             subject: `Welcome to AX Ventures - ${companyName}`,
             html: htmlContent
         });

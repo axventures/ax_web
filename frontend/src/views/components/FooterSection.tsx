@@ -57,7 +57,7 @@ export const FooterSection: React.FC = () => {
             <div className="footer-column">
               <h4 className="footer-col-title" style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.8rem', marginBottom: '24px' }}>CONTACT</h4>
               <ul className="footer-links">
-                <li><a href="mailto:info@axventures.in" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>info@axventures.in</a></li>
+                <li><a href="mailto:axventuresindia@gmail.com" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>axventuresindia@gmail.com</a></li>
               </ul>
               
               <div className="footer-socials-horizontal" style={{ display: 'flex', gap: '12px', marginTop: '24px', alignItems: 'center' }}>
