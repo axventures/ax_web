@@ -144,11 +144,11 @@ export const sendWelcomeEmail = async (email, fullName, companyName) => {
         const info = await transporter.sendMail({
             from: '"AX Ventures" <' + process.env.SMTP_USER + '>',
             to: email, 
-            subject: \`Welcome to AX Ventures - \${companyName}\`,
+            subject: `Welcome to AX Ventures - ${companyName}`,
             html: htmlContent
         });
 
-        console.log(\`[MailService] Welcome email successfully sent to \${email} via Nodemailer. MessageId: \${info.messageId}\`);
+        console.log(`[MailService] Welcome email successfully sent to ${email} via Nodemailer. MessageId: ${info.messageId}`);
         return true;
     } catch (error) {
         console.error("[MailService] Exception while sending welcome email via Nodemailer:", error);
