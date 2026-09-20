@@ -3,14 +3,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-// Create reusable transporter object using standard SMTP transport
-const transporter = nodemailer.createTransport({
-    service: 'gmail', // Use 'gmail' for Gmail, or host: 'smtp.gmail.com', port: 465
-    auth: {
-        user: process.env.SMTP_USER, // e.g. axventuresindia@gmail.com
-        pass: process.env.SMTP_PASS  // The 16-character Google App Password
-    }
-});
+// Transporter disabled as email functionality is currently turned off
+// const transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//         user: process.env.SMTP_USER,
+//         pass: process.env.SMTP_PASS
+//     }
+// });
 
 export const sendWelcomeEmail = async (email, fullName, companyName) => {
     const htmlContent = `
@@ -140,18 +140,6 @@ export const sendWelcomeEmail = async (email, fullName, companyName) => {
         </html>
         `
 
-    try {
-        const info = await transporter.sendMail({
-            from: '"AX Ventures" <' + process.env.SMTP_USER + '>',
-            to: email, 
-            subject: `Welcome to AX Ventures - ${companyName}`,
-            html: htmlContent
-        });
-
-        console.log(`[MailService] Welcome email successfully sent to ${email} via Nodemailer. MessageId: ${info.messageId}`);
-        return true;
-    } catch (error) {
-        console.error("[MailService] Exception while sending welcome email via Nodemailer:", error);
-        return false;
-    }
+    console.log(`[MailService] Email functionality is disabled. Skipped sending email to: ${email} (${fullName} - ${companyName})`);
+    return true;
 };
