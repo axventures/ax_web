@@ -43,9 +43,11 @@ export const Step2CompanyInfo: React.FC = () => {
             required
             options={[
               { label: 'Private Limited', value: 'Private Limited' },
-              { label: 'LLP', value: 'LLP' },
-              { label: 'Registered Partnership', value: 'Registered Partnership' },
-              { label: 'Proprietorship', value: 'Proprietorship' },
+              { label: 'Public Limited', value: 'Public Limited' },
+              { label: 'Limited Liability Partnership (LLP)', value: 'Limited Liability Partnership (LLP)' },
+              { label: 'Partnership', value: 'Partnership' },
+              { label: 'One Person Company (OPC)', value: 'One Person Company (OPC)' },
+              { label: 'Sole Proprietorship', value: 'Sole Proprietorship' },
             ]}
           />
         </div>

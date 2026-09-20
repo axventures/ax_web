@@ -10,7 +10,7 @@ export const frpApplicationSchema = z.object({
   // Step 2: Company Info
   companyName: z.string().min(2, 'Company Name is required'),
   yearOfIncorporation: z.string().regex(/^\d{4}$/, 'Must be a 4-digit year'),
-  legalEntity: z.enum(['Private Limited', 'LLP', 'Registered Partnership', 'Proprietorship'] as const, { message: 'Please select a legal entity' }),
+  legalEntity: z.enum(['Private Limited', 'Public Limited', 'Limited Liability Partnership (LLP)', 'Partnership', 'One Person Company (OPC)', 'Sole Proprietorship'] as const, { message: 'Please select a legal entity' }),
   gstRegistered: z.enum(['Yes', 'No'] as const, { message: 'Please select an option' }),
   website: z.string().url('Must be a valid URL').or(z.string().optional().refine(val => !val || val === '', { message: 'Must be a valid URL' })),
   cityState: z.string().min(2, 'City & State is required'),
@@ -32,7 +32,7 @@ export const frpApplicationSchema = z.object({
 
   // Step 5: FRP Application
   whyJoinFRP: z.string().min(20, 'Please tell us why you want to join (min 20 characters)'),
-  hearAboutUs: z.enum(['LinkedIn', 'Instagram', 'Facebook', 'WhatsApp', 'Friend / Referral', 'Google Search', 'Startup Community', 'College / University', 'Incubator / Accelerator', 'Event', 'Other'] as const, { message: 'Please select an option' }),
+  hearAboutUs: z.enum(['Instagram', 'LinkedIn', 'Event / Conference', 'Referral / Word of Mouth', 'Search Engine (Google, etc.)', 'Twitter / X', 'Other'] as const, { message: 'Please select an option' }),
   declaration: z.boolean().refine(val => val === true, {
     message: 'You must agree to the declaration',
   }),

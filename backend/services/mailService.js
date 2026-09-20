@@ -1,9 +1,16 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Create reusable transporter object using standard SMTP transport
+const transporter = nodemailer.createTransport({
+    service: 'gmail', // Use 'gmail' for Gmail, or host: 'smtp.gmail.com', port: 465
+    auth: {
+        user: process.env.SMTP_USER, // e.g. axventuresindia@gmail.com
+        pass: process.env.SMTP_PASS  // The 16-character Google App Password
+    }
+});
 
 export const sendWelcomeEmail = async (email, fullName, companyName) => {
     const htmlContent = `
@@ -134,22 +141,17 @@ export const sendWelcomeEmail = async (email, fullName, companyName) => {
         `
 
     try {
-        const { data, error } = await resend.emails.send({
-            from: 'AX Ventures <axventuresindia@gmail.com>',
-            to: email, // Note: You must verify the from domain in Resend for this to work
-            subject: `Welcome to AX Ventures - ${companyName}`,
+        const info = await transporter.sendMail({
+            from: '"AX Ventures" <' + process.env.SMTP_USER + '>',
+            to: email, 
+            subject: \`Welcome to AX Ventures - \${companyName}\`,
             html: htmlContent
         });
 
-        if (error) {
-            console.error("[MailService] Error from Resend:", error);
-            return false;
-        }
-
-        console.log(`[MailService] Welcome email successfully sent to ${email} via Resend. ID: ${data?.id}`);
+        console.log(\`[MailService] Welcome email successfully sent to \${email} via Nodemailer. MessageId: \${info.messageId}\`);
         return true;
     } catch (error) {
-        console.error("[MailService] Exception while sending welcome email via Resend:", error);
+        console.error("[MailService] Exception while sending welcome email via Nodemailer:", error);
         return false;
     }
 };

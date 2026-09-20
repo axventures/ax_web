@@ -5,13 +5,8 @@ import { FormSelect } from '../components/FormSelect';
 import { motion } from 'framer-motion';
 
 export const Step5FRPApplication: React.FC = () => {
-  const { register, formState: { errors }, clearErrors } = useFormContext();
+  const { register, formState: { errors } } = useFormContext();
   const error = errors['declaration']?.message as string;
-
-  React.useEffect(() => {
-    // Forcefully clear any ghost errors that RHF might have cached from previous step validations
-    clearErrors(['whyJoinFRP', 'hearAboutUs', 'declaration']);
-  }, [clearErrors]);
 
   return (
     <motion.div
@@ -41,16 +36,12 @@ export const Step5FRPApplication: React.FC = () => {
           label="How did you hear about us?"
           required
           options={[
-            { label: 'LinkedIn', value: 'LinkedIn' },
             { label: 'Instagram', value: 'Instagram' },
-            { label: 'Facebook', value: 'Facebook' },
-            { label: 'WhatsApp', value: 'WhatsApp' },
-            { label: 'Friend / Referral', value: 'Friend / Referral' },
-            { label: 'Google Search', value: 'Google Search' },
-            { label: 'Startup Community', value: 'Startup Community' },
-            { label: 'College / University', value: 'College / University' },
-            { label: 'Incubator / Accelerator', value: 'Incubator / Accelerator' },
-            { label: 'Event', value: 'Event' },
+            { label: 'LinkedIn', value: 'LinkedIn' },
+            { label: 'Event / Conference', value: 'Event / Conference' },
+            { label: 'Referral / Word of Mouth', value: 'Referral / Word of Mouth' },
+            { label: 'Search Engine (Google, etc.)', value: 'Search Engine (Google, etc.)' },
+            { label: 'Twitter / X', value: 'Twitter / X' },
             { label: 'Other', value: 'Other' },
           ]}
         />

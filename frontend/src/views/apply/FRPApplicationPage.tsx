@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Send, CheckCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import './frp-tailwind.css';
@@ -26,7 +26,22 @@ export const FRPApplicationPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  // Helper to map fields to their respective steps
+  const getStepForField = (fieldName: string) => {
+    const step1Fields = ['fullName', 'email', 'whatsapp', 'socialMedia'];
+    const step2Fields = ['companyName', 'yearOfIncorporation', 'legalEntity', 'gstRegistered', 'website', 'cityState', 'companyDescription', 'productService'];
+    const step3Fields = ['ip', 'customerFocus', 'businessSegment', 'revenueStage', 'fundingStatus', 'lookingForInvestment', 'lookingForMentorship', 'businessSegmentOther'];
+    const step4Fields = ['currentTools'];
+    
+    if (step1Fields.includes(fieldName)) return 1;
+    if (step2Fields.includes(fieldName)) return 2;
+    if (step3Fields.includes(fieldName)) return 3;
+    if (step4Fields.includes(fieldName)) return 4;
+    return 5;
+  };
 
   // Initialize form with Zod schema
   const methods = useForm<FRPApplicationData>({
@@ -94,6 +109,7 @@ export const FRPApplicationPage: React.FC = () => {
 
   // Save step on change
   useEffect(() => {
+    setSubmitError(null); // Clear errors when navigating between steps
     const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (savedData) {
       try {
@@ -121,6 +137,7 @@ export const FRPApplicationPage: React.FC = () => {
   };
 
   const handleNext = async () => {
+    setSubmitError(null);
     // Determine fields to validate based on current step
     let fieldsToValidate: (keyof FRPApplicationData)[] = [];
     
@@ -133,7 +150,7 @@ export const FRPApplicationPage: React.FC = () => {
         break;
       case 3:
         fieldsToValidate = ['ip', 'customerFocus', 'businessSegment', 'revenueStage', 'fundingStatus', 'lookingForInvestment', 'lookingForMentorship'];
-        if (getValues('businessSegment') === 'Other') fieldsToValidate.push('businessSegmentOther');
+        if (getValues('businessSegment') === 'Others') fieldsToValidate.push('businessSegmentOther');
         break;
       case 4:
         fieldsToValidate = ['currentTools'];
@@ -324,16 +341,46 @@ export const FRPApplicationPage: React.FC = () => {
             onSubmit={(e) => {
               e.preventDefault();
               if (currentStep === TOTAL_STEPS) {
-                void methods.handleSubmit(onSubmit as any)(e);
+                void methods.handleSubmit(onSubmit, (errors) => {
+                  console.error('Validation failed:', errors);
+                  
+                  // Find the first step that has an error
+                  const firstErrorField = Object.keys(errors)[0];
+                  if (firstErrorField) {
+                    const stepWithErr = getStepForField(firstErrorField);
+                    setSubmitError(`Please fix the errors in Step ${stepWithErr} before submitting.`);
+                    if (stepWithErr !== currentStep) {
+                      setCurrentStep(stepWithErr);
+                      scrollToTop();
+                    }
+                  }
+                })(e);
               } else {
-                handleNext();
+                void handleNext();
               }
-            }} 
+            }}
             className="flex flex-col flex-1 relative"
           >
             {/* Form Card */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-12 mb-10 min-h-[400px]">
               <AnimatePresence mode="wait">
+                {submitError && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="mb-8 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 flex items-start gap-3"
+                  >
+                    <div className="mt-0.5">
+                      <AlertCircle size={20} className="text-red-500" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm">Action Required</p>
+                      <p className="text-sm mt-1">{submitError}</p>
+                    </div>
+                  </motion.div>
+                )}
+                
                 {currentStep === 1 && <Step1PersonalInfo key="step1" />}
                 {currentStep === 2 && <Step2CompanyInfo key="step2" />}
                 {currentStep === 3 && <Step3BusinessDetails key="step3" />}
