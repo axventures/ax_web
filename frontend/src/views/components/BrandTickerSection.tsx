@@ -3,12 +3,15 @@ import React from 'react';
 const PARTNERS = [
   { name: 'Hustlify', font: "'Outfit', sans-serif", weight: '800', letterSpacing: '-0.03em' },
   { name: 'GrowCaptain', font: "'Georgia', serif", weight: 'bold', letterSpacing: '0.1em' },
-  { name: 'Tea & Cup', font: "'Outfit', sans-serif", weight: '300', letterSpacing: '0.05em' },
-  { name: 'Calicut Angels', font: "'Outfit', sans-serif", weight: '500', letterSpacing: '-0.01em' },
-  { name: 'The Oglas', font: "'Georgia', serif", weight: '900', letterSpacing: '-0.05em' },
-  { name: 'myResto', font: "'Courier New', monospace", weight: 'bold', letterSpacing: '0.05em' },
-  { name: 'BENCHMARK', font: "'Times New Roman', serif", weight: 'normal', letterSpacing: '0.15em' },
-  { name: 'Accel', font: "'Outfit', sans-serif", weight: '700', letterSpacing: '-0.02em' },
+  { name: 'TheTravelShopee', font: "'Outfit', sans-serif", weight: '600', letterSpacing: '0.05em' },
+  { name: 'CALICUT ANGELS', font: "'Questrial', sans-serif", weight: '600', letterSpacing: '-0.01em' },
+  { name: 'MyResto', font: "'Outfit', sans-serif", weight: 'bold', letterSpacing: '0.05em' },
+  { name: 'BYCE', font: "'Zen Dots', cursive, sans-serif", weight: '400', letterSpacing: '0.04em' },
+  { name: 'GoRentIt.', font: "'Montserrat', sans-serif", weight: '800', letterSpacing: '-0.03em' },
+  { name: 'BAAB ADVISORY', font: "'Lexend Giga', sans-serif", weight: '500', letterSpacing: '0.106em' },
+  { name: 'tequorra', font: "'inter', sans-serif", weight: '400', letterSpacing: '-0.02em' },
+  { name: 'the growth company', font: "'Montserrat', sans-serif", weight: '700', letterSpacing: '-0.01em' },
+
 ];
 
 // Duplicate list to make infinite marquee effect seamless
