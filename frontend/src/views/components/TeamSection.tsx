@@ -4,26 +4,20 @@ import { SweepingDashedLine } from './DecorativeLines';
 const teamMembers = [
   {
     id: 1,
-    name: 'MOHAMED HAFEEF',
-    role: 'Founder & MD',
-    image: '/founders/Mohamed Hafeef   Founder & MD at AX Group of Corporation Pvt Ltd.png'
-  },
-  {
-    id: 2,
     name: 'BILAL',
     role: 'Founder & CEO',
     image: '/founders/ceo of ex ventures Bilal.png'
   },
   {
-    id: 3,
+    id: 2,
     name: 'SADAR SHANAVAS',
     role: 'Co-Founder & COO',
     image: '/founders/finance-Sadar Shanavas .png'
   },
   {
-    id: 4,
+    id: 3,
     name: 'HILMI K T',
-    role: 'Head of Operations',
+    role: 'Co-Founder & CTO',
     image: '/founders/hilmi.png'
   }
 ];
