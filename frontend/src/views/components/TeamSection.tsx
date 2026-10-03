@@ -1,4 +1,5 @@
 import React from 'react';
+import { User } from 'lucide-react';
 import { SweepingDashedLine } from './DecorativeLines';
 
 const teamMembers = [
@@ -6,19 +7,49 @@ const teamMembers = [
     id: 1,
     name: 'BILAL',
     role: 'Founder & CEO',
-    image: '/founders/ceo of ex ventures Bilal.png'
+    image: '/founders/bilal-ceo.jpg'
   },
   {
     id: 2,
     name: 'SADAR SHANAVAS',
     role: 'Co-Founder & COO',
-    image: '/founders/finance-Sadar Shanavas .png'
+    image: '/founders/sadar-coo.jpg'
   },
   {
     id: 3,
     name: 'HILMI K T',
     role: 'Co-Founder & CTO',
-    image: '/founders/hilmi.png'
+    image: '/founders/hilmi-cto.jpg'
+  },
+  {
+    id: 4,
+    name: 'ARATHI CHANDRASEKHARAN',
+    role: 'Human Resource Manager',
+    image: '/team/arathi_cc.jpg'
+  },
+  {
+    id: 5,
+    name: 'NADA MUHAMMED',
+    role: 'Operations Associate',
+    image: '/team/nada_muhammed.jpg'
+  },
+  {
+    id: 6,
+    name: 'MUHAMMED RAJEEH A M K',
+    role: 'Operations Associate',
+    image: '/team/muhammed_rajeeh.jpg'
+  },
+  {
+    id: 7,
+    name: 'SIBIN P',
+    role: 'Full-Stack Developer',
+    image: '/team/sibin_p.png'
+  },
+  {
+    id: 8,
+    name: 'SANGEETH KARUNAKARAN',
+    role: 'Full-Stack Developer',
+    image: '/team/sangeeth_karun.jpg'
   }
 ];
 
@@ -80,22 +111,47 @@ export const TeamSection: React.FC = () => {
                   overflow: 'hidden',
                   marginBottom: '20px',
                   backgroundColor: '#f5f5f5',
-                  borderRadius: '12px'
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'relative'
                 }}
               >
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  loading="lazy"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    transition: 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                />
+                {member.image ? (
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    loading="lazy"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
+                      color: 'var(--brand-blue)',
+                      transition: 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)'
+                    }}
+                  >
+                    <User size={64} strokeWidth={1.5} style={{ opacity: 0.4 }} />
+                    <span style={{ marginTop: '12px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                      AX Team
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Text info */}
