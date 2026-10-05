@@ -41,7 +41,7 @@ export const FooterSection: React.FC = () => {
               <ul className="footer-links" style={{ gap: '20px' }}>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#events">Events</a></li>
+                <li><a href="/founders-retreat">Events</a></li>
               </ul>
             </div>
             
