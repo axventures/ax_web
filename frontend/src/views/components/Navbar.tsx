@@ -10,7 +10,7 @@ interface NavbarProps {
 const DESKTOP_NAV_LINKS = [
   { label: 'Home', href: '/', isRoute: true },
   { label: 'About', href: '/about', isRoute: true },
-  { label: 'Events', href: '#', isRoute: false },
+  { label: 'Events', href: '/founders-retreat', isRoute: true },
   { label: 'Readiness', href: '/#readiness', isRoute: false },
   { label: 'Founders', href: '/#frp-founders', isRoute: false },
   { label: 'Contact', href: '/contact', isRoute: true },
@@ -19,7 +19,7 @@ const DESKTOP_NAV_LINKS = [
 const MOBILE_NAV_LINKS = [
   { label: 'Home', href: '/', isRoute: true },
   { label: 'About', href: '/about', isRoute: true },
-  { label: 'Events', href: '#', isRoute: false },
+  { label: 'Events', href: '/founders-retreat', isRoute: true },
   { label: 'Readiness', href: '/#readiness', isRoute: false },
   { label: 'Founders', href: '/founders', isRoute: true },
   { label: 'Contact', href: '/contact', isRoute: true },
@@ -73,14 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onApplyClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, label: string) => {
-    if (label === 'Events') {
-      e.preventDefault();
-      setIsEventsModalOpen(true);
-      setIsMobileMenuOpen(false);
-      return;
-    }
-
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, _label: string) => {
     if (href.startsWith('/#') && location.pathname === '/') {
       const targetId = href.substring(2);
       const targetElement = document.getElementById(targetId);

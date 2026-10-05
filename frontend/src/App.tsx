@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import AXLandingView from './views/AXLandingView';
 import AboutPage from './views/AboutPage';
-import { FounderSummitView } from './views/summit/FounderSummitView';
+import { FoundersRetreatView } from './views/summit/FoundersRetreatView';
 import { FoundersPage } from './views/FoundersPage';
 import { NotFoundView } from './views/NotFoundView';
 import { ContactPage } from './views/ContactPage';
@@ -26,7 +26,8 @@ function App() {
         <Route path="/" element={<AXLandingView />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/founder-summit" element={<FounderSummitView />} />
+        <Route path="/founders-retreat" element={<FoundersRetreatView />} />
+        <Route path="/founder-summit" element={<FoundersRetreatView />} />
         <Route path="/founders" element={<FoundersPage />} />
         <Route path="/apply" element={<FRPApplicationPage />} />
         <Route path="*" element={<NotFoundView />} />
