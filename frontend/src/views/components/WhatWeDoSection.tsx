@@ -24,7 +24,7 @@ const items = [
   "Execution Systems",
   "Investor Readiness",
   "Founder Community",
-  "Vision to Ventures",
+  "Founders Retreat",
   "Strategic Partnerships"
 ];
 
