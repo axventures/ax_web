@@ -38,7 +38,6 @@ export const ContactPage: React.FC = () => {
     console.log('Form submitted:', formData);
     alert('Message sent successfully!');
     setFormData({ fullName: '', contactNumber: '', email: '', message: '' });
-    setFormData({ fullName: '', contactNumber: '', email: '', message: '' });
   };
 
   const navigate = useNavigate();
