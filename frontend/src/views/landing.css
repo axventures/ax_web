@@ -1031,12 +1031,19 @@ a {
   animation: marquee 35s linear infinite;
 }
 
+.brand-marquee-track:hover {
+  animation-play-state: paused;
+}
+
 .brand-marquee-item {
   font-size: 1.35rem;
   color: #94a3b8;
   white-space: nowrap;
   user-select: none;
-  transition: color 0.3s ease;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
 .brand-marquee-item:hover {
