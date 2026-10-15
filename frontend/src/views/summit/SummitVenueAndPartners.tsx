@@ -39,7 +39,7 @@ export const SummitVenueAndPartners: React.FC = () => {
           <div className="summit-split-col" style={{ justifyContent: 'center' }}>
             <h2 className="summit-section-title dark-text">Experience The Venue</h2>
             <p className="summit-body-text dark-text">
-              This is a space designed for conversations—not just presentations.
+              This is a space designed for conversations, not just presentations.
             </p>
           </div>
           

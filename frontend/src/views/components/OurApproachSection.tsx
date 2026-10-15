@@ -34,7 +34,7 @@ export const OurApproachSection: React.FC = () => {
               with them.
             </h2>
             <p className="approach-desc">
-              We become operational partners in helping them build stronger companies — focused on execution, accountability, systems, and long-term value creation.
+              We become operational partners in helping them build stronger companies, focused on execution, accountability, systems, and long-term value creation.
             </p>
           </motion.div>
         </div>

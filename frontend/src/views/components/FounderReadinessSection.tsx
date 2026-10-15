@@ -52,8 +52,6 @@ const accordionData = [
     subtitle: "Active founders",
     content: [
       { company: "ArkytUP", founder: "Basil Mishaal Mathew", industry: "Extended Reality", stage: "Revenue Stage" },
-      { company: "Tomome", founder: "Anees", industry: "Pregnancy & Parenting", stage: "Revenue Stage" },
-      { company: "Kori", founder: "Muhammed Hafis", industry: "Food & Beverage", stage: "Idea Stage" },
       { company: "Servewise Solutions Pvt. Ltd.", founder: "Aravind Sekhar", industry: "Software Development / Service Marketplace", stage: "MVP Stage" }
     ],
     type: 'table'

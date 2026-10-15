@@ -26,7 +26,7 @@ const CHALLENGES: ChallengeData[] = [
   {
     id: 'CHALLENGE 02',
     name: 'Business',
-    duration: '75–90 MIN',
+    duration: '75-90 MIN',
     coreQuestion: 'Can you spot an opportunity, package an offer, and sell it immediately?',
     curiousBriefing:
       'Zero advertising budget. Zero prepared pitch decks. 15 minutes to take a raw market opportunity directly to real human beings and secure confirmed interest before the buzzer sounds.',
@@ -36,7 +36,7 @@ const CHALLENGES: ChallengeData[] = [
   {
     id: 'CHALLENGE 03',
     name: 'Decision Experiment',
-    duration: '45–50 MIN',
+    duration: '45-50 MIN',
     coreQuestion: 'When tempting new opportunities emerge, do you pivot or hold the line?',
     curiousBriefing:
       'Midway into execution, an alluring, lucrative new deal appears from an unexpected quarter. Do you stay, modify, pivot, or reject? Every decision costs valuable time.',
@@ -46,7 +46,7 @@ const CHALLENGES: ChallengeData[] = [
   {
     id: 'CHALLENGE 04',
     name: 'Ownership',
-    duration: '45–50 MIN',
+    duration: '45-50 MIN',
     coreQuestion: 'Can you take responsibility when assigned roles unexpectedly collapse?',
     curiousBriefing:
       'A high-stakes mission is assigned across 4 founders. Suddenly, key pillars crumble without warning. In the face of failure, who steps in to say: "I’ll handle it"?',

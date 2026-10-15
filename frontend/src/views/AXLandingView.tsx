@@ -31,7 +31,7 @@ export const AXLandingView: React.FC = () => {
       {/* Hero Wrapper containing Hero and Stats Card */}
       <div className="hero-wrapper">
 
-        {/* Interactive tile grid — covers full hero wrapper */}
+        {/* Interactive tile grid - covers full hero wrapper */}
         <div className="hero-grid-container">
           <InteractiveTileGrid />
         </div>

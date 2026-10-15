@@ -13,7 +13,7 @@ export const SummitExperience: React.FC = () => {
 
   const experiences = [
     { title: 'Interactive Zones, No Stages', desc: 'Forget traditional stages and passive listening. Move through immersive zones designed to simulate real business challenges.' },
-    { title: 'Communicate with Experts', desc: 'Instead of speakers talking at you, our experts are inside the zones with you—ready to communicate, problem-solve, and guide you through the experience.' },
+    { title: 'Communicate with Experts', desc: 'Instead of speakers talking at you, our experts are inside the zones with you, ready to communicate, problem-solve, and guide you through the experience.' },
     { title: 'A Miniature Founder Journey', desc: 'Every step of the event is carefully crafted to mirror the actual timeline of building a startup, condensing years of experience into a single day.' },
     { title: 'Discover True Capabilities', desc: 'By experiencing the challenges firsthand rather than just hearing about them, you will uncover blind spots and unlock new approaches to your business.' },
   ];
@@ -101,7 +101,7 @@ export const SummitExperience: React.FC = () => {
         </div>
 
         <p style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 100px', fontWeight: 700, fontSize: '1.25rem', color: 'var(--v2v-black)', lineHeight: 1.6 }}>
-          By navigating these experiential zones, you don't just learn about building a company—you actively experience it alongside the experts.
+          By navigating these experiential zones, you don't just learn about building a company, you actively experience it alongside the experts.
         </p>
 
         {/* Grid Experience */}

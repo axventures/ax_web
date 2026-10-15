@@ -8,7 +8,7 @@ import React from 'react';
 
 /* ── Individual Drawing Components ── */
 
-/** Flowing contour/topographic lines — upper right corner */
+/** Flowing contour/topographic lines - upper right corner */
 export const ContourLinesTopRight: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => (
   <svg
     style={{
@@ -32,7 +32,7 @@ export const ContourLinesTopRight: React.FC<{ opacity?: number }> = ({ opacity =
   </svg>
 );
 
-/** Flowing dense contour/topographic lines — upper left corner */
+/** Flowing dense contour/topographic lines - upper left corner */
 export const TopoLinesTopLeft: React.FC<{ opacity?: number }> = ({ opacity = 0.4 }) => (
   <svg
     style={{
@@ -68,7 +68,7 @@ export const TopoLinesTopLeft: React.FC<{ opacity?: number }> = ({ opacity = 0.4
   </svg>
 );
 
-/** Dashed curve — like the red dashed curve in Peak XV, but in brand blue */
+/** Dashed curve - like the red dashed curve in Peak XV, but in brand blue */
 export const DashedCurveLeft: React.FC<{ opacity?: number }> = ({ opacity = 0.25 }) => (
   <svg
     style={{
@@ -96,7 +96,7 @@ export const DashedCurveLeft: React.FC<{ opacity?: number }> = ({ opacity = 0.25
   </svg>
 );
 
-/** Flowing wave lines — bottom right */
+/** Flowing wave lines - bottom right */
 export const WaveLinesBottomRight: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => (
   <svg
     style={{
@@ -119,7 +119,7 @@ export const WaveLinesBottomRight: React.FC<{ opacity?: number }> = ({ opacity =
   </svg>
 );
 
-/** Scattered dots and circles — subtle accent */
+/** Scattered dots and circles - subtle accent */
 export const ScatteredDots: React.FC<{ opacity?: number }> = ({ opacity = 0.2 }) => (
   <svg
     style={{
@@ -172,7 +172,7 @@ export const DashedArcTopLeft: React.FC<{ opacity?: number }> = ({ opacity = 0.2
   </svg>
 );
 
-/** Small diamond markers — decorative accent */
+/** Small diamond markers - decorative accent */
 export const DiamondMarker: React.FC<{ style?: React.CSSProperties; opacity?: number }> = ({ style, opacity = 0.3 }) => (
   <svg
     style={{

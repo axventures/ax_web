@@ -75,7 +75,7 @@ export const KeepYouAheadSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Cards grid — hover to reveal description */}
+        {/* Cards grid - hover to reveal description */}
         <div className="kyah-cards">
           {cards.map((card) => (
             <div
@@ -87,10 +87,10 @@ export const KeepYouAheadSection: React.FC = () => {
               {/* Accent bar */}
               <div className="kyah-card-accent-bar" />
 
-              {/* Title — always visible */}
+              {/* Title - always visible */}
               <h3 className="kyah-card-title">{card.title}</h3>
 
-              {/* Description — reveals on hover */}
+              {/* Description - reveals on hover */}
               <div className="kyah-card-reveal-content">
                 <p className="kyah-card-desc">{card.description}</p>
               </div>

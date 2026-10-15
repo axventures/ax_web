@@ -130,10 +130,10 @@ body {
 }
 
 /* ============================================================
-   Premium Hero — Interactive Grid & Ambient Lighting
+   Premium Hero - Interactive Grid & Ambient Lighting
    ============================================================ */
 
-/* Interactive tile grid canvas container — covers full hero-wrapper */
+/* Interactive tile grid canvas container - covers full hero-wrapper */
 .hero-grid-container {
   position: absolute;
   inset: 0;
@@ -177,7 +177,7 @@ body {
   }
 }
 
-/* Decorative contour lines wrapper — brand design touch */
+/* Decorative contour lines wrapper - brand design touch */
 .hero-decorative-lines {
   position: absolute;
   inset: 0;
@@ -1206,7 +1206,7 @@ a {
   color: var(--card-accent, #1801AD);
 }
 
-/* Description — hidden initially, reveals on hover */
+/* Description - hidden initially, reveals on hover */
 .kyah-card-reveal-content {
   max-height: 0;
   opacity: 0;
@@ -2461,7 +2461,7 @@ a {
   display: none;
 }
 
-/* --- Explore Vision Ventures Hero Button — Premium Glass --- */
+/* --- Explore Vision Ventures Hero Button - Premium Glass --- */
 .hero-summit-btn {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(24, 1, 173, 0.85) 100%);
   color: #fff;

@@ -31,7 +31,7 @@ const OBSERVATION_PILLARS = [
 
 const DEBRIEF_QUESTIONS = [
   'What actually happened versus what you planned?',
-  'What information did you use — and what did you overlook?',
+  'What information did you use, and what did you overlook?',
   'Who truly took ownership when the breakdown occurred?',
   'Where does this exact behavioral pattern appear in your real company?',
 ];
@@ -54,7 +54,7 @@ export const RetreatObservation: React.FC = () => {
             Observation & Debrief Framework
           </h2>
           <p className="retreat-subtitle">
-            AX creates the scenario, steps back, and records unbiased observations. No intrusive coaching during the challenge — only sharp, transformative debriefs.
+            AX creates the scenario, steps back, and records unbiased observations. No intrusive coaching during the challenge - only sharp, transformative debriefs.
           </p>
         </div>
 
