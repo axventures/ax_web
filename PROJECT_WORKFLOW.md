@@ -1,4 +1,4 @@
-# AX Ventures — Project Workflow & Architecture Documentation
+﻿# AX Ventures - Project Workflow & Architecture Documentation
 
 > **Last updated:** September 2026  
 > **Domain:** [axventures.in](https://axventures.in)
@@ -11,8 +11,8 @@
 2. [High-Level Architecture](#2-high-level-architecture)
 3. [Tech Stack](#3-tech-stack)
 4. [Repository Structure](#4-repository-structure)
-5. [Frontend — Deep Dive](#5-frontend--deep-dive)
-6. [Backend — Deep Dive](#6-backend--deep-dive)
+5. [Frontend - Deep Dive](#5-frontend--deep-dive)
+6. [Backend - Deep Dive](#6-backend--deep-dive)
 7. [Data Flow & Request Lifecycle](#7-data-flow--request-lifecycle)
 8. [Pages & Routes](#8-pages--routes)
 9. [FRP Application Form Workflow](#9-frp-application-form-workflow)
@@ -30,8 +30,8 @@
 **AX Ventures** is a venture capital / startup accelerator platform. The website serves as the primary public-facing interface for:
 
 - Showcasing the AX brand, mission, and team
-- Hosting the **Founder Readiness Program (FRP)** — a multi-step application form for startup founders to apply for mentorship & investment
-- Promoting the **Founder Summit** — a physical event page with speakers, passes, FAQ, and venue details
+- Hosting the **Founder Readiness Program (FRP)** - a multi-step application form for startup founders to apply for mentorship & investment
+- Promoting the **Founder Summit** - a physical event page with speakers, passes, FAQ, and venue details
 - Providing contact & about pages for general enquiries
 - Triggering automated welcome emails upon FRP form submission
 
@@ -92,10 +92,10 @@
 | HTTP Client | **Axios** | v1 | API calls to the backend |
 | Icons | **Lucide React** | v0.400 | Consistent icon set |
 | CSS Utilities | **TailwindCSS** | v4 | Used specifically in the FRP apply section |
-| Class Merging | **clsx + tailwind-merge** | — | Conditional class name handling |
+| Class Merging | **clsx + tailwind-merge** | - | Conditional class name handling |
 | Analytics | **@vercel/analytics** | v2 | Page view analytics via Vercel |
 | Performance | **@vercel/speed-insights** | v2 | Core Web Vitals monitoring via Vercel |
-| Styling | **Vanilla CSS** | — | Main site-wide CSS via custom properties |
+| Styling | **Vanilla CSS** | - | Main site-wide CSS via custom properties |
 
 ### Backend
 
@@ -187,7 +187,7 @@ ax_web/
 │   │       │   ├── SummitPassAndFAQ.tsx
 │   │       │   ├── SummitFooter.tsx
 │   │       │   └── summit.css
-│   │       └── portal/           ← (Reserved — empty, future admin portal)
+│   │       └── portal/           ← (Reserved - empty, future admin portal)
 │   ├── public/                   ← Static assets (images, fonts, favicons)
 │   ├── index.html                ← HTML entry point (Vite SPA shell)
 │   ├── vite.config.ts            ← Vite build & dev server config
@@ -203,7 +203,7 @@ ax_web/
 │   │   └── emailController.js    ← Request handler for email routes
 │   ├── services/
 │   │   └── mailService.js        ← Resend email logic + HTML email template
-│   ├── middleware/               ← (empty — middleware inline in server.js)
+│   ├── middleware/               ← (empty - middleware inline in server.js)
 │   └── .env                      ← Secrets (Resend API key, email credentials)
 │
 ├── vercel.json                   ← Vercel deployment config (SPA rewrites)
@@ -214,7 +214,7 @@ ax_web/
 
 ---
 
-## 5. Frontend — Deep Dive
+## 5. Frontend - Deep Dive
 
 ### Entry Point
 
@@ -228,15 +228,15 @@ index.html  →  main.tsx  →  App.tsx  →  (Routes)
 
 There is **no global state management library** (no Redux, no Zustand). State is managed locally at the page/component level using React's built-in `useState` and `useEffect` hooks. Form state is entirely delegated to **React Hook Form**.
 
-### Build Optimisation — Vite Code Splitting
+### Build Optimisation - Vite Code Splitting
 
 The production bundle is manually split into named chunks inside `vite.config.ts`:
 
 | Chunk | Libraries | Reason |
 |---|---|---|
-| `vendor-react` | `react`, `react-dom`, `react-router-dom` | Core React — cached separately |
-| `vendor-motion` | `framer-motion` | Animation library — large, rarely changes |
-| `vendor-lucide` | `lucide-react` | Icon library — tree-shakeable but isolated |
+| `vendor-react` | `react`, `react-dom`, `react-router-dom` | Core React - cached separately |
+| `vendor-motion` | `framer-motion` | Animation library - large, rarely changes |
+| `vendor-lucide` | `lucide-react` | Icon library - tree-shakeable but isolated |
 | `vendor-helpers` | All other `node_modules` | Remaining third-party code |
 
 ### Dev Server Proxy
@@ -247,9 +247,9 @@ In development, Vite proxies all `/api/*` requests to `http://localhost:3000` so
 
 The site uses **two styling approaches in parallel**:
 
-1. **Vanilla CSS with CSS Custom Properties** — Used for the main landing page, Summit page, and all shared components. Defined in `landing.css` and `summit.css`. All brand colors and spacing tokens declared in `:root`.
+1. **Vanilla CSS with CSS Custom Properties** - Used for the main landing page, Summit page, and all shared components. Defined in `landing.css` and `summit.css`. All brand colors and spacing tokens declared in `:root`.
 
-2. **TailwindCSS v4** — Used exclusively inside the `/apply` (FRP application) section via `frp-tailwind.css` and a dedicated `tailwind.config.js`. This was a pragmatic choice to speed up dense form UI development.
+2. **TailwindCSS v4** - Used exclusively inside the `/apply` (FRP application) section via `frp-tailwind.css` and a dedicated `tailwind.config.js`. This was a pragmatic choice to speed up dense form UI development.
 
 ### Animations
 
@@ -261,7 +261,7 @@ The site uses **two styling approaches in parallel**:
 
 ---
 
-## 6. Backend — Deep Dive
+## 6. Backend - Deep Dive
 
 ### Architecture Pattern
 
@@ -276,13 +276,13 @@ server.js (Express App Setup + Middleware)
 
 ### Middleware Stack (in execution order)
 
-1. **`dotenv`** — Loads environment variables from `.env`
-2. **`helmet`** — Sets security HTTP headers (XSS, clickjacking, MIME sniffing)
-3. **Request Logger** — Custom middleware logging every request: timestamp, method, URL, origin
-4. **`cors`** — Restricts allowed origins to production domains + Vercel previews + localhost
-5. **Body Parsers** — `express.json` + `express.urlencoded` (limited to 10kb)
-6. **API Rate Limiter** — `/api/*` routes: max **100 req / 15 min**
-7. **General Rate Limiter** — All routes: max **500 req / 15 min**
+1. **`dotenv`** - Loads environment variables from `.env`
+2. **`helmet`** - Sets security HTTP headers (XSS, clickjacking, MIME sniffing)
+3. **Request Logger** - Custom middleware logging every request: timestamp, method, URL, origin
+4. **`cors`** - Restricts allowed origins to production domains + Vercel previews + localhost
+5. **Body Parsers** - `express.json` + `express.urlencoded` (limited to 10kb)
+6. **API Rate Limiter** - `/api/*` routes: max **100 req / 15 min**
+7. **General Rate Limiter** - All routes: max **500 req / 15 min**
 
 ### CORS Allowed Origins
 
@@ -350,7 +350,7 @@ server.js (Express App Setup + Middleware)
 | Route | Component | Description |
 |---|---|---|
 | `/` | `AXLandingView` | Main homepage composed of all landing sections |
-| `/about` | `AboutPage` | About AX Ventures — mission, team, story |
+| `/about` | `AboutPage` | About AX Ventures - mission, team, story |
 | `/contact` | `ContactPage` | Contact form and company information |
 | `/founders` | `FoundersPage` | Founders listing / profile page |
 | `/founder-summit` | `FounderSummitView` | Founder Summit event page |
@@ -460,7 +460,7 @@ All visual design follows the documented system in [`DESIGN.md`](./DESIGN.md).
 
 ### Typography
 
-- **Font Family:** `Outfit` — loaded via Google Fonts
+- **Font Family:** `Outfit` - loaded via Google Fonts
 - **Headings:** Bold (700–900 weight), tight letter-spacing (`-0.02em` to `-0.04em`)
 - **Body:** Regular/Medium (400–500 weight), line-height `1.5–1.6`
 
@@ -468,9 +468,9 @@ All visual design follows the documented system in [`DESIGN.md`](./DESIGN.md).
 
 Every section **must** include:
 
-1. **Topographic contour lines** — SVG background texture giving a premium, map-like depth
-2. **`DecorativeLines.tsx`** — Animated sweeping dashed lines used as section accents
-3. **Strict brand color palette** — All colors via `var(--brand-blue)`, `var(--text-main)`, etc.
+1. **Topographic contour lines** - SVG background texture giving a premium, map-like depth
+2. **`DecorativeLines.tsx`** - Animated sweeping dashed lines used as section accents
+3. **Strict brand color palette** - All colors via `var(--brand-blue)`, `var(--text-main)`, etc.
 
 ### UI Patterns
 
@@ -487,7 +487,7 @@ Every section **must** include:
 
 ## 12. Build & Deployment
 
-### Frontend — Vercel
+### Frontend - Vercel
 
 Vercel auto-deploys on every push to the connected Git branch.
 
@@ -500,7 +500,7 @@ npm run build
 
 Output is split into named vendor chunks for optimal cache performance (see Section 5).
 
-### Backend — Render
+### Backend - Render
 
 The backend is deployed as a **Web Service** on Render.com:
 
@@ -515,19 +515,19 @@ Render keeps the process alive. Backend URL: `https://axventures-api.onrender.co
 
 ## 13. Environment Variables
 
-### Frontend — `.env.production`
+### Frontend - `.env.production`
 
 | Variable | Value | Purpose |
 |---|---|---|
 | `VITE_API_URL` | `https://axventures-api.onrender.com` | Base URL for all API calls |
 
-### Frontend — `.env.development`
+### Frontend - `.env.development`
 
 | Variable | Value | Purpose |
 |---|---|---|
 | `VITE_API_URL` | `http://localhost:3000` | Local backend URL |
 
-### Backend — `.env`
+### Backend - `.env`
 
 | Variable | Purpose |
 |---|---|
@@ -545,10 +545,10 @@ Render keeps the process alive. Backend URL: `https://axventures-api.onrender.co
 |---|---|
 | Secure HTTP headers | `helmet` middleware (XSS, clickjacking, MIME-type sniffing) |
 | CORS abuse | Strict origin whitelist + `*.vercel.app` wildcard only |
-| API abuse / DDoS | `express-rate-limit` — 100 req/15 min on `/api/*`, 500 req/15 min globally |
+| API abuse / DDoS | `express-rate-limit` - 100 req/15 min on `/api/*`, 500 req/15 min globally |
 | Payload attacks | Body parser limited to `10kb` max |
 | NoSQL injection | `express-mongo-sanitize` (defensive) |
-| Proxy trust | `app.set('trust proxy', 1)` — reads real IPs behind Render's proxy |
+| Proxy trust | `app.set('trust proxy', 1)` - reads real IPs behind Render's proxy |
 | Secrets management | All secrets in `.env` files (never committed to Git) |
 
 ---

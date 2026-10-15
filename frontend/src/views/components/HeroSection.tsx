@@ -48,7 +48,7 @@ export const HeroSection: React.FC = () => {
       {/* Ambient radial light behind content */}
       <div className="hero-ambient-light" />
 
-      {/* Topographic contour lines — brand design touch */}
+      {/* Topographic contour lines - brand design touch */}
       <div className="hero-decorative-lines">
         <ContourLinesTopRight opacity={0.08} />
         <SweepingDashedLineAlt />

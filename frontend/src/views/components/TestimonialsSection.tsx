@@ -81,7 +81,7 @@ export const TestimonialsSection: React.FC = () => {
                 </blockquote>
               </div>
 
-              {/* Footer — role & company only, no avatar/name */}
+              {/* Footer - role & company only, no avatar/name */}
               <div className="testimonial-footer">
                 <div className="testimonial-meta">
                   <span className="testimonial-role">{t.role}</span>

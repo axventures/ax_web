@@ -1,17 +1,28 @@
 import React from 'react';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ArrowRight, Target, Compass, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { 
+  ContourLinesTopRight, 
+  TopoLinesTopLeft, 
+  DashedCurveLeft 
+} from './DecorativeLines';
 
 export const AboutSection: React.FC = () => {
   return (
     <section 
       id="about" 
       style={{
-        padding: '140px 24px',
+        padding: '130px 24px',
         backgroundColor: '#ffffff',
         position: 'relative',
         overflow: 'hidden'
       }}
     >
+      {/* Design System Decorative Lines */}
+      <TopoLinesTopLeft opacity={0.18} />
+      <ContourLinesTopRight opacity={0.14} />
+      <DashedCurveLeft opacity={0.12} />
+
       {/* Background ambient light */}
       <div 
         style={{
@@ -27,7 +38,7 @@ export const AboutSection: React.FC = () => {
         }}
       />
 
-      <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative', zIndex: 1, textAlign: 'center' }}>
+      <div style={{ maxWidth: '960px', margin: '0 auto', position: 'relative', zIndex: 1, textAlign: 'center' }}>
         
         {/* Section Label */}
         <div 
@@ -38,106 +49,190 @@ export const AboutSection: React.FC = () => {
             padding: '6px 16px',
             backgroundColor: 'rgba(24, 1, 173, 0.05)',
             borderRadius: '100px',
-            color: '#1801AD',
+            color: 'var(--brand-blue, #1801AD)',
             fontSize: '0.85rem',
             fontWeight: 700,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            marginBottom: '32px'
+            marginBottom: '28px'
           }}
         >
           <Sparkles size={16} color="#1801AD" />
-          About AX
+          About AX Group
         </div>
 
         {/* Title */}
         <h2 
           style={{
-            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+            fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
             fontWeight: 800,
             color: '#0f172a',
             letterSpacing: '-0.04em',
             lineHeight: 1.1,
-            marginBottom: '48px'
+            marginBottom: '32px'
           }}
         >
-          Our Story
+          Building Companies by Building Exceptional Founders
         </h2>
 
         {/* Main Statement */}
-        <div style={{ textAlign: 'left', maxWidth: '780px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'left', maxWidth: '820px', margin: '0 auto' }}>
           <p 
             style={{
-              fontSize: 'clamp(1.4rem, 3vw, 1.8rem)',
+              fontSize: 'clamp(1.3rem, 2.6vw, 1.7rem)',
               fontWeight: 500,
               color: '#1e293b',
-              lineHeight: 1.4,
-              marginBottom: '40px'
+              lineHeight: 1.45,
+              marginBottom: '32px'
             }}
           >
-            AX Ventures was founded with one belief:{' '}
-            <span style={{ color: '#1801AD', fontWeight: 700 }}>
+            AX was founded with one belief:{' '}
+            <span style={{ color: 'var(--brand-blue, #1801AD)', fontWeight: 800 }}>
               Great companies are built by great founders.
             </span>
           </p>
 
           <p 
             style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
+              fontSize: 'clamp(1.05rem, 1.8vw, 1.2rem)',
               fontWeight: 400,
               color: '#475569',
-              lineHeight: 1.6,
-              marginBottom: '16px'
+              lineHeight: 1.7,
+              marginBottom: '20px'
             }}
           >
-            Most startups don't fail because founders lack ideas.
+            Most startups don’t fail because founders lack ideas. They fail because founders lack the structured operating systems, multidisciplinary leadership, and coordinated ecosystem required to navigate growth.
           </p>
           <p 
             style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
+              fontSize: 'clamp(1.05rem, 1.8vw, 1.2rem)',
               fontWeight: 400,
               color: '#475569',
-              lineHeight: 1.6,
-              marginBottom: '32px'
+              lineHeight: 1.7,
+              marginBottom: '36px'
             }}
           >
-            They fail because founders fail to build themselves before they build their companies.
+            AX Group of Corporations exists to bridge that gap, connecting venture building, software technology, marketing, corporate governance, capital networks, and physical innovation hubs under one coordinated umbrella.
           </p>
 
+          {/* Cycle Quote Box */}
           <div 
             style={{
-              display: 'inline-block',
-              padding: '24px 32px',
+              padding: '28px 32px',
               backgroundColor: '#f8fafc',
-              borderLeft: '4px solid #1801AD',
+              borderLeft: '4px solid var(--brand-blue, #1801AD)',
               borderRadius: '0 16px 16px 0',
-              marginTop: '16px'
+              border: '1px solid rgba(24, 1, 173, 0.08)',
+              borderLeftWidth: '4px',
+              borderLeftColor: '#1801AD',
+              marginBottom: '40px'
             }}
           >
             <p 
               style={{
-                fontSize: 'clamp(1.2rem, 2vw, 1.4rem)',
-                fontWeight: 600,
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-blue, #1801AD)',
+                marginBottom: '8px'
+              }}
+            >
+              The Value-Creation Flywheel
+            </p>
+            <p 
+              style={{
+                fontSize: 'clamp(1.15rem, 2vw, 1.35rem)',
+                fontWeight: 700,
                 color: '#0f172a',
                 lineHeight: 1.5,
                 margin: 0,
-                marginBottom: '12px'
+                marginBottom: '10px'
               }}
             >
-              AX Ventures exists to change that.
+              From ideas to founders. From founders to ventures. From ventures to talent. From talent to assets. From assets to networks.
             </p>
             <p
               style={{
-                fontSize: 'clamp(1.05rem, 1.8vw, 1.15rem)',
+                fontSize: '0.98rem',
                 fontWeight: 400,
                 color: '#475569',
                 lineHeight: 1.6,
                 margin: 0
               }}
             >
-              We work alongside founders to strengthen leadership, sharpen decision-making, build operational excellence, and create businesses that can scale with confidence.
+              We work alongside founders to strengthen leadership clarity, build operational excellence, and create businesses that scale with durable economic value.
             </p>
           </div>
+
+          {/* Quick Pillars Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '16px',
+              marginBottom: '40px'
+            }}
+          >
+            <div style={{ padding: '20px', borderRadius: '12px', border: '1px solid #f1f5f9', backgroundColor: '#ffffff' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1801AD', fontWeight: 700, marginBottom: '6px' }}>
+                <Target size={18} /> Our Vision
+              </div>
+              <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
+                Interconnected business ecosystem creating long-term value from ideas to assets.
+              </p>
+            </div>
+
+            <div style={{ padding: '20px', borderRadius: '12px', border: '1px solid #f1f5f9', backgroundColor: '#ffffff' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1801AD', fontWeight: 700, marginBottom: '6px' }}>
+                <Compass size={18} /> Our Mission
+              </div>
+              <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
+                Discover opportunities, empower founders, and build research-driven district ecosystems.
+              </p>
+            </div>
+
+            <div style={{ padding: '20px', borderRadius: '12px', border: '1px solid #f1f5f9', backgroundColor: '#ffffff' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1801AD', fontWeight: 700, marginBottom: '6px' }}>
+                <BookOpen size={18} /> Our Philosophy
+              </div>
+              <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
+                Before building companies, we build founders through disciplined execution and 8 principles.
+              </p>
+            </div>
+          </div>
+
+          {/* Explore Button */}
+          <div style={{ textAlign: 'center' }}>
+            <Link
+              to="/about"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '14px 28px',
+                backgroundColor: 'var(--brand-blue, #1801AD)',
+                color: '#ffffff',
+                borderRadius: '100px',
+                fontSize: '0.95rem',
+                fontWeight: 700,
+                textDecoration: 'none',
+                boxShadow: '0 8px 24px -6px rgba(24, 1, 173, 0.4)',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(24, 1, 173, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 8px 24px -6px rgba(24, 1, 173, 0.4)';
+              }}
+            >
+              Explore Full AX Story, Vision & Philosophy <ArrowRight size={16} />
+            </Link>
+          </div>
+
         </div>
 
       </div>

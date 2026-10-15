@@ -13,13 +13,13 @@ const foundersData = [
     desc: "Building the future of extended reality. Currently scaling at the Revenue Stage.",
     image: "frp/ArkytUP-Basil Mishaal Mathew.png",
   },
-  {
-    name: "Muhammed Hafis",
-    company: "Kori",
-    industry: "FOOD & BEVERAGE",
-    desc: "Innovating in the food & beverage industry. Currently in the Idea Stage.",
-    image: "frp/Kori -Muhammed Hafis.png",
-  },
+  // {
+  //   name: "Muhammed Hafis",
+  //   company: "Kori",
+  //   industry: "FOOD & BEVERAGE",
+  //   desc: "Innovating in the food & beverage industry. Currently in the Idea Stage.",
+  //   image: "frp/Kori -Muhammed Hafis.png",
+  // },
   {
     name: "Aravind Sekhar",
     company: "Servewise Solutions",
@@ -27,20 +27,20 @@ const foundersData = [
     desc: "Developing a premier service marketplace. Currently at the MVP Stage.",
     image: "frp/Servewise Solutions Pvt. Ltd. -Aravind Sekhar.png",
   },
-  {
-    name: "Anees",
-    company: "Tomome",
-    industry: "PREGNANCY & PARENTING",
-    desc: "Supporting the journey of parenting. Currently operating at the Revenue Stage.",
-    image: "frp/Tomome -Anees.png",
-  },
-  {
-    name: "Mohammed Nasil",
-    company: "Creoture",
-    industry: "DESIGN & TECHNOLOGY",
-    desc: "Empowering businesses with end-to-end design, technology, automation, and AI solutions. Currently at the Validation Stage.",
-    image: "frp/Mohammed Nasil Creoture - Empowering businesses with end-to-end design, technology, automation, and Al solutions. Currently at the Validation Stage..png",
-  },
+  // {
+  //   name: "Anees",
+  //   company: "Tomome",
+  //   industry: "PREGNANCY & PARENTING",
+  //   desc: "Supporting the journey of parenting. Currently operating at the Revenue Stage.",
+  //   image: "frp/Tomome -Anees.png",
+  // },
+  // {
+  //   name: "Mohammed Nasil",
+  //   company: "Creoture",
+  //   industry: "DESIGN & TECHNOLOGY",
+  //   desc: "Empowering businesses with end-to-end design, technology, automation, and AI solutions. Currently at the Validation Stage.",
+  //   image: "frp/Mohammed Nasil Creoture - Empowering businesses with end-to-end design, technology, automation, and Al solutions. Currently at the Validation Stage..png",
+  // },
   {
     name: "Sangeeth Karunakaran",
     company: "XMO",
@@ -289,7 +289,7 @@ export const FoundersFRPSection: React.FC<FoundersFRPProps> = ({ onApplyClick })
               <div className="frp-card-overlay" />
               <div className="frp-card-info">
                 <h3 className="frp-card-name">{founder.name}</h3>
-                <p className="frp-card-role">{founder.company} — {founder.industry}</p>
+                <p className="frp-card-role">{founder.company} · {founder.industry}</p>
               </div>
               <div className="frp-card-detail-overlay">
                 <p>{founder.desc}</p>

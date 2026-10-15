@@ -36,7 +36,7 @@ export const SummitVenue: React.FC = () => {
           margin: '0 auto 56px',
           textAlign: 'center',
           lineHeight: 1.5
-        }}>This is a space designed for conversations—not just presentations.</p>
+        }}>This is a space designed for conversations, not just presentations.</p>
 
         <div style={{ 
           display: 'grid', 

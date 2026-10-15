@@ -86,7 +86,7 @@ export const InteractiveTileGrid: React.FC = () => {
 
     handleResize();
 
-    // Lerp factor — controls the smooth animation speed (~300ms feel)
+    // Lerp factor - controls the smooth animation speed (~300ms feel)
     const LERP = 0.16;
 
     const render = () => {
